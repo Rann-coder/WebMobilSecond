@@ -1,0 +1,85 @@
+{% set page_css = ['../css/css-user/home.css'] %}
+{% set page_scripts = ['../script/script-user/home.js'] %}
+
+{% include '_header.twig.html' %}
+    <div class="content-section">
+        <h2 class="title-divider">Choose Your Brands</h2>
+        <div class="popular-categories">
+            <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>
+
+            <div id="brands-list" class="brands-container">
+                <button class="filter-btn active" data-brand="All">All</button>
+                {% for brand in brands %}
+                <button class="filter-btn">{{brand.name}}</button>
+                {% endfor %}
+            </div>
+
+            <button id="scroll-right-btn-brands" class="scroll-btn">&rarr;</button>
+        </div>
+
+        <h2 class="title-divider">Choose Your Types</h2>
+        <div class="popular-categories">
+            
+            <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
+
+            <div id="types-list" class="brands-container">
+                <button class="filter-btn active" data-brand="All">All</button>
+                {% for type in types %}
+                <button class="filter-btn">{{type.name}}</button>
+                {% endfor %}
+            </div>
+
+            <button id="scroll-right-btn-types" class="scroll-btn">&rarr;</button>
+        </div>
+
+        <h2 class="title-divider">Your Choises Cars</h2>
+        <div class="vehicle-grid">
+           
+            
+        </div>
+
+    </div>
+    
+
+    
+
+    <!--<h2>All new EVs</h2>
+    <p>Experience the best way to search new cars</p>
+    !-->
+
+    
+    
+    <h2>Compare top rated vehicles</h2>
+    <div class="compare-grid">
+        <div class="compare-card">
+            <a href="{{ vehicle.url }}" class="card-link-wrapper">
+                <div class="compare-image-container">
+                   <img src="../images/compare.png" alt="🚗">
+                </div>
+                <h3 class="compare-title">2024 Tesla Model Y vs. 2024 Ford Mustang Mach-E</h3>
+            </a>
+        </div>
+
+        <div class="compare-card">
+            <a href="{{ vehicle.url }}" class="card-link-wrapper">
+                <div class="compare-image-container">
+                   <img src="../images/compare.png" alt="🚗">
+                </div>
+                <h3 class="compare-title">2024 Tesla Model Y vs. 2024 Ford Mustang Mach-E</h3>
+            </a>
+        </div>
+
+        <div class="compare-card">
+            <a href="{{ vehicle.url }}" class="card-link-wrapper">
+                <div class="compare-image-container">
+                   <img src="../images/compare-custom.png" alt="🚗">
+                </div>
+                <h3 class="compare-title">Choose your own choices</h3>
+            </a>
+        </div>
+    </div>
+    
+
+
+
+{% include '_footer.twig.html' %}    
