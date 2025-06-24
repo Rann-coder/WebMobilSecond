@@ -1,10 +1,9 @@
-{% set page_css = ['../css/css-user/home.css'] %}
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/home.css'] %}
 {% set page_scripts = ['../script/script-user/home.js'] %}
 
-<div>
-    
-</div>
 {% include '_header.twig.html' %}
+
+<main>
     <div class="content-section">
         <h2 class="title-divider">Our Showrooms</h2>
 
@@ -34,7 +33,7 @@
             <div id="brands-list" class="brands-container">
                 <button class="filter-btn active" data-brand="All">All</button>
                 {% for brand in brands %}
-                <button class="filter-btn">{{brand.name}}</button>
+                <button class="filter-btn" data-brand="{{ brand.name }}">{{ brand.name }}</button>
                 {% endfor %}
             </div>
 
@@ -47,63 +46,51 @@
             <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
 
             <div id="types-list" class="brands-container">
-                <button class="filter-btn active" data-brand="All">All</button>
+                <button class="filter-btn-type active" data-type="All">All</button>
                 {% for type in types %}
-                <button class="filter-btn">{{type.name}}</button>
+                <button class="filter-btn-type" data-type="{{ type.name }}">{{ type.name }}</button>
                 {% endfor %}
             </div>
 
             <button id="scroll-right-btn-types" class="scroll-btn">&rarr;</button>
         </div>
 
-        <h2 class="title-divider">Your Choises Cars</h2>
-        <div class="vehicle-grid">
-           
-            
+        <h2 class="title-divider">Your Choices Cars</h2>
+        <div class="vehicle-grid" id="vehicle-grid">
+            <!-- Cars will be populated here via JavaScript -->
         </div>
 
     </div>
     
-
-    
-
-    <!--<h2>All new EVs</h2>
-    <p>Experience the best way to search new cars</p>
-    !-->
-
-    
-    
     <h2>Compare top rated vehicles</h2>
     <div class="compare-grid">
         <div class="compare-card">
-            <a href="{{ vehicle.url }}" class="card-link-wrapper">
+            <a href="#" class="card-link-wrapper">
                 <div class="compare-image-container">
-                   <img src="../images/compare.png" alt="🚗">
+                   <img src="../images/compare.png" alt="Compare vehicles">
                 </div>
                 <h3 class="compare-title">2024 Tesla Model Y vs. 2024 Ford Mustang Mach-E</h3>
             </a>
         </div>
 
         <div class="compare-card">
-            <a href="{{ vehicle.url }}" class="card-link-wrapper">
+            <a href="#" class="card-link-wrapper">
                 <div class="compare-image-container">
-                   <img src="../images/compare.png" alt="🚗">
+                   <img src="../images/compare.png" alt="Compare vehicles">
                 </div>
-                <h3 class="compare-title">2024 Tesla Model Y vs. 2024 Ford Mustang Mach-E</h3>
+                <h3 class="compare-title">2024 BMW X3 vs. 2024 Audi Q5</h3>
             </a>
         </div>
 
         <div class="compare-card">
-            <a href="{{ vehicle.url }}" class="card-link-wrapper">
+            <a href="#" class="card-link-wrapper">
                 <div class="compare-image-container">
-                   <img src="../images/compare-custom.png" alt="🚗">
+                   <img src="../images/compare-custom.png" alt="Custom compare">
                 </div>
                 <h3 class="compare-title">Choose your own choices</h3>
             </a>
         </div>
     </div>
-    
+</main>
 
-
-
-{% include '_footer.twig.html' %}    
+{% include '_footer.twig.html' %}

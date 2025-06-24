@@ -26,7 +26,7 @@ CREATE TABLE cars (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     id_brand INT NOT NULL,
     name VARCHAR(150) NOT NULL,
-    `year` SMALLINT,
+    year SMALLINT,
     price DECIMAL(15,2),
     image_url VARCHAR(255),
     description TEXT,
@@ -112,7 +112,7 @@ INSERT INTO daftarTypes (name) VALUES
 ('Pick-up');
 
 -- Fixed INSERT statement: changed brand_id to id_brand
-INSERT INTO cars (id_brand, name, `year`, price, image_url, description, specifications, slug) VALUES
+INSERT INTO cars (id_brand, name, year, price, image_url, description, specifications, slug) VALUES
 (
     1, -- id_brand untuk Toyota
     'Avanza 1.5 G CVT',
