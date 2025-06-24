@@ -1,7 +1,9 @@
 CREATE DATABASE IF NOT EXISTS web_mobil_second;
 USE web_mobil_second;
 DROP TABLE IF EXISTS car_types;
+DROP TABLE IF EXISTS car_showrooms;
 DROP TABLE IF EXISTS cars;
+DROP TABLE IF EXISTS showrooms;
 DROP TABLE IF EXISTS daftarBrands, daftarTypes;
 
 CREATE TABLE daftarBrands (
@@ -24,7 +26,7 @@ CREATE TABLE cars (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     id_brand INT NOT NULL,
     name VARCHAR(150) NOT NULL,
-    `year` SMALLINT,
+    year SMALLINT,
     price DECIMAL(15,2),
     image_url VARCHAR(255),
     description TEXT,
@@ -61,16 +63,17 @@ CREATE TABLE showrooms (
 CREATE TABLE car_showrooms (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     car_id BIGINT NOT NULL,
-    car_showroom_id INT NOT NULL,
+    showroom_id INT NOT NULL,
     stock_quantity INT DEFAULT 0,
+    showroom_price DECIMAL(15,2), 
     is_available BOOLEAN DEFAULT TRUE,
-    notes TEXT,
+    notes TEXT, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY unique_car_showroom (car_id, showroom_id),
     FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (showroom_id) REFERENCES showrooms(id) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
 
 INSERT INTO daftarBrands (name) VALUES
 ('Toyota'),
@@ -109,7 +112,7 @@ INSERT INTO daftarTypes (name) VALUES
 ('Pick-up');
 
 -- Fixed INSERT statement: changed brand_id to id_brand
-INSERT INTO cars (id_brand, name, `year`, price, image_url, description, specifications, slug) VALUES
+INSERT INTO cars (id_brand, name, year, price, image_url, description, specifications, slug) VALUES
 (
     1, -- id_brand untuk Toyota
     'Avanza 1.5 G CVT',
@@ -174,10 +177,32 @@ INSERT INTO car_types (car_id, type_id) VALUES
 (3, 8),
 (3, 9),
 
--- Ioniq 5 (id=4) adalah Crossover (id=5) dan juga Electric (id=6)
+-- Ioniq 5 (id=4) adalah Crossover (id=5) dan juga Electric (id=6-)
 (4, 5),
 (4, 6),
 
 -- Ertiga (id=5) adalah MPV (id=2) dan juga Hybrid (id=7)
 (5, 2),
-(5, 7);
+(5, 7),
+
+(1, 4), -- Avanza = MPV
+(3, 2), -- Civic = Sedan
+(4, 1), -- CR-V = SUV
+(5, 1); -- BMW X3 = SUV
+
+INSERT INTO showrooms (id, name, address, phone, email, manager_name) VALUES
+(1, 'Showroom Medan Jaya', 'Jl. Gatot Subroto No. 123, Medan', '061-123456', 'sales@medanjaya.com', 'Budi Santoso'),
+(2, 'Sumatra Auto Gallery', 'Jl. Sisingamangaraja No. 45, Medan', '061-654321', 'info@sumatraauto.com', 'Citra Lestari');
+
+INSERT INTO car_showrooms (car_id, showroom_id, stock_quantity, showroom_price, is_available) VALUES 
+-- Showroom A inventory
+(1, 1, 3, 250000000.00, TRUE),  -- Avanza di Showroom A
+(2, 1, 2, 550000000.00, TRUE),  -- Fortuner di Showroom A
+(3, 1, 1, 650000000.00, TRUE),  -- Civic di Showroom A
+(4, 1, 0, 750000000.00, FALSE), -- CR-V di Showroom A (out of stock)
+
+-- Showroom B inventory
+(1, 2, 5, 248000000.00, TRUE),  -- Avanza di Showroom B (harga beda)
+(3, 2, 2, 645000000.00, TRUE),  -- Civic di Showroom B (harga beda)
+(4, 2, 3, 745000000.00, TRUE),  -- CR-V di Showroom B
+(5, 2, 1, 1200000000.00, TRUE); -- BMW X3 di Showroom B saja
