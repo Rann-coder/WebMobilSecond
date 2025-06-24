@@ -6,6 +6,27 @@
 </div>
 {% include '_header.twig.html' %}
     <div class="content-section">
+        <h2 class="title-divider">Our Showrooms</h2>
+
+        <div class="dealer-grid">
+            {% for showroom in showrooms %}
+            <div class="dealer-card">
+                <a href="showroom.php?id={{showroom.id}}" class="dealer-link">
+                    <div class="dealer-image-container">
+                        <img src="">
+                        <div class="dealer-overlay">
+                            <span class="visit-text">Visit Us</span>
+                        </div>
+                    </div>
+
+                    <div class="dealer-info">
+                        <h3 class="dealer-name">{{showroom.name}}</h3>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
         <h2 class="title-divider">Choose Your Brands</h2>
         <div class="popular-categories">
             <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>
