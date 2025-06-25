@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             if (selectedTypes.includes('All')) {
                 selectedTypes = [];
-                typesList.querySelector('[data-brand="All"]').classList.remove('active');
+                typesList.querySelector('[data-type="All"]').classList.remove('active');
             }
 
             if (selectedTypes.includes(typeName)) {
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (selectedTypes.length === 0) {
                 selectedTypes = ['All'];
-                typesList.querySelector('[data-brand="All"]').classList.add('active');
+                typesList.querySelector('[data-type="All"]').classList.add('active');
             }
         }
 

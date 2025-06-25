@@ -76,9 +76,9 @@
             <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
 
             <div id="types-list" class="brands-container">
-                <button class="filter-btn-type active" data-type="All">All</button>
+                <button class="filter-btn active" data-type="All">All</button>
                 {% for type in types %}
-                <button class="filter-btn-type" data-type="{{ type.name }}">{{ type.name }}</button>
+                <button class="filter-btn" data-type="{{ type.name }}">{{ type.name }}</button>
                 {% endfor %}
             </div>
 
