@@ -75,6 +75,8 @@ CREATE TABLE car_showrooms (
     FOREIGN KEY (showroom_id) REFERENCES showrooms(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
+
 INSERT INTO daftarBrands (name) VALUES
 ('Toyota'),
 ('Honda'),
@@ -206,3 +208,5 @@ INSERT INTO car_showrooms (car_id, showroom_id, stock_quantity, showroom_price, 
 (3, 2, 2, 645000000.00, TRUE),  -- Civic di Showroom B (harga beda)
 (4, 2, 3, 745000000.00, TRUE),  -- CR-V di Showroom B
 (5, 2, 1, 1200000000.00, TRUE); -- BMW X3 di Showroom B saja
+
+INSERT INTO 
