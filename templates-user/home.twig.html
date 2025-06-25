@@ -4,8 +4,59 @@
 {% include '_header.twig.html' %}
 
 <main>
+
+    <h2>Our Showrooms</h2>
     <div class="content-section">
-        <h2 class="title-divider">Choose Your Brands</h2>
+    {% for showroom in showrooms %}
+    <div class="showroom-feature {% if loop.index is even %}showroom-feature--reverse{% endif %}">
+        <div class="showroom-details">
+            <h3 class="showroom-name">{{ showroom.name }}</h3>
+            
+            <div class="showroom-info">
+                <div class="info-item">
+                    <span class="info-icon">📍</span>
+                    <div class="info-content">
+                        <strong class="info-label">Alamat</strong>
+                        <span class="info-value">{{ showroom.address }}</span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-icon">🕒</span>
+                    <div class="info-content">
+                        <strong class="info-label">Jam Buka</strong>
+                        <span class="info-value">{{ showroom.opening_hours }}</span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-icon">📞</span>
+                    <div class="info-content">
+                        <strong class="info-label">Telepon</strong>
+                        <span class="info-value">{{ showroom.phone }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="showroom.php?id={{ showroom.id }}" class="cta-button">
+                Kunjungi Halaman Showroom
+            </a>
+        </div>
+
+        <div class="showroom-image">
+            <img src="../images/showroomA.jpg" alt="{{ showroom.name }} Showroom">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+    <div id="cars" class="page-hero">
+        <h1>Ready to Find Your Next Car?</h1>
+        <p class="subtitile">Temukan partner berkendara yang tepat dari ratusan mobil second berkualitas yang telah kami inspeksi.</p>
+    </div>
+
+    <div class="content-section">
+        <h2 class="title-divider">Filter by Brand</h2>
         <div class="popular-categories">
             <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>
 
@@ -19,25 +70,29 @@
             <button id="scroll-right-btn-brands" class="scroll-btn">&rarr;</button>
         </div>
 
-        <h2 class="title-divider">Choose Your Types</h2>
+        <h2 class="title-divider">Find by Your Needs</h2>
         <div class="popular-categories">
             
             <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
 
             <div id="types-list" class="brands-container">
-                <button class="filter-btn-type active" data-type="All">All</button>
+                <button class="filter-btn active" data-type="All">All</button>
                 {% for type in types %}
-                <button class="filter-btn-type" data-type="{{ type.name }}">{{ type.name }}</button>
+                <button class="filter-btn" data-type="{{ type.name }}">{{ type.name }}</button>
                 {% endfor %}
             </div>
 
             <button id="scroll-right-btn-types" class="scroll-btn">&rarr;</button>
         </div>
 
-        <h2 class="title-divider">Your Choices Cars</h2>
+        <h2 class="title-divider">Mathcing Your Criteria</h2>
         <div class="vehicle-grid" id="vehicle-grid">
             <!-- Cars will be populated here via JavaScript -->
         </div>
+        <div class="button-container">
+            <a href="#" class="search-more-btn">Search More by Filters</a>
+        </div>
+       
 
     </div>
     

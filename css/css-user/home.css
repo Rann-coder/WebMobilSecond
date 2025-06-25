@@ -1,3 +1,7 @@
+/* ===================================
+   CSS RESET & BASE STYLES
+   =================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,13 +13,15 @@ body {
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
 }
+
+/* ===================================
+   LAYOUT & TYPOGRAPHY
+   =================================== */
 
 main {
     padding: 20px 40px;
-    max-width: 2400px; 
+    max-width: 2400px;
     margin: 0 auto;
 }
 
@@ -25,6 +31,192 @@ h1 {
     margin-bottom: 30px;
     color: #1a1a1a;
 }
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+p {
+    font-size: 16px;
+    color: #6c757d;
+    margin-bottom: 30px;
+}
+
+/* ===================================
+   HERO SECTION
+   =================================== */
+
+.page-hero {
+    text-align: center;
+    padding: 20px 0 40px 0;
+    border-bottom: 1px solid #e9ecef;
+    margin-bottom: 40px;
+}
+
+.page-hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.page-hero .subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ===================================
+   CONTENT SECTIONS
+   =================================== */
+
+.content-section {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.content-section h2 {
+    margin-bottom: 24px;
+}
+
+.content-section .popular-categories {
+    margin-bottom: 0;
+}
+
+.content-section p {
+    margin-bottom: 24px;
+}
+
+/* ===================================
+   TITLE DIVIDERS
+   =================================== */
+
+.title-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #6c757d;
+    position: relative;
+    z-index: 0;
+}
+
+.title-divider::before,
+.title-divider::after {
+    content: '';
+    flex-grow: 1;
+    background-color: #dee2e6;
+    height: 1px;
+    margin: 0 16px;
+}
+
+.title-divider span {
+    padding: 0 1em;
+    position: relative;
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+/* ===================================
+   SHOWROOM FEATURES
+   =================================== */
+
+.showroom-feature {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+.showroom-feature:not(:last-child) {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.showroom-feature.showroom-feature--reverse {
+    flex-direction: row-reverse;
+}
+
+.showroom-details {
+    flex: 0 0 55%;
+}
+
+.showroom-image {
+    flex: 0 0 45%;
+}
+
+.showroom-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.showroom-image img:hover {
+    transform: scale(1.03);
+}
+
+.showroom-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+.showroom-description {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+/* Showroom Info List */
+.showroom-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+}
+
+.showroom-info-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.info-icon {
+    font-size: 1.5rem;
+    margin-right: 16px;
+    margin-top: -4px;
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-text strong {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.info-text span {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* ===================================
+   FILTER SECTIONS
+   =================================== */
 
 .popular-categories {
     position: relative;
@@ -49,12 +241,13 @@ h1 {
     display: none;
 }
 
-.brands-container a,
-.brands-container button {
+/* Filter Buttons */
+.filter-btn,
+.filter-btn-type {
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 25px;
-    font-size: 14px;
+    font-size: clamp(14px, 1.5vw, 16px);
     font-weight: 500;
     transition: all 0.3s ease;
     white-space: nowrap;
@@ -65,25 +258,33 @@ h1 {
     cursor: pointer;
 }
 
-.brands-container a:first-child,
-.brands-container button:first-child,
-.brands-container .active {
+.filter-btn.active,
+.filter-btn-type.active {
     background-color: #1a1a1a;
     color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.brands-container a:hover,
-.brands-container button:hover {
+.filter-btn:not(.active):hover,
+.filter-btn-type:not(.active):hover {
+    background-color: #dee2e6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn.active:hover,
+.filter-btn-type.active:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.brands-container a:not(:first-child):hover,
-.brands-container button:not(.active):hover {
-    background-color: #dee2e6;
-    color: #495057;
+.filter-btn:active,
+.filter-btn-type:active {
+    transform: translateY(0);
+    transition: transform 0.1s;
 }
 
+/* Scroll Buttons */
 .scroll-btn {
     background-color: #ffffff;
     border: 2px solid #e9ecef;
@@ -119,11 +320,120 @@ h1 {
     pointer-events: none;
 }
 
+/* ===================================
+   GRIDS & CARDS
+   =================================== */
+
+/* Vehicle Grid */
+.vehicle-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.vehicle-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 1px solid #e0e0e0;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.vehicle-image-container {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.vehicle-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.vehicle-card:hover .vehicle-image-container img {
+    transform: scale(1.05);
+}
+
+.vehicle-image-container:not(:has(img))::after {
+    content: "🚗";
+    font-size: 3rem;
+    color: #adb5bd;
+}
+
+.vehicle-name {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+/* Vehicle Info */
+.vehicle-info {
+    padding: 16px;
+}
+
+.vehicle-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    color: #333;
+}
+
+.vehicle-year {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 8px 0;
+}
+
+.vehicle-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c5aa0;
+    margin: 0 0 8px 0;
+}
+
+.stock-info {
+    font-size: 12px;
+    color: #888;
+    margin: 0 0 12px 0;
+}
+
+.showroom-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* Compare Grid */
 .compare-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    max-width: 1600px; /* Diperbesar untuk konsistensi */
+    max-width: 1600px;
     margin: 0 auto 40px auto;
     width: 100%;
 }
@@ -173,41 +483,118 @@ h1 {
     text-align: center;
 }
 
-h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #1a1a1a;
-}
-
-p {
-    font-size: 16px;
-    color: #6c757d;
-    margin-bottom: 30px;
-}
-
-.vehicle-grid {
+/* Dealers Grid */
+.dealers-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 20px; 
-    max-width: 1600px; 
-    margin: 0 auto;
-    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+    margin: 24px 0;
 }
 
-.vehicle-card {
+.dealer-card {
     background: white;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-.vehicle-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+.dealer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
+
+.dealer-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.dealer-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.dealer-card:hover .dealer-image-container img {
+    transform: scale(1.05);
+}
+
+.dealer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dealer-card:hover .dealer-overlay {
+    opacity: 1;
+}
+
+.visit-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: 2px solid white;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.dealer-info {
+    padding: 20px;
+}
+
+.dealer-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.dealer-address {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.dealer-manager {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 8px 0;
+}
+
+.dealer-hours {
+    font-size: 13px;
+    color: #666;
+    margin: 0 0 8px 0;
+    background: #f5f5f5;
+    padding: 6px 10px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.dealer-phone {
+    font-size: 14px;
+    color: #2c5aa0;
+    font-weight: 500;
+    margin: 8px 0 0 0;
+}
+
+/* ===================================
+   BUTTONS & LINKS
+   =================================== */
 
 .card-link-wrapper {
     text-decoration: none;
@@ -215,128 +602,110 @@ p {
     display: block;
 }
 
-.vehicle-image-container {
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.vehicle-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.vehicle-card:hover .vehicle-image-container img {
-    transform: scale(1.05);
-}
-
-.vehicle-name {
-    padding: 20px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin: 0;
-}
-
-.vehicle-image-container:not(:has(img))::after {
-    content: "🚗";
-    font-size: 3rem;
-    color: #adb5bd;
-}
-
-.content-section {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.content-section h2 {
-    margin-bottom: 24px;
-}
-
-.content-section .popular-categories {
-    margin-bottom: 0;
-}
-
-.content-section p {
-    margin-bottom: 24px;
-}
-
-.title-divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #6c757d;
-}
-
-.title-divider::before,
-.title-divider::after {
-    content: '';
-    flex-grow: 1;
-    background-color: #dee2e6;
-    height: 1px;
-    margin: 0 16px;
-}
-
-/* Unified filter button styles */
-.filter-btn,
-.filter-btn-type {
+.dealer-link {
     text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 14px;
-    font-weight: 500;
+    color: inherit;
+    display: block;
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #1f2937;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
     transition: all 0.3s ease;
-    white-space: nowrap;
-    flex-shrink: 0;
-    background-color: #e9ecef;
-    color: #6c757d;
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+}
+
+.button-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.search-more-btn {
+    display: inline-block;
     border: none;
     cursor: pointer;
-}
-
-.filter-btn.active,
-.filter-btn-type.active {
-    background-color: #1a1a1a;
+    text-decoration: none;
+    background: linear-gradient(135deg, #2c5aa0, #1e3f73);
     color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 14px 32px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(44, 90, 160, 0.3);
+    transition: all 0.3s ease;
 }
 
-.filter-btn:not(.active):hover,
-.filter-btn-type:not(.active):hover {
-    background-color: #dee2e6;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.search-more-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(44, 90, 160, 0.4);
+    background: linear-gradient(135deg, #3a6bb9, #2a4f8a);
 }
 
-.filter-btn.active:hover,
-.filter-btn-type.active:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.filter-btn:active,
-.filter-btn-type:active {
+.search-more-btn:active {
     transform: translateY(0);
-    transition: transform 0.1s;
+    box-shadow: 0 4px 15px rgba(44, 90, 160, 0.3);
 }
 
-/* Responsive breakpoints untuk grid yang lebih lebar */
+.view-details-btn {
+    display: inline-block;
+    background: #2c5aa0;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.view-details-btn:hover {
+    background: #1e3f73;
+}
+
+/* ===================================
+   UTILITY STATES
+   =================================== */
+
+.loading,
+.error,
+.no-cars {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 16px;
+}
+
+.error {
+    color: #d32f2f;
+}
+
+#selection-details {
+    font-weight: normal;
+    margin-top: 4px;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+/* Large screens */
 @media (max-width: 1600px) {
     .vehicle-grid {
         grid-template-columns: repeat(5, 1fr);
     }
 }
 
+/* Medium-large screens */
 @media (max-width: 1200px) {
     .vehicle-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -348,12 +717,33 @@ p {
     }
 }
 
+/* Medium screens */
 @media (max-width: 1000px) {
     .vehicle-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
+/* Small-medium screens */
+@media (max-width: 900px) {
+    .showroom-feature,
+    .showroom-feature.showroom-feature--reverse {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 0;
+    }
+
+    .showroom-details,
+    .showroom-image {
+        flex: 1 1 100%;
+    }
+
+    .showroom-name {
+        font-size: 2rem;
+    }
+}
+
+/* Tablet screens */
 @media (max-width: 768px) {
     main {
         padding: 15px 20px;
@@ -365,6 +755,14 @@ p {
     
     h2 {
         font-size: 1.5rem;
+    }
+    
+    .page-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .page-hero .subtitle {
+        font-size: 1rem;
     }
     
     .vehicle-grid {
@@ -391,8 +789,18 @@ p {
         height: 36px;
         font-size: 14px;
     }
+    
+    .dealers-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .dealer-card {
+        margin: 0 16px;
+    }
 }
 
+/* Mobile screens */
 @media (max-width: 480px) {
     main {
         padding: 15px;
@@ -407,4 +815,353 @@ p {
         height: 32px;
         font-size: 12px;
     }
+}
+
+/* ===================================
+   SHOWROOM FEATURES SECTION
+   =================================== */
+
+.showroom-feature {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    padding: 48px 0;
+    min-height: 400px;
+}
+
+.showroom-feature:not(:last-child) {
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* Alternating layout - image left, details right */
+.showroom-feature.showroom-feature--reverse {
+    flex-direction: row-reverse;
+}
+
+/* Layout proportions */
+.showroom-details {
+    flex: 1 1 55%;
+    max-width: 55%;
+}
+
+.showroom-image {
+    flex: 1 1 45%;
+    max-width: 45%;
+}
+
+/* ===================================
+   SHOWROOM DETAILS
+   =================================== */
+
+.showroom-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.showroom-info {
+    margin-bottom: 32px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.info-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+}
+
+.info-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.info-value {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* ===================================
+   SHOWROOM IMAGE
+   =================================== */
+
+.showroom-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.showroom-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+.showroom-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Image overlay effect */
+.showroom-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.showroom-image:hover::before {
+    opacity: 1;
+}
+
+/* ===================================
+   CTA BUTTON
+   =================================== */
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #2c5aa0, #1e3f73);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(44, 90, 160, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(44, 90, 160, 0.4);
+    background: linear-gradient(135deg, #3a6bb9, #2a4f8a);
+}
+
+.cta-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(44, 90, 160, 0.3);
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+    .showroom-feature {
+        gap: 32px;
+        padding: 40px 0;
+    }
+    
+    .showroom-name {
+        font-size: 2.2rem;
+    }
+    
+    .showroom-image img {
+        height: 280px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .showroom-feature,
+    .showroom-feature.showroom-feature--reverse {
+        flex-direction: column;
+        gap: 32px;
+        padding: 32px 0;
+        text-align: center;
+    }
+
+    .showroom-details,
+    .showroom-image {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .showroom-name {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    .showroom-image img {
+        height: 250px;
+        width: 100%;
+    }
+    
+    .info-item {
+        justify-content: center;
+        text-align: left;
+        max-width: 400px;
+        margin: 0 auto 16px auto;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    .showroom-feature {
+        padding: 24px 0;
+        gap: 24px;
+    }
+    
+    .showroom-name {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+    }
+    
+    .showroom-info {
+        margin-bottom: 24px;
+    }
+    
+    .info-item {
+        padding: 12px 0;
+        margin-bottom: 12px;
+    }
+    
+    .info-icon {
+        font-size: 1.3rem;
+        width: 28px;
+    }
+    
+    .info-label {
+        font-size: 0.9rem;
+    }
+    
+    .info-value {
+        font-size: 0.85rem;
+    }
+    
+    .showroom-image img {
+        height: 200px;
+    }
+    
+    .cta-button {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .showroom-name {
+        font-size: 1.6rem;
+    }
+    
+    .showroom-image img {
+        height: 180px;
+    }
+}
+
+.see-more-card {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    color: #ffffff;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.see-more-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.see-more-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.see-more-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.see-more-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    transition: all 0.3s ease;
+}
+
+.see-more-card:hover .see-more-icon {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.4);
+    transform: rotate(180deg);
+}
+
+.see-more-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+}
+
+.see-more-text h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    color: #ffffff;
+}
+
+.see-more-text p {
+    font-size: 13px;
+    margin: 0;
+    color: #d1d5db;
 }
