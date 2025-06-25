@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    background-color: #25425f;
+    padding: 2rem 0;
+} */
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    padding: 4rem 2rem 2rem; /* Consistent padding top, sides, and bottom */
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto; /* Ini yang akan memusatkan seluruh container footer */
+    padding: 0 1rem; /* Tambahkan sedikit padding horizontal agar konten tidak menempel ke tepi di layar kecil */
+}
+
+.footer-content {
+    display: grid;
+    /* Ubah minmax agar lebih fleksibel, mungkin sedikit lebih kecil untuk grid kolom */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem; /* Sedikit perkecil gap antar kolom untuk tampilan yang lebih padat */
+    margin-bottom: 3rem;
+    align-items: start; /* Align items to the start of their grid area */
+}
+
+.footer-section {
+    text-align: left; /* Pastikan teks rata kiri dalam setiap section */
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #fbbf24;
+    position: relative;
+    padding-bottom: 10px; /* Tambahkan padding agar garis tidak terlalu mepet teks */
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Ubah ke 0 agar pas dengan padding-bottom */
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+}
+
+.footer-section p,
+.footer-section li {
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+    text-align: left; /* Pastikan paragraf dan list item rata kiri */
+}
+
+.footer-section ul {
+    list-style: none;
+    padding-left: 0; /* Hapus padding default dari list */
+}
+
+.footer-section a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-section a:hover {
+    color: #fbbf24;
+    transform: translateX(5px);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start; /* Mengatur item agar ikon dan teks sejajar di bagian atas */
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    color: #1f2937; /* Ubah warna ikon agar kontras dengan background gradient */
+}
+
+.social-links {
+    display: flex;
+    gap: 0.8rem; /* Sedikit perkecil gap antar ikon sosial */
+    margin-top: 1rem;
+    flex-wrap: wrap; /* Izinkan wrapping jika layar terlalu kecil */
+    justify-content: flex-start; /* Rata kiri ikon sosial */
+}
+
+.social-link {
+     /* width: 45px;
+    height: 45px;
+    background: rgba(251, 191, 36, 0.1);
+    border: 2px solid rgba(251, 191, 36, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fbbf24; /* Ini hanya untuk ikon teks, tidak akan berpengaruh pada gambar */
+    text-decoration: none;
+    font-size: 1.2rem; /* Ini hanya untuk ikon teks, tidak akan berpengaruh pada gambar */
+    transition: all 0.3s ease;
+}
+
+.social-link img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.social-link:hover img {
+    transform: scale(1.1); /* Sedikit membesar saat hover */
+}
+
+.social-link:hover {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #1f2937;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(251, 191, 36, 0.3);
+}
+
+.newsletter {
+    background: rgba(251, 191, 36, 0.1);
+    padding: 1.8rem; /* Sedikit perkecil padding */
+    border-radius: 15px;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    margin-top: 1rem;
+}
+
+.newsletter h4 {
+    color: #fbbf24;
+    margin-bottom: 1rem;
+    font-size: 1.1rem; /* Sedikit perkecil ukuran font */
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.8rem; /* Sedikit perkecil gap */
+    margin-top: 1rem;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 0.7rem; /* Sedikit perkecil padding */
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.95rem; /* Sedikit perkecil ukuran font */
+}
+
+.newsletter input::placeholder {
+    color: #cbd5e1;
+}
+
+.newsletter button {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #1f2937;
+    border: none;
+    padding: 0.7rem 1.2rem; /* Sedikit perkecil padding */
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem; /* Sedikit perkecil ukuran font */
+}
+
+.newsletter button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    margin-top: 2rem; /* Add some space above the bottom section */
+    text-align: center;
+    color: #94a3b8;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem; /* Sedikit perkecil gap antar link */
+    flex-wrap: wrap;
+    justify-content: center; /* Pusatkan link di footer-bottom jika wrap */
+}
+
+.footer-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fbbf24;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 3rem 1rem 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr; /* Satu kolom untuk mobile */
+        gap: 2rem;
+    }
+
+    .footer-section {
+        text-align: left; /* Pertahankan rata kiri untuk mobile */
+    }
+
+    .footer-section h3::after {
+        left: 0; /* Pastikan garis tetap di kiri untuk mobile */
+    }
+
+    .social-links {
+        justify-content: center; /* Pusatkan ikon sosial untuk mobile */
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}
