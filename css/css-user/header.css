@@ -3,9 +3,10 @@ header {
   background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
   color: rgb(255, 255, 255);
   padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
+  gap: 2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -34,6 +35,7 @@ header {
 
 nav {
   display: flex;
+  justify-content: center;
   gap: 2rem;
 }
 
@@ -68,13 +70,14 @@ nav a:hover {
 
 .auth-buttons {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
 .auth-buttons a {
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
   color: #1f2937;
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.4rem;
   border-radius: 25px;
   text-decoration: none;
   font-weight: 600;
@@ -88,14 +91,26 @@ nav a:hover {
   background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
+.auth-buttons span {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   header {
+    grid-template-columns: 1fr auto;
+    flex-direction: column;
     padding: 1rem;
+    gap: 1rem;
   }
 
-  nav,
-  .auth-buttons {
+  nav {
     display: none;
+  }
+
+  .auth-buttons {
+    justify-content: flex-end;
   }
 }

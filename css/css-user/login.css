@@ -6,7 +6,7 @@
     
     /* Gaya Body dan Background */
     body {
-      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
       min-height: 100vh;
       display: flex;
@@ -38,7 +38,7 @@
     /* START: Gaya Header yang Dipindahkan dari header.css */
     /* ************************************************** */
     header {
-      position: fixed; /* Ini kunci untuk menempatkan header di atas */
+      position: fixed; 
       top: 0;
       left: 0;
       width: 100%;
@@ -54,17 +54,17 @@
     }
     
     .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      background: linear-gradient(45deg, #fbbf24, #f59e0b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-    }
+        font-size: 1.8rem;
+        font-weight: 800;
+        background: linear-gradient(45deg, #fbbf24, #f59e0b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: logoGlow 2s ease-in-out infinite alternate;
+    } 
     
     /* Navigasi di header */
-    header nav ul {
+    /* header nav ul {
       list-style: none;
       display: flex;
       gap: 1.5rem;
@@ -94,7 +94,7 @@
       box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
     }
     
-    .btn-nav.btn-login { /* Gaya spesifik untuk tombol login di header */
+    .btn-nav.btn-login { 
         background: transparent;
         color: white;
         box-shadow: none;
@@ -103,14 +103,14 @@
     
     .btn-nav.btn-login:hover {
         background: rgba(251, 191, 36, 0.1);
-        transform: none; /* Batalkan transformasi hover jika ada */
+        transform: none; 
         box-shadow: none;
     }
     
     .btn-nav:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
-    }
+    } */
     /* ************************************************** */
     /* END: Gaya Header yang Dipindahkan dari header.css */
     /* ************************************************** */

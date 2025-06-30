@@ -5,6 +5,7 @@ require_once '../vendor/autoload.php';
 use Uph\Mobilsecond\DB;
 use Uph\Mobilsecond\Twig;
 
+session_start();
 
 $db = DB::getDB();
 $sqlBrands = "SELECT id, name FROM daftarBrands ORDER BY name ASC";
@@ -30,6 +31,7 @@ echo $twig->render(
     [
       'brands'=> $listBrands,
       'types'=> $listTypes,
-      'showrooms'=> $listShowrooms
+      'showrooms'=> $listShowrooms,
+      'session' => $_SESSION
     ]
 );

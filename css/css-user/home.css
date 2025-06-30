@@ -1,6 +1,3 @@
-/* ===================================
-   CSS RESET & BASE STYLES
-   =================================== */
 
 * {
     margin: 0;
@@ -14,10 +11,6 @@ body {
     color: #333;
     line-height: 1.6;
 }
-
-/* ===================================
-   LAYOUT & TYPOGRAPHY
-   =================================== */
 
 main {
     padding: 20px 40px;
@@ -45,10 +38,6 @@ p {
     margin-bottom: 30px;
 }
 
-/* ===================================
-   HERO SECTION
-   =================================== */
-
 .page-hero {
     text-align: center;
     padding: 20px 0 40px 0;
@@ -71,10 +60,6 @@ p {
     line-height: 1.6;
 }
 
-/* ===================================
-   CONTENT SECTIONS
-   =================================== */
-
 .content-section {
     background-color: #ffffff;
     border-radius: 16px;
@@ -94,10 +79,6 @@ p {
 .content-section p {
     margin-bottom: 24px;
 }
-
-/* ===================================
-   TITLE DIVIDERS
-   =================================== */
 
 .title-divider {
     display: flex;
@@ -123,10 +104,6 @@ p {
     background-color: #ffffff;
     z-index: 1;
 }
-
-/* ===================================
-   SHOWROOM FEATURES
-   =================================== */
 
 .showroom-feature {
     display: flex;
@@ -214,9 +191,7 @@ p {
     color: #555;
 }
 
-/* ===================================
-   FILTER SECTIONS
-   =================================== */
+
 
 .popular-categories {
     position: relative;
@@ -241,7 +216,7 @@ p {
     display: none;
 }
 
-/* Filter Buttons */
+
 .filter-btn,
 .filter-btn-type {
     text-decoration: none;
@@ -284,7 +259,7 @@ p {
     transition: transform 0.1s;
 }
 
-/* Scroll Buttons */
+
 .scroll-btn {
     background-color: #ffffff;
     border: 2px solid #e9ecef;
@@ -320,11 +295,7 @@ p {
     pointer-events: none;
 }
 
-/* ===================================
-   GRIDS & CARDS
-   =================================== */
 
-/* Vehicle Grid */
 .vehicle-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -385,7 +356,7 @@ p {
     margin: 0;
 }
 
-/* Vehicle Info */
+
 .vehicle-info {
     padding: 16px;
 }
@@ -428,7 +399,6 @@ p {
     font-weight: bold;
 }
 
-/* Compare Grid */
 .compare-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -483,7 +453,6 @@ p {
     text-align: center;
 }
 
-/* Dealers Grid */
 .dealers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -592,10 +561,6 @@ p {
     margin: 8px 0 0 0;
 }
 
-/* ===================================
-   BUTTONS & LINKS
-   =================================== */
-
 .card-link-wrapper {
     text-decoration: none;
     color: inherit;
@@ -672,10 +637,6 @@ p {
     background: #1e3f73;
 }
 
-/* ===================================
-   UTILITY STATES
-   =================================== */
-
 .loading,
 .error,
 .no-cars {
@@ -694,18 +655,14 @@ p {
     margin-top: 4px;
 }
 
-/* ===================================
-   RESPONSIVE DESIGN
-   =================================== */
 
-/* Large screens */
+
 @media (max-width: 1600px) {
     .vehicle-grid {
         grid-template-columns: repeat(5, 1fr);
     }
 }
 
-/* Medium-large screens */
 @media (max-width: 1200px) {
     .vehicle-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -717,14 +674,14 @@ p {
     }
 }
 
-/* Medium screens */
+
 @media (max-width: 1000px) {
     .vehicle-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Small-medium screens */
+
 @media (max-width: 900px) {
     .showroom-feature,
     .showroom-feature.showroom-feature--reverse {
@@ -743,7 +700,7 @@ p {
     }
 }
 
-/* Tablet screens */
+
 @media (max-width: 768px) {
     main {
         padding: 15px 20px;
@@ -817,9 +774,6 @@ p {
     }
 }
 
-/* ===================================
-   SHOWROOM FEATURES SECTION
-   =================================== */
 
 .showroom-feature {
     display: flex;
@@ -849,9 +803,6 @@ p {
     max-width: 45%;
 }
 
-/* ===================================
-   SHOWROOM DETAILS
-   =================================== */
 
 .showroom-name {
     font-size: 2.5rem;
@@ -906,9 +857,7 @@ p {
     line-height: 1.4;
 }
 
-/* ===================================
-   SHOWROOM IMAGE
-   =================================== */
+
 
 .showroom-image {
     position: relative;
@@ -952,10 +901,6 @@ p {
     opacity: 1;
 }
 
-/* ===================================
-   CTA BUTTON
-   =================================== */
-
 .cta-button {
     display: inline-block;
     background: linear-gradient(135deg, #2c5aa0, #1e3f73);
@@ -982,9 +927,6 @@ p {
     box-shadow: 0 4px 15px rgba(44, 90, 160, 0.3);
 }
 
-/* ===================================
-   RESPONSIVE DESIGN
-   =================================== */
 
 /* Large tablets and small desktops */
 @media (max-width: 1024px) {
