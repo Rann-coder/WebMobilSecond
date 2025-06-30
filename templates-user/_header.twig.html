@@ -22,8 +22,13 @@
       <a href="#contact">Kontak</a>
     </nav>
     <div class="auth-buttons">
-      <a href="#login">Login</a>
-      <a href="#register">Daftar</a>
+      {% if session.user is defined %}
+        <span>Halo, {{ session.user.name }}</span>
+        <a href="../php-user/logout.php">Logout</a>
+      {% else %}
+        <a href="../php-user/login.php">Login</a>
+        <a href="../php-user/daftar.php">Daftar</a>
+      {% endif %}
     </div>
   </header>
   <main>

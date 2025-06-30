@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS car_showrooms;
 DROP TABLE IF EXISTS cars;
 DROP TABLE IF EXISTS showrooms;
 DROP TABLE IF EXISTS daftarBrands, daftarTypes;
+DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE daftarBrands (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -74,6 +76,21 @@ CREATE TABLE car_showrooms (
     FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (showroom_id) REFERENCES showrooms(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE users (
+    user_id VARCHAR(100) PRIMARY KEY,
+    name TEXT NOT NULL,
+    no_hp VARCHAR(20),
+    password VARCHAR(255) NOT NULL, 
+    email VARCHAR(100) UNIQUE NOT NULL,
+    role ENUM('admin','customer') DEFAULT 'customer',
+    alamat TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+
 
 INSERT INTO daftarBrands (name) VALUES
 ('Toyota'),
@@ -288,3 +305,8 @@ INSERT INTO car_showrooms (car_id, showroom_id, stock_quantity, showroom_price, 
 (3, 2, 2, 645000000.00, TRUE),  -- Civic di Showroom B (harga beda)
 (4, 2, 3, 745000000.00, TRUE),  -- CR-V di Showroom B
 (5, 2, 1, 1200000000.00, TRUE); -- BMW X3 di Showroom B saja
+
+INSERT INTO users (user_id, name, no_hp, password, email, role, alamat)VALUES 
+('USR001', 'Bryan Cen', '08123456789', 'admin01', 'bryancenbryan@gmail.com', 'customer', 'Jl. Melati No. 1'),
+('USR002', 'Randy', '08121234567', 'staff01', 'randy@gmail.com', 'admin', 'Jl. Mawar No. 10'),
+('USR003', 'Budi Hartono', '08129876543', 'tester', 'budi@example.com', 'customer', 'Jl. Kenanga No. 5');

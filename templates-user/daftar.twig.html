@@ -1,0 +1,51 @@
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/daftar.css'] %}
+{% include '_header.twig.html' %}
+
+<main class="center-wrapper">
+  <div class="form-box">
+    <div class="login-header">
+      <h2>Daftar Akun</h2>
+      <p>Buat akun MobilSecond.id Anda</p>
+    </div>
+
+    {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    {% if success %}
+      <div class="alert alert-success">{{ success }}</div>
+    {% endif %}
+
+    <form method="POST" action="">
+      <div class="form-group">
+        <label>Nama Lengkap</label>
+        <input type="text" name="name" placeholder="Masukkan Nama Anda" required>
+      </div>
+
+      <div class="form-group">
+        <label>Nomor HP</label>
+        <input type="tel" name="no_hp" required pattern="[0-9]+" placeholder="Masukkan Nomor HP Anda" title="Masukkan hanya angka 0-9">
+      </div>
+
+      <div class="form-group">
+        <label>Alamat</label>
+        <input type="text" name="alamat" placeholder="Masukkan Alamat Anda" required></input>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Masukkan Email Anda" required>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Masukkan Password">
+      </div>
+
+      <button type="submit" class="btn-primary">Daftar</button>
+    </form>
+
+    <div class="register-link">
+      Sudah punya akun? <a href="login.php">Login di sini</a>
+    </div>
+  </div>
+</main>
