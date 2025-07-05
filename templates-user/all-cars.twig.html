@@ -1,4 +1,4 @@
-{% set page_css = ['../css/css-user/header.css', '../css/css-user/all-cars.css'] %}
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/all-cars.css', '../css/css-user/footer.css',] %}
 {% set page_scripts = ['../script/script-user/all-cars.js'] %}
 {% include '_header.twig.html' %}
 
@@ -14,7 +14,7 @@
         <div class="popular-categories">
             <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>
 
-            <div id="brand-lists" class="brands-container">
+            <div id="brands-list" class="brands-container">
                 <button class="filter-btn active" data-brand="All">All</button>
                 {% for brand in brands %}
                 <button class="filter-btn" data-brand="{{brand.name}}">{{brand.name}}</button>
@@ -27,7 +27,7 @@
         <div class="popular-categories">
             <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
 
-            <div id="type-lists" class="brands-container">
+            <div id="types-list" class="brands-container">
                 <button class="filter-btn active" data-type="All">All</button>
                 {% for type in types %}
                 <button class="filter-btn" data-type="{{type.name}}">{{type.name}}</button>
@@ -91,7 +91,7 @@
 
                     <div class="filter-group">
                         <label>Previous Owner</label>
-                        <select class="filter-input" id="owner-filter">
+                        <select class="filter-input" id="owners-filter">
                             <option value="">Any</option>
                             <option value="1">1st Hand</option>
                             <option value="2">2nd Hand</option>
@@ -150,8 +150,14 @@
 
 
         <h2 class="title-divider">Matching Your Criteria</h2>
+        <div class="results-count" id="results-count"></div>
         <div class="vehicle-grid" id="vehicle-grid">
             <!--Bakal diisi oleh java script-->
+        </div>
+
+        <div class="no-results" id="no-results" style="display: none;">
+            <h3>No Cars found</h3>
+            <p>Try adjusting your filters to see more results</p>
         </div>
     </div>
 </main>
