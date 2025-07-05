@@ -1,132 +1,17 @@
-CREATE DATABASE IF NOT EXISTS web_mobil_second;
-USE web_mobil_second;
-DROP TABLE IF EXISTS car_types;
-DROP TABLE IF EXISTS car_showrooms;
-DROP TABLE IF EXISTS cars;
-DROP TABLE IF EXISTS showrooms;
-DROP TABLE IF EXISTS daftarBrands, daftarTypes;
-DROP TABLE IF EXISTS users;
-
-
-CREATE TABLE daftarBrands (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    logo_url VARCHAR(222),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE daftarTypes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE cars (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    id_brand INT NOT NULL,
-    name VARCHAR(150) NOT NULL,
-    year SMALLINT,
-    price DECIMAL(15,2),
-    image_url VARCHAR(255),
-    description TEXT,
-    specifications JSON,
-    slug VARCHAR(255) NOT NULL UNIQUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_brand) REFERENCES daftarBrands(id) ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
-CREATE TABLE car_types (
-    car_id BIGINT NOT NULL,
-    type_id INT NOT NULL,
-    PRIMARY KEY (car_id, type_id),
-    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (type_id) REFERENCES daftarTypes(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE showrooms (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    address TEXT,
-    phone VARCHAR(20),
-    email VARCHAR(100),
-    manager_name VARCHAR(100),
-    opening_hours VARCHAR(200),
-    latitude DECIMAL(10, 8),
-    longitude DECIMAL(11, 8),
-    is_active BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE car_showrooms (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    car_id BIGINT NOT NULL,
-    showroom_id INT NOT NULL,
-    stock_quantity INT DEFAULT 0,
-    showroom_price DECIMAL(15,2), 
-    is_available BOOLEAN DEFAULT TRUE,
-    notes TEXT, 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY unique_car_showroom (car_id, showroom_id),
-    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (showroom_id) REFERENCES showrooms(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE users (
-    user_id VARCHAR(100) PRIMARY KEY,
-    name TEXT NOT NULL,
-    no_hp VARCHAR(20),
-    password VARCHAR(255) NOT NULL, 
-    email VARCHAR(100) UNIQUE NOT NULL,
-    role ENUM('admin','customer') DEFAULT 'customer',
-    alamat TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
 
 
 
 
-INSERT INTO daftarBrands (name) VALUES
-('Toyota'),
-('Honda'),
-('Mitsubishi Motors'),
-('Suzuki'),
-('Daihatsu'),
-('Hyundai'),
-('Wuling'),
-('Chery'),
-('BYD'),
-('Mercedes-Benz'),
-('BMW'),
-('Mazda'),
-('Nissan'),
-('Audi'),
-('Lexus'),
-('Kia'),
-('Subaru');
 
-INSERT INTO daftarTypes (name) VALUES
-('SUV'),
-('MPV'),
-('Sedan'),
-('Hatchback'),
-('Crossover'),
-('Electric'),
-('Hybrid'),
-('LCGC'),
-('City Car'),
-('Luxury'),
-('Coupe'),
-('Convertible'),
-('Diesel'),
-('Van'),
-('Pick-up');
+
+
+
+
+
+
+
+
+
 
 -- Fixed INSERT statement: changed brand_id to id_brand
 INSERT INTO cars (id_brand, name, year, price, image_url, description, specifications, slug) VALUES
