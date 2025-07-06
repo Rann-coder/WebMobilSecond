@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    {% if page_css is defined %}
+        {% for css_file in page_css %}
+            <link rel="stylesheet" href="{{ css_file }}">
+        {% endfor %}
+    {% endif %}
+</head>
+
+<body>
+    <header>
+     <div class="logo">🚗 MobilSecond.id</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#cars">Daftar Mobil</a>
+      <a href="#about">Tentang Kami</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+    <div class="auth-buttons">
+      {% if session.user is defined %}
+        <span>Halo, {{ session.user.name }}</span>
+        <a href="../php-user/logout.php">Logout</a>
+      {% else %}
+        <a href="../php-user/login.php">Login</a>
+        <a href="../php-user/daftar.php">Daftar</a>
+      {% endif %}
+    </div>
+  </header>
+  <main>
