@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- Global Styles --- */
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +8,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
@@ -17,6 +20,7 @@ main {
     margin: 0 auto;
 }
 
+/* --- Typography --- */
 h1 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -37,6 +41,7 @@ p {
     margin-bottom: 30px;
 }
 
+/* --- Layout & Sections --- */
 .page-hero {
     text-align: center;
     padding: 20px 0 40px 0;
@@ -95,6 +100,7 @@ p {
     margin: 0 16px;
 }
 
+/* --- Filter Controls --- */
 .popular-categories {
     position: relative;
     display: flex;
@@ -203,6 +209,7 @@ p {
     transform: translateY(0) scale(1);
 }
 
+/* --- Advanced Filter Panel --- */
 .advanced-filters-container {
     margin: 30px 0;
 }
@@ -434,11 +441,15 @@ p {
     transform: translateY(0);
 }
 
+/* --- Vehicle Card & Grid --- */
+.results-count {
+    margin-bottom: 24px;
+}
 .vehicle-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    width: 100%;
+    /* Menggunakan jumlah kolom tetap (5) untuk layar lebar agar tidak meregang */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 24px;
 }
 
 .vehicle-grid.loading {
@@ -516,8 +527,32 @@ p {
     margin: 0;
 }
 
-.results-count {
-    margin-bottom: 24px;
+.vehicle-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Kunci utama: membuat 2 kolom */
+    gap: 16px 20px; /* Jarak antar baris dan antar kolom */
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #eef2f7;
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column; /* Menyusun label di atas nilai */
+}
+
+.spec-label {
+    font-size: 0.75rem; /* 12px, teks kecil untuk label */
+    color: #8a94a6;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.spec-value {
+    font-size: 0.9rem; /* 14.4px, teks lebih besar untuk nilai */
+    color: #2c3e50;
+    font-weight: 600;
 }
 
 .no-results {
@@ -531,6 +566,7 @@ p {
     margin-bottom: 10px;
 }
 
+/* --- Animations & Accessibility --- */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -558,6 +594,7 @@ p {
     }
 }
 
+/* --- Responsive Media Queries --- */
 @media (max-width: 1200px) {
     .filters-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -621,7 +658,6 @@ p {
     }
     .btn {
         padding: 14px 24px;
-        font-size: 16px;
     }
     .toggle-filters-btn {
         width: 100%;
@@ -660,5 +696,29 @@ p {
     }
     .filter-input {
         padding: 12px 14px;
+    }
+}
+
+@media (max-width: 1600px) {
+    .vehicle-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    .vehicle-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .vehicle-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .vehicle-grid {
+        grid-template-columns: 1fr;
     }
 }

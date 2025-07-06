@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const scrollLeftBrands = document.getElementById('scroll-left-btn-brands');
     const scrollRightBrands = document.getElementById('scroll-right-btn-brands');
-    
+
     const scrollLeftTypes = document.getElementById('scroll-left-btn-types');
     const scrollRightTypes = document.getElementById('scroll-right-btn-types');
 
@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     populateYearOptions();
     //EVENT LISTENER
-    brandsList.addEventListener('click', function(e) {
+    brandsList.addEventListener('click', function (e) {
         if (e.target.classList.contains('filter-btn')) {
             handleBrandSelection(e.target);
         }
     });
 
-    typesList.addEventListener('click', function(e) {
+    typesList.addEventListener('click', function (e) {
         if (e.target.classList.contains('filter-btn')) {
             handleTypeSelection(e.target);
         }
@@ -125,19 +125,19 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleTypeSelection(button) {
         const typeName = button.textContent.trim();
 
-        if(typeName === 'All'){
+        if (typeName === 'All') {
             selectedTypes = ['All']
             typesList.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active')
             });
             button.classList.add('active');
         } else {
-            if(selectedTypes.includes('All')){
+            if (selectedTypes.includes('All')) {
                 selectedTypes = [];
                 typesList.querySelector('[data-type="All"]').classList.remove('active');
             }
 
-            if(selectedTypes.includes(typeName)){
+            if (selectedTypes.includes(typeName)) {
                 selectedTypes = selectedTypes.filter(type => type !== typeName);
                 button.classList.remove('active');
             } else {
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 button.classList.add('active');
             }
 
-            if(selectedTypes.length === 0) {
+            if (selectedTypes.length === 0) {
                 selectedTypes = ['All'];
                 typesList.querySelector('[data-type="All"]').classList.add('active');
             }
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
         filterCars();
     }
 
-    function getFilterValues(){
+    function getFilterValues() {
         const values = {
             brands: selectedBrands,
             types: selectedTypes,
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         advancedFilterInputs.forEach(id => {
             const element = document.getElementById(id);
-            if(element){
+            if (element) {
                 const key = id.replace(/-(\w)/g, (_, c) => c.toUpperCase());
                 values[key] = element.value || null;
             }
@@ -172,17 +172,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    function filterCars(){
+    function filterCars() {
         vehicleGrid.innerHTML = '<div class="loading">Loading cars...</div>';
 
         const allFilters = getFilterValues();
         console.log("Filter yang sedang aktif:", allFilters);
         const formData = new FormData();
 
-        for(const key in allFilters){
-            if(Array.isArray(allFilters[key])){
+        for (const key in allFilters) {
+            if (Array.isArray(allFilters[key])) {
                 formData.append(key, JSON.stringify(allFilters[key]));
-            } else if(allFilters[key] !== null){
+            } else if (allFilters[key] !== null) {
                 formData.append(key, allFilters[key]);
             }
         }
@@ -191,51 +191,98 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                displayCars(data.data);
-            } else {
-                vehicleGrid.innerHTML = `<div class="error">Error: ${data.error}</div>`;
-                console.error('Filter error:', data);
-            }
-        })
-        .catch(error => {
-            console.error('Network error:', error);
-            vehicleGrid.innerHTML = '<div class="error">Jaringan gagal. Silakan dicoba ulang</div>';
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    displayCars(data.data);
+                } else {
+                    vehicleGrid.innerHTML = `<div class="error">Error: ${data.error}</div>`;
+                    console.error('Filter error:', data);
+                }
+            })
+            .catch(error => {
+                console.error('Network error:', error);
+                vehicleGrid.innerHTML = '<div class="error">Jaringan gagal. Silakan dicoba ulang</div>';
+            });
     }
 
-    function displayCars(cars){
-        if (cars.length === 0) {
+    function displayCars(cars) {
+        console.log('Data mobil yang diterima dari API:', cars);
+        if (!cars || cars.length === 0) {
             vehicleGrid.innerHTML = '<div class="no-results">No cars found matching your criteria.</div>';
             return;
-       }
-       const carsHTML = cars.map(car => `
+        }
+
+        const carsHTML = cars.map(car => {
+            let specs = {};
+            try {
+                if (car.specifications) specs = JSON.parse(car.specifications);
+            } catch (e) {
+                console.error('Gagal parse specifications:', car.name);
+            }
+
+            return `
             <div class="vehicle-card">
-                <a href="../pages/detail.php?slug=${car.slug}" class="card-link-wrapper">
+                <a href="../php-user/details-car.php?slug=${car.slug}" class="card-link-wrapper">
                     <div class="vehicle-image-container">
                         <img src="../${car.image_url}" alt="${car.name}" onerror="this.src='../images/no-image.png'">
                     </div>
                     <div class="vehicle-info">
-                        <h3 class="vehicle-title">${car.name}</h3>
-                        <p class="vehicle-price">${car.formatted_price}</p>
+                        <div>
+                            <p class="vehicle-brand">${car.brand_name || 'Brand'}</p>
+                            <h3 class="vehicle-title">${car.name}</h3>
+                        </div>
+                        <div class="vehicle-price-container">
+                            <p class="vehicle-price-label">Mulai dari</p>
+                            <p class="vehicle-price">${car.formatted_price}</p>
+                        </div>
+                        <div class="vehicle-specs">
+                            
+                            ${car.year != null ? `
+                            <div class="spec-item" title="Tahun Pembuatan">
+                                <span class="spec-label">Tahun</span>
+                                <span class="spec-value">${car.year}</span>
+                            </div>` : ''}
+                            
+                            
+                            ${car.formatted_km ? `
+                            <div class="spec-item" title="Kilometer">
+                                <span class="spec-label">Kilometer</span>
+                                <span class="spec-value">${car.formatted_km}</span>
+                            </div>` : ''}
+
+                            
+                            ${car.engine_cc != null ? `
+                            <div class="spec-item" title="CC Mesin">
+                                <span class="spec-label">CC Mesin</span>
+                                <span class="spec-value">${car.engine_cc === 0 ? 'Listrik' : car.engine_cc + ' cc'}</span>
+                            </div>` : ''}
+                            
+                            
+                            ${car.previous_owners != null ? `
+                            <div class="spec-item" title="Pemilik Sebelumnya">
+                                <span class="spec-label">Pemilik</span>
+                                <span class="spec-value">Tangan ke-${car.previous_owners}</span>
+                            </div>` : ''}
+                        </div>
                     </div>
                 </a>
             </div>
-        `).join('');
+        `;
+        }).join('');
+
         vehicleGrid.innerHTML = carsHTML;
     }
-    
+
 
     function debounce(func, delay) {
         let timeout;
-        return function(...args) {
+        return function (...args) {
             clearTimeout(timeout);
             timeout = setTimeout(() => func.apply(this, args), delay);
         };
@@ -243,5 +290,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     filterCars();
 
-    
+
 });

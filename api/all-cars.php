@@ -18,7 +18,7 @@ try {
     $yearMax = !empty($_POST['yearMax']) ? (int)$_POST['yearMax'] : null;
 
     $sql = "SELECT DISTINCT 
-                c.id, c.name, c.year, c.price, c.image_url, c.slug, b.name AS brand_name 
+                c.id, c.name, c.year, c.price, c.km, c.fuel_type, c.engine_cc, c.previous_owners, c.specifications, c.image_url, c.slug, b.name AS brand_name 
             FROM 
                 cars AS c
             JOIN 
@@ -86,6 +86,12 @@ try {
             $car['formatted_price'] = 'Rp ' . number_format($car['price'], 0, ',', '.');
         } else {
             $car['formatted_price'] = 'Price on request';
+        }
+
+        if (isset($car['km'])) {
+        $car['formatted_km'] = number_format($car['km'], 0, ',', '.') . ' km';
+        } else {
+            $car['formatted_km'] = 'N/A';
         }
     }
     

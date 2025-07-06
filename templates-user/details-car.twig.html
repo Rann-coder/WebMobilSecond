@@ -1,0 +1,181 @@
+{% set page_css = ['../css/css-user/header.css',  '../css/css-user/details-car.css', '../css/css-user/footer.css'] %}
+{% set page_scripts = ['../script/script-user/details-car.js'] %}
+{% include '_header.twig.html' %}
+
+<main class="detail-container">
+    <header class="detail-header">
+        <h1>{{car.name}}</h1>
+    </header>
+
+    <section class="detail-gallery">
+            <div class="main-image-container">
+                <img id="main-car-image" src="../{{ car.image_url|e }}" alt="Tampak depan {{ car.name|e }}">
+            </div>
+            
+            <div class="gallery-scroller">
+                <button id="scroll-left-thumb" class="scroll-btn">&larr;</button>
+                <div class="thumbnail-container">
+                    
+                   
+                    {% for image in galleryImages %}
+                        <button 
+                            class="thumbnail-item {{ loop.first ? 'active' : '' }}" 
+                            data-full-image="../{{ image.image_path|e }}">
+                            
+                            <img src="../{{ image.image_path|e }}" alt="{{ image.caption|e }}">
+                            <span class="thumbnail-caption">{{ image.caption|e }}</span>
+                        </button>
+                    {% endfor %}
+
+                </div>
+                <button id="scroll-right-thumb" class="scroll-btn">&rarr;</button>
+            </div>
+        </section>
+
+
+    
+
+    <div class="detail-content">
+
+    {# BAGIAN SPESIFIKASI LENGKAP #}
+    <section class="specifications-section">
+        <h2>Spesifikasi Lengkap</h2>
+        <div class="spec-grid"> 
+            <div class="spec-item">
+                <span class="spec-label">Harga Cash</span>
+                <span class="spec-value price">Rp {{ car.price|number_format(0, ',', '.') }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Tahun</span>
+                <span class="spec-value">{{ car.year }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Kilometer</span>
+                <span class="spec-value">{{ car.km|number_format(0, ',', '.') }} km</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Mesin</span>
+                <span class="spec-value">{{ car.engine }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Transmisi</span>
+                <span class="spec-value">{{ car.transmission }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Tenaga</span>
+                <span class="spec-value">{{ car.horsepower }} HP</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Bahan Bakar</span>
+                <span class="spec-value">{{ car.fuel_type }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">CC Mesin</span>
+                <span class="spec-value">{{ car.engine_cc == 0 ? 'Listrik' : car.engine_cc ~ ' cc' }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Warna</span>
+                <span class="spec-value">{{ car.color }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Kapasitas</span>
+                <span class="spec-value">{{ car.seat_count }} Penumpang</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Airbags</span>
+                <span class="spec-value">{{ car.airbag_count }}</span>
+            </div>
+        </div>
+    </section>
+
+    {# BAGIAN INFORMASI TAMBAHAN #}
+    <section class="specifications-section">
+        <h2>Informasi Tambahan</h2>
+        <div class="spec-grid"> 
+            <div class="spec-item">
+                <span class="spec-label">Status Unit</span>
+                <span class="spec-value status-{{ car.status|lower }}">{{ car.status }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Pemilik</span>
+                <span class="spec-value">Tangan ke-{{ car.previous_owners }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Plat Kendaraan</span>
+                <span class="spec-value">{{ car.license_plate }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Pajak Berlaku Hingga</span>
+                <span class="spec-value">{{ car.tax_valid_until|date("d F Y") }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Bebas Tabrakan</span>
+                <span class="spec-value condition-{{ car.is_accident_free|lower }}">{{ car.is_accident_free }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Bebas Banjir</span>
+                <span class="spec-value condition-{{ car.is_flood_free|lower }}">{{ car.is_flood_free }}</span>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="financing-calculator-section">
+        <h2>Kalkulator Kredit</h2>
+        <div class="calculator-container">
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label for="harga-mobil">Harga Mobil (Rp)</label>
+                    <input type="text" id="harga-mobil" value="Rp {{ car.price|number_format(0, ',', '.') }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="mitra-pembiayaan">Mitra Pembiayaan</label>
+                    <select id="mitra-pembiayaan">
+                        
+                    </select>
+                </div>
+                <div class="form-group form-group-inline">
+                    <div>
+                        <label for="uang-muka-rp">Uang Muka</label>
+                        <input type="text" id="uang-muka-rp" placeholder="misal: 50.000.000">
+                    </div>
+                    <div>
+                        <label for="uang-muka-persen">%</label>
+                        <input type="text" id="uang-muka-persen" placeholder="misal: 20">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tenor-pinjaman">Tenor Pinjaman (Tahun)</label>
+                    <input type="range" id="tenor-pinjaman" min="1" max="5" value="5" step="1">
+                    <div class="tenor-display">
+                        <span id="tenor-value">5</span> Tahun
+                    </div>
+                </div>
+            </div>
+            <div class="calculator-result">
+                <p>Estimasi Pembayaran Anda:</p>
+                <div class="total-dp">
+                    <span>Total DP</span>
+                    <strong id="hasil-total-dp">Rp 0</strong>
+                </div>
+                <div class="monthly-installment">
+                    <span>Angsuran per Bulan</span>
+                    <strong id="hasil-angsuran">Rp 0</strong>
+                </div>
+                <div class="result-details">
+                    <p><strong>Rincian Total DP:</strong></p>
+                    <ul>
+                        <li>Uang Muka: <span id="rincian-dp">Rp 0</span></li>
+                        <li>Biaya Admin: <span id="rincian-admin">Rp 0</span></li>
+                        <li>Cicilan Pertama: <span id="rincian-cicilan1">Rp 0</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</div>
+
+    
+</main>
+{% include '_footer.twig.html' %}
