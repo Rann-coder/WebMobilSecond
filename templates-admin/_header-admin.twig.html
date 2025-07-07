@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ page_title|default('Admin Dasbor') }} - Showroom Mobil</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    {% if page_css is defined %}
+        {% for css_path in page_css %}
+            <link rel="stylesheet" href="{{ css_path }}">
+        {% endfor %}
+    {% endif %}
+   
+</head>
+<body>
+
+<div class="admin-container">
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <h3>Admin Panel</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="{{ active_menu == 'dashboard' ? 'active' : '' }}"><a href="#">Dasbor</a></li>
+                <li class="{{ active_menu == 'cars' ? 'active' : '' }}"><a href="#">Manajemen Mobil</a></li>
+                <li class="{{ active_menu == 'leasing' ? 'active' : '' }}"><a href="#">Aturan Leasing</a></li>
+                <li class="{{ active_menu == 'showrooms' ? 'active' : '' }}"><a href="#">Manajemen Showroom</a></li>
+                <li class="{{ active_menu == 'users' ? 'active' : '' }}"><a href="#">Manajemen Pengguna</a></li>
+                <li class="{{ active_menu == 'reports' ? 'active' : '' }}"><a href="#">Laporan</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#">Logout</a>
+        </div>
+    </aside>
+
+    <main class="admin-main">

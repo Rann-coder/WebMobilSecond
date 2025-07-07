@@ -1,0 +1,80 @@
+/* public/css/css-admin/admin-home.css */
+
+/* --- Isi Konten --- */
+
+.stat-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+.stat-card h4 {
+    font-size: 0.9rem;
+    color: #95a5a6;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+.stat-card p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* --- Tabel --- */
+.content-table-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+.content-table-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.content-table th, .content-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f2f5;
+}
+.content-table thead {
+    background-color: var(--bg-light);
+}
+.content-table th {
+    font-weight: 600;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+.content-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.content-table .status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.content-table .status.available { background-color: #e8f5e9; color: #4caf50; }
+.content-table .status.hold { background-color: #fffde7; color: #f59e0b; }
+.content-table .status.sold-out { background-color: #ffebee; color: #f44336; }
+
+.content-table .btn-edit, .content-table .btn-delete {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+}
+.content-table .btn-edit { background-color: #e3f2fd; color: #2196f3; }
+.content-table .btn-delete { background-color: #ffebee; color: #f44336; }

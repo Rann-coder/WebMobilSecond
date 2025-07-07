@@ -1,0 +1,114 @@
+/* public/css/css-admin/admin-form.css */
+
+.form-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.form-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #5a6a85;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dcdfe6;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Radio Button Styling */
+.radio-group label {
+    margin-bottom: 12px;
+}
+.radio-options {
+    display: flex;
+    gap: 20px;
+}
+.radio-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* File Input Styling */
+.file-input {
+    font-size: 14px;
+}
+.file-input::file-selector-button {
+    margin-right: 12px;
+    border: 1px solid #dcdfe6;
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    background-color: #f8f9fa;
+    color: #5a6a85;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.file-input::file-selector-button:hover {
+    background-color: #eef2f7;
+    border-color: #a0aec0;
+}
+
+/* --- Tombol Aksi di Header --- */
+.header-actions .btn-secondary {
+    padding: 10px 20px;
+    background: #fff;
+    color: #5a6a85;
+    border: 1px solid #dcdfe6;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+}
+.header-actions .btn-secondary:hover {
+    background-color: #f8f9fa;
+}
