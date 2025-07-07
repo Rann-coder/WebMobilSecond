@@ -1,0 +1,45 @@
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/compare.css', '../css/css-user/footer.css'] %}
+
+{% include '_header.twig.html' %}
+
+ <section class="compare-modern-section">
+        <div class="compare-modern-container">
+            <h2 class="compare-modern-heading">Bandingkan Mobil Favorit Anda</h2>
+            <p class="compare-modern-subtitle">
+                Temukan perbedaan fitur, spesifikasi, dan harga dari mobil pilihan Anda secara berdampingan dengan perbandingan yang detail dan akurat.
+            </p>
+
+            <div class="compare-modern-grid">
+                <div class="compare-modern-card empty-card" onclick="selectCar(1)">
+                    <div class="compare-modern-image empty-image">
+                        <div class="add-car-icon">
+                            <span class="plus-icon">+</span>
+                        </div>
+                    </div>
+                    <div class="compare-modern-details">
+                        <h3>Pilih Mobil Pertama</h3>
+                        <p class="empty-text">Klik untuk menambahkan mobil yang ingin Anda bandingkan</p>
+                    </div>
+                </div>
+
+                <div class="compare-modern-divider"></div>
+
+                <div class="compare-modern-card empty-card" onclick="selectCar(2)">
+                    <div class="compare-modern-image empty-image">
+                        <div class="add-car-icon">
+                            <span class="plus-icon">+</span>
+                        </div>
+                    </div>
+                    <div class="compare-modern-details">
+                        <h3>Pilih Mobil Kedua</h3>
+                        <p class="empty-text">Klik untuk menambahkan mobil yang ingin Anda bandingkan</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/compare" class="compare-modern-button">
+                Bandingkan Mobil Lainnya
+                <span>→</span>
+            </a>
+        </div>
+    </section>
