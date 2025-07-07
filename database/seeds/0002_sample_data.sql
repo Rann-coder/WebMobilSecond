@@ -3,20 +3,75 @@ INSERT INTO cars (
     engine_cc, fuel_type, previous_owners, 
     license_plate, tax_valid_until, color, seat_count, airbag_count,
     is_accident_free, is_flood_free, hot_deal_label,
-    engine, transmission, horsepower, status,
+    engine, transmission, horsepower, status, approval_status,
     image_url, description, specifications, slug
 ) VALUES
-(1, 'Avanza 1.5 G CVT', 2024, 272500000.00, 15000, 1500, 'Gasoline', 1, 'BK 1234 AA', '2025-08-20', 'White', 7, 2, 'Yes', 'Yes', 'Like New', '1.5L 4-silinder', 'CVT', 106, 'Available', '../../images/raize.png', 'Generasi terbaru dari MPV terlaris di Indonesia.', '{"torque": "137 Nm"}', 'toyota-avanza-1-5-g-cvt-2024-1'),
-(3, 'Pajero Sport Dakar Ultimate 4x2', 2024, 675600000.00, 22000, 2400, 'Diesel', 1, 'BK 5678 BB', '2025-05-15', 'Black', 7, 7, 'Yes', 'Yes', 'Best Deal', '2.4L MIVEC Diesel', '8-speed AT', 181, 'Available', '../../images/raize.png', 'SUV ladder-frame yang tangguh dan mewah.', '{"torque": "430 Nm"}', 'mitsubishi-pajero-sport-dakar-ultimate-4x2-2024-2'),
-(2, 'Brio Satya E CVT', 2025, 198300000.00, 5500, 1200, 'Gasoline', 1, 'BK 9101 CC', '2026-01-30', 'Red', 5, 2, 'No', 'Yes', 'Low KM', '1.2L i-VTEC', 'CVT', 90, 'Hold', '../../images/raize.png', 'City car terpopuler dengan desain sporty.', '{"torque": "110 Nm"}', 'honda-brio-satya-e-cvt-2025-3'),
-(6, 'Ioniq 5 Prime Standard Range', 2024, 782000000.00, 12000, 0, 'Electric', 1, 'B 2024 EV', '2025-11-05', 'Silver', 5, 6, 'Yes', 'Yes', NULL, 'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 170, 'Available', '../../images/raize.png', 'Mobil listrik murni dengan desain futuristik.', '{"torque": "350 Nm"}', 'hyundai-ioniq-5-prime-sr-2024-4'),
-(4, 'Ertiga Hybrid Cruise AT', 2024, 299000000.00, 9800, 1500, 'Hybrid', 1, 'BK 1122 DD', '2025-09-10', 'Gray', 7, 2, 'Yes', 'Yes', 'Kondisi Mulus', '1.5L K15B + ISG', '4-speed AT', 104, 'Sold Out', '../../images/raize.png', 'MPV keluarga yang efisien berkat teknologi hybrid.', '{"torque": "138 Nm"}', 'suzuki-ertiga-hybrid-cruise-at-2024-5'),
-(5, 'Rocky 1.0 R TC CVT ASA', 2024, 273450000.00, 18000, 1000, 'Gasoline', 1, 'BK 3344 EE', '2025-07-22', 'Yellow', 5, 6, 'Yes', 'Yes', 'Harga Spesial', '1.0L Turbo 3-silinder', 'D-CVT', 98, 'Available', '../../images/raize.png', 'SUV kompak dengan mesin turbo yang responsif.', '{"torque": "140 Nm"}', 'daihatsu-rocky-1-0-r-tc-cvt-asa-2024-6'),
-(7, 'Air EV Long Range', 2024, 299500000.00, 7000, 0, 'Electric', 1, 'BK 5566 FF', '2025-12-01', 'White', 4, 2, 'Yes', 'Yes', 'Cocok Untuk Kota', 'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 40, 'Available', '../../images/raize.png', 'Mobil listrik mungil untuk perkotaan yang praktis.', '{"torque": "110 Nm"}', 'wuling-air-ev-long-range-2024-7'),
-(1, 'Kijang Innova Zenix G Hybrid CVT', 2024, 477600000.00, 25000, 2000, 'Hybrid', 1, 'BK 7788 GG', '2025-04-18', 'Black', 7, 6, 'Yes', 'No', 'Hot Deal', '2.0L M20A-FXS Hybrid', 'e-CVT', 186, 'Available', '../../images/raize.png', 'Revolusi dari Kijang Innova dengan teknologi hybrid.', '{"torque": "205 Nm"}', 'toyota-kijang-innova-zenix-g-hybrid-2024-8'),
-(2, 'HR-V 1.5L Turbo RS', 2024, 540300000.00, 16500, 1500, 'Gasoline', 1, 'BK 9900 HH', '2025-06-25', 'Red', 5, 6, 'Yes', 'Yes', 'Tipe Tertinggi', '1.5L VTEC Turbo', 'CVT', 177, 'Hold', '../../images/raize.png', 'Compact SUV dengan desain coupe yang stylish.', '{"torque": "240 Nm"}', 'honda-hr-v-1-5l-turbo-rs-2024-9'),
-(11, '320i M Sport', 2024, 1165000000.00, 8500, 2000, 'Gasoline', 1, 'B 320 BOS', '2025-10-10', 'Blue', 5, 8, 'Yes', 'Yes', 'Collector Item', '2.0L BMW TwinPower Turbo', '8-speed Steptronic', 184, 'Available', '../../images/raize.png', 'Sedan sport legendaris yang mendefinisikan kenikmatan berkendara.', '{"torque": "300 Nm"}', 'bmw-320i-m-sport-2024-10'),
-(8, 'Omoda 5 RZ', 2024, 404900000.00, 11000, 1500, 'Gasoline', 1, 'BK 1505 RZ', '2025-03-12', 'Gray', 5, 6, 'N/A', 'N/A', 'Futuristik', '1.5L Turbo', '9-speed CVT', 145, 'Available', '../../images/raize.png', 'Crossover futuristik dengan desain "Art in Motion".', '{"torque": "230 Nm"}', 'chery-omoda-5-rz-2024-11');
+(
+    1, 'Avanza 1.5 G CVT', 2024, 272500000.00, 15000,
+    1500, 'Gasoline', 1, 'BK 1234 AA', '2025-08-20', 'White', 7, 2, 'Yes', 'Yes', 'Like New',
+    '1.5L 4-silinder', 'CVT', 106, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '../../images/raize.png', 'Generasi terbaru dari MPV terlaris di Indonesia.', '{"torque": "137 Nm"}', 'toyota-avanza-1-5-g-cvt-2024-1'
+),
+(
+    3, 'Pajero Sport Dakar Ultimate 4x2', 2024, 675600000.00, 22000,
+    2400, 'Diesel', 1, 'BK 5678 BB', '2025-05-15', 'Black', 7, 7, 'Yes', 'Yes', 'Best Deal',
+    '2.4L MIVEC Diesel', '8-speed AT', 181, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '../../images/raize.png', 'SUV ladder-frame yang tangguh dan mewah.', '{"torque": "430 Nm"}', 'mitsubishi-pajero-sport-dakar-ultimate-4x2-2024-2'
+),
+(
+    2, 'Brio Satya E CVT', 2025, 198300000.00, 5500,
+    1200, 'Gasoline', 1, 'BK 9101 CC', '2026-01-30', 'Red', 5, 2, 'No', 'Yes', 'Low KM',
+    '1.2L i-VTEC', 'CVT', 90, 'Hold', 'Pending', -- Akan muncul di tabel "Perlu Direview"
+    '../../images/raize.png', 'City car terpopuler dengan desain sporty.', '{"torque": "110 Nm"}', 'honda-brio-satya-e-cvt-2025-3'
+),
+(
+    6, 'Ioniq 5 Prime Standard Range', 2024, 782000000.00, 12000,
+    0, 'Electric', 1, 'B 2024 EV', '2025-11-05', 'Silver', 5, 6, 'Yes', 'Yes', NULL,
+    'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 170, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '../../images/raize.png', 'Mobil listrik murni dengan desain futuristik.', '{"torque": "350 Nm"}', 'hyundai-ioniq-5-prime-sr-2024-4'
+),
+(
+    4, 'Ertiga Hybrid Cruise AT', 2024, 299000000.00, 9800,
+    1500, 'Hybrid', 1, 'BK 1122 DD', '2025-09-10', 'Gray', 7, 2, 'Yes', 'Yes', 'Kondisi Mulus',
+    '1.5L K15B + ISG', '4-speed AT', 104, 'Sold Out', 'Rejected', -- Contoh data ditolak
+    '../../images/raize.png', 'MPV keluarga yang efisien berkat teknologi hybrid.', '{"torque": "138 Nm"}', 'suzuki-ertiga-hybrid-cruise-at-2024-5'
+),
+(
+    5, 'Rocky 1.0 R TC CVT ASA', 2024, 273450000.00, 18000,
+    1000, 'Gasoline', 1, 'BK 3344 EE', '2025-07-22', 'Yellow', 5, 6, 'Yes', 'Yes', 'Harga Spesial',
+    '1.0L Turbo 3-silinder', 'D-CVT', 98, 'Available', 'Reviewed', -- Revisi: Akan muncul di tabel "Siap Disetujui"
+    '../../images/raize.png', 'SUV kompak dengan mesin turbo yang responsif.', '{"torque": "140 Nm"}', 'daihatsu-rocky-1-0-r-tc-cvt-asa-2024-6'
+),
+(
+    7, 'Air EV Long Range', 2024, 299500000.00, 7000,
+    0, 'Electric', 1, 'BK 5566 FF', '2025-12-01', 'White', 4, 2, 'Yes', 'Yes', 'Cocok Untuk Kota',
+    'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 40, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '../../images/raize.png', 'Mobil listrik mungil untuk perkotaan yang praktis.', '{"torque": "110 Nm"}', 'wuling-air-ev-long-range-2024-7'
+),
+(
+    1, 'Kijang Innova Zenix G Hybrid CVT', 2024, 477600000.00, 25000,
+    2000, 'Hybrid', 1, 'BK 7788 GG', '2025-04-18', 'Black', 7, 6, 'Yes', 'No', 'Hot Deal',
+    '2.0L M20A-FXS Hybrid', 'e-CVT', 186, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '../../images/raize.png', 'Revolusi dari Kijang Innova dengan teknologi hybrid.', '{"torque": "205 Nm"}', 'toyota-kijang-innova-zenix-g-hybrid-2024-8'
+),
+(
+    2, 'HR-V 1.5L Turbo RS', 2024, 540300000.00, 16500,
+    1500, 'Gasoline', 1, 'BK 9900 HH', '2025-06-25', 'Red', 5, 6, 'Yes', 'Yes', 'Tipe Tertinggi',
+    '1.5L VTEC Turbo', 'CVT', 177, 'Hold', 'Reviewed', -- Revisi: Akan muncul di tabel "Siap Disetujui"
+    '../../images/raize.png', 'Compact SUV dengan desain coupe yang stylish.', '{"torque": "240 Nm"}', 'honda-hr-v-1-5l-turbo-rs-2024-9'
+),
+(
+    11, '320i M Sport', 2024, 1165000000.00, 8500,
+    2000, 'Gasoline', 1, 'B 320 BOS', '2025-10-10', 'Blue', 5, 8, 'Yes', 'Yes', 'Collector Item',
+    '2.0L BMW TwinPower Turbo', '8-speed Steptronic', 184, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '../../images/raize.png', 'Sedan sport legendaris yang mendefinisikan kenikmatan berkendara.', '{"torque": "300 Nm"}', 'bmw-320i-m-sport-2024-10'
+),
+(
+    8, 'Omoda 5 RZ', 2024, 404900000.00, 11000,
+    1500, 'Gasoline', 1, 'BK 1505 RZ', '2025-03-12', 'Gray', 5, 6, 'N/A', 'N/A', 'Futuristik',
+    '1.5L Turbo', '9-speed CVT', 145, 'Available', 'Pending', -- Akan muncul di tabel "Perlu Direview"
+    '../../images/raize.png', 'Crossover futuristik dengan desain "Art in Motion".', '{"torque": "230 Nm"}', 'chery-omoda-5-rz-2024-11'
+);
 
 INSERT INTO car_images (car_id, image_path, caption, display_order) VALUES
 -- Galeri untuk Mobil ID 1 (Avanza - 7 Seater)

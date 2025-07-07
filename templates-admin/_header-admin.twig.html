@@ -21,23 +21,39 @@
 <body>
 
 <div class="admin-container">
-    <aside class="admin-sidebar">
+   <aside class="admin-sidebar">
         <div class="sidebar-header">
             <h3>Admin Panel</h3>
+            <button id="sidebar-toggle" class="sidebar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <nav class="sidebar-nav">
-            <ul>
-                <li class="{{ active_menu == 'dashboard' ? 'active' : '' }}"><a href="#">Dasbor</a></li>
-                <li class="{{ active_menu == 'cars' ? 'active' : '' }}"><a href="#">Manajemen Mobil</a></li>
-                <li class="{{ active_menu == 'leasing' ? 'active' : '' }}"><a href="#">Aturan Leasing</a></li>
-                <li class="{{ active_menu == 'showrooms' ? 'active' : '' }}"><a href="#">Manajemen Showroom</a></li>
-                <li class="{{ active_menu == 'users' ? 'active' : '' }}"><a href="#">Manajemen Pengguna</a></li>
-                <li class="{{ active_menu == 'reports' ? 'active' : '' }}"><a href="#">Laporan</a></li>
+            <nav class="sidebar-nav">
+        <ul>
+            <span class="menu-text">
+            <li class="{{ active_menu == 'dashboard' ? 'active' : '' }}">
+                <a href="#"><span class="menu-text">Dasbor</span></a>
+            </li>
+            <li class="{{ active_menu == 'cars' ? 'active' : '' }}">
+                <a href="#"><span class="menu-text">Manajemen Mobil</span></a>
+            </li>
+            <li class="{{ active_menu == 'leasing' ? 'active' : '' }}">
+                <a href="#"><span class="menu-text">Aturan Leasing</span></a>
+            </li>
+            <li class="{{ active_menu == 'showrooms' ? 'active' : '' }}">
+                <a href="#"><span class="menu-text">Manajemen Showroom</span></a>
+            </li>
+            <li class="{{ active_menu == 'users' ? 'active' : '' }}">
+                <a href="#"><span class="menu-text">Manajemen Pengguna</span></a>
+            </li>
+            <li class="{{ active_menu == 'reports' ? 'active' : '' }}">
+                <a href="#"><span class="menu-text">Laporan</span></a>
+            </li>
             </ul>
         </nav>
-        <div class="sidebar-footer">
-            <a href="#">Logout</a>
-        </div>
+        
     </aside>
 
     <main class="admin-main">

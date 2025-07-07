@@ -2,3 +2,25 @@
     </main> </div> 
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('sidebar-toggle');
+    const container = document.querySelector('.admin-container');
+    const storageKey = 'sidebarCollapsed';
+
+    if (toggleButton && container) {
+        if (localStorage.getItem(storageKey) === 'true') {
+            container.classList.add('sidebar-collapsed');
+        }
+
+        toggleButton.addEventListener('click', () => {
+
+            container.classList.toggle('sidebar-collapsed');
+
+            const isCollapsed = container.classList.contains('sidebar-collapsed');
+            localStorage.setItem(storageKey, isCollapsed);
+        });
+    }
+});
+</script>

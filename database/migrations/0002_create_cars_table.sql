@@ -1,5 +1,6 @@
 CREATE TABLE cars (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    approval_status ENUM('Pending', 'Reviewed', 'Approved', 'Rejected') NOT NULL DEFAULT 'PENDING',
     id_brand INT NOT NULL,
     name VARCHAR(150) NOT NULL,
     year SMALLINT,

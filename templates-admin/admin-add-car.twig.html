@@ -17,7 +17,7 @@
             <h2>Informasi Utama</h2>
             <div class="form-grid">
                 <div class="form-group">
-                    <label for="car-name">Nama Mobil (Judul Iklan)</label>
+                    <label for="car-name">Nama Mobil</label>
                     <input type="text" id="car-name" name="name" placeholder="Contoh: Avanza 1.5 G CVT" required>
                 </div>
                 <div class="form-group">
@@ -117,26 +117,40 @@
                         <label><input type="radio" name="is_accident_free" value="N/A"> N/A</label>
                     </div>
                 </div>
+                <div class="form-group radio-group">
+                    <label>Hot Deal?</label>
+                     <div class="radio-options">
+                        <label><input type="radio" name="is_hot_deal" value="Yes" checked> Ya</label>
+                        <label><input type="radio" name="is_hot_deal" value="No"> Tidak</label>
+                        <label><input type="radio" name="is_hot_deal" value="N/A"> N/A</label>
+                    </div>
+                </div>
             </div>
         </div>
+
+        
         
         <div class="form-section">
-            <h2>Deskripsi & Media</h2>
-            <div class="form-group">
-                <label for="car-description">Deskripsi Iklan</label>
-                <textarea id="car-description" name="description" rows="6" placeholder="Jelaskan kondisi dan keunggulan mobil..."></textarea>
+    <h2>Deskripsi & Media</h2>
+    
+    <div class="form-group">
+        <label for="car-description">Deskripsi Iklan</label>
+        <textarea id="car-description" name="description" rows="6" placeholder="Jelaskan kondisi dan keunggulan mobil..."></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Gambar Galeri</label>
+        
+        <label for="gallery-files" class="file-input-label">
+            <span>+</span> Pilih Gambar (Bisa lebih dari satu)
+        </label>
+        
+        <input type="file" id="gallery-files" name="gallery_images[]" multiple style="display: none;">
+        
+        <div id="image-preview-container" class="preview-grid">
             </div>
-             <div class="form-grid">
-                 <div class="form-group">
-                    <label for="main-image">Gambar Utama</label>
-                    <input type="file" id="main-image" name="image_url" class="file-input">
-                </div>
-                 <div class="form-group">
-                    <label for="gallery-images">Gambar Galeri (Bisa pilih banyak)</label>
-                    <input type="file" id="gallery-images" name="gallery_images[]" class="file-input" multiple>
-                </div>
-             </div>
         </div>
+    </div>
 
     </form>
 </section>

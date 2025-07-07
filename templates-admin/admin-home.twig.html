@@ -6,7 +6,13 @@
     <h1>Selamat Datang, Admin!</h1>
     <div class="header-actions">
         <input type="search" placeholder="Cari mobil atau pengguna...">
-        <button class="btn-primary">Tambah Mobil Baru</button>
+        <a href="../php-admin/admin-add-car.php" class="btn-primary">Tambah Mobil Baru</a>
+        <div class="header-user">
+                <span class="user-name">Admin</span>
+                <a href="#" class="btn-logout" title="Logout">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                </a>
+        </div>
     </div>
 </header>
 
@@ -31,42 +37,68 @@
     </div>
 
     <div class="content-table-container">
-        <h2>Aktivitas Terbaru</h2>
+    <h2>Daftar Persetujuan Mobil</h2>
+
+    {% if pendingCars is not empty %}
         <table class="content-table">
             <thead>
                 <tr>
-                    <th>ID Mobil</th>
                     <th>Nama Mobil</th>
-                    <th>Status</th>
-                    <th>Harga</th>
-                    <th>Aksi</th>
+                    <th>Tanggal Masuk</th>
+                    <th>Status Review</th> 
+                    <th style="text-align: right;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
+                {% for car in pendingCars %}
                 <tr>
-                    <td>10</td>
-                    <td>BMW 320i M Sport</td>
-                    <td><span class="status available">Available</span></td>
-                    <td>Rp 1.165.000.000</td>
-                    <td><a href="#" class="btn-edit">Edit</a> <a href="#" class="btn-delete">Hapus</a></td>
+                    <td>
+                        <strong>{{ car.name }}</strong>
+                        <small style="display: block; color: #888;">ID: {{ car.id }}</small>
+                    </td>
+                    <td>{{ car.created_at|date("d M Y, H:i") }}</td>
+                    <td>
+                        {% if car.approval_status == 'Reviewed' %}
+                            <span class="status reviewed">Sudah Direview</span>
+                        {% else %}
+                            <span class="status pending">Perlu Direview</span>
+                        {% endif %}
+                    </td>
+                    <td class="action-buttons">
+                        <a href="{{ base_url }}/admin/review-car.php?id={{ car.id }}" class="btn-review">Review</a>
+                        
+                        
+                        
+                        <button 
+                            data-action="approve" 
+                            data-id="{{ car.id }}" 
+                            class="btn-approve"
+                            {# Gunakan blok IF untuk menambahkan atribut 'disabled' #}
+                            {% if car.approval_status != 'Reviewed' %}disabled{% endif %}
+                            title="{% if car.approval_status != 'Reviewed' %}Mobil harus direview terlebih dahulu{% else %}Setujui mobil ini{% endif %}">
+                            Setujui
+                        </button>
+
+                        <button 
+                            data-action="reject" 
+                            data-id="{{ car.id }}" 
+                            class="btn-reject"
+                            {# Gunakan blok IF untuk menambahkan atribut 'disabled' #}
+                            {% if car.approval_status != 'Reviewed' %}disabled{% endif %}
+                            title="{% if car.approval_status != 'Reviewed' %}Mobil harus direview terlebih dahulu{% else %}Tolak mobil ini{% endif %}">
+                            Tolak
+                        </button>
+                    </td>
                 </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Honda HR-V 1.5L Turbo RS</td>
-                    <td><span class="status hold">Hold</span></td>
-                    <td>Rp 540.300.000</td>
-                    <td><a href="#" class="btn-edit">Edit</a> <a href="#" class="btn-delete">Hapus</a></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Ertiga Hybrid Cruise AT</td>
-                    <td><span class="status sold-out">Sold Out</span></td>
-                    <td>Rp 299.000.000</td>
-                    <td><a href="#" class="btn-edit">Edit</a> <a href="#" class="btn-delete">Hapus</a></td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
-    </div>
+    {% else %}
+        <p class="no-data-message">Tidak ada mobil yang menunggu persetujuan.</p>
+    {% endif %}
+</div>
+
 </section>
+
 
 {% include '_footer-admin.twig.html' %}
