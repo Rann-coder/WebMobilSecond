@@ -1,0 +1,206 @@
+document.addEventListener('DOMContentLoaded', function(){
+    const scrollLeftBtn = document.getElementById('scroll-left-thumb');
+    const scrollRightBtn = document.getElementById('scroll-right-thumb');
+    const thumbnailContainer = document.querySelector('.thumbnail-container');
+
+    const mainImage = document.getElementById('main-car-image');
+    const thumbnails = document.querySelectorAll('.thumbnail-item');
+
+    if(scrollLeftBtn && scrollRightBtn && thumbnailContainer) {
+        scrollLeftBtn.addEventListener('click', () => {
+            thumbnailContainer.scrollBy({left: -136, behavior: 'smooth'})
+        });
+
+        scrollRightBtn.addEventListener('click', () => {
+            thumbnailContainer.scrollBy({left: 136, behavior: 'smooth'})
+        });
+    }
+
+    //Elemen kalkulator
+    const hargaMobilEl = document.getElementById('harga-mobil');
+    const leasingSelectEl = document.getElementById('mitra-pembiayaan');
+    const dpRpEl = document.getElementById('uang-muka-rp');
+    const dpPersenEl = document.getElementById('uang-muka-persen');
+    const tenorSliderEl = document.getElementById('tenor-pinjaman');
+    const tenorValueEl = document.getElementById('tenor-value');
+
+    //Elemen Hasil
+    const hasilTotalDpEl = document.getElementById('hasil-total-dp');
+    const hasilAngsuranEl = document.getElementById('hasil-angsuran');
+    const rincianDpEl = document.getElementById('rincian-dp');
+    const rincianAdminEl = document.getElementById('rincian-admin');
+    const rincianCicilan1El = document.getElementById('rincian-cicilan1');
+
+    let leasingRules = [];
+
+    const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+    const formatAngka = (number) => new Intl.NumberFormat('id-ID').format(number);
+    
+    // Fungsi untuk parsing nilai rupiah dari string
+    const parseRupiah = (rupiahString) => {
+        if (!rupiahString) return 0;
+        // Hapus semua karakter non-digit
+        const cleanString = rupiahString.toString().replace(/[^0-9]/g, '');
+        return parseFloat(cleanString) || 0;
+    };
+
+    const debounce = (func, delay) => {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    };
+
+    function calculateCredit(){
+        console.log('Calculating credit...'); 
+        
+        const hargaMobil = parseRupiah(hargaMobilEl.value);
+        const dpRp = parseRupiah(dpRpEl.value);
+        const tenorTahun = parseInt(tenorSliderEl.value);
+
+        console.log('Harga mobil:', hargaMobil); 
+        console.log('DP Rp:', dpRp); 
+        console.log('Tenor:', tenorTahun); 
+        console.log('Selected leasing:', leasingSelectEl.value); 
+
+        const selectedLeasing = leasingRules.find(rule => rule.leasing_name === leasingSelectEl.value);
+        
+        if (!selectedLeasing) {
+            console.log('No leasing selected');
+            return;
+        }
+        
+        if (!hargaMobil || hargaMobil <= 0) {
+            console.log('Invalid harga mobil'); 
+            return;
+        }
+
+        if (isNaN(dpRp) || dpRp < 0) {
+            console.log('Invalid DP'); 
+            return;
+        }
+
+        console.log('Selected leasing data:', selectedLeasing); 
+
+        //Validasi DP minimum
+        const minDpPercentage = parseFloat(selectedLeasing.min_dp_percentage);
+        const minDpRp = hargaMobil * (minDpPercentage/100);
+        
+        if(dpRp < minDpRp) {
+           hasilAngsuranEl.textContent = 'Rp -';
+           hasilTotalDpEl.textContent = 'DP Min. ' + formatRupiah(minDpRp) + ' (' + minDpPercentage + '%)';
+           return; 
+        }
+
+        //Hitung Jumlah yang dipinjam
+        const pokokHutang = hargaMobil - dpRp;
+        if(pokokHutang <= 0){ //Jika DP lunas atau lebih
+            hasilAngsuranEl.textContent = 'Rp 0';
+            hasilTotalDpEl.textContent = formatRupiah(hargaMobil);
+            rincianDpEl.textContent = formatRupiah(dpRp);
+            rincianAdminEl.textContent = 'Rp 0';
+            rincianCicilan1El.textContent = 'Rp 0';
+            return;
+        }
+
+        const interestRateKey = `interest_rate_${tenorTahun}yr`;
+        const sukuBungaTahunan = parseFloat(selectedLeasing[interestRateKey]);
+        
+        if (isNaN(sukuBungaTahunan)) {
+            console.log('Invalid interest rate for tenor:', tenorTahun); 
+            return;
+        }
+
+        const totalBunga = (pokokHutang * (sukuBungaTahunan / 100)) * tenorTahun;
+        const totalHutang = pokokHutang + totalBunga;
+        const angsuranBulanan = totalHutang / (tenorTahun * 12);
+        const biayaAdmin = parseFloat(selectedLeasing.admin_fee) || 0;
+        const totalDpBayar = dpRp + biayaAdmin + angsuranBulanan;
+
+        console.log('Calculation results:', {
+            pokokHutang,
+            sukuBungaTahunan,
+            totalBunga,
+            totalHutang,
+            angsuranBulanan,
+            biayaAdmin,
+            totalDpBayar
+        }); // Debug log
+
+        hasilTotalDpEl.textContent = formatRupiah(totalDpBayar);
+        hasilAngsuranEl.textContent = formatRupiah(angsuranBulanan);
+        rincianDpEl.textContent = formatRupiah(dpRp);
+        rincianAdminEl.textContent = formatRupiah(biayaAdmin);
+        rincianCicilan1El.textContent = formatRupiah(angsuranBulanan);
+    }
+
+    //Event Listener Input
+    //uang-muka-rp
+    dpRpEl.addEventListener('input', debounce(() =>{
+        const hargaMobil = parseRupiah(hargaMobilEl.value);
+        const dpRp = parseRupiah(dpRpEl.value);
+
+        // Format input dengan pemisah ribuan
+        if (dpRp > 0) {
+            dpRpEl.value = formatAngka(dpRp);
+        }
+
+        if(hargaMobil > 0 && dpRp >= 0){
+            const persen = ((dpRp / hargaMobil) * 100).toFixed(1);
+            dpPersenEl.value = persen;
+        }
+        calculateCredit();
+    }, 300));
+
+    dpPersenEl.addEventListener('input', debounce(() => {
+        const hargaMobil = parseRupiah(hargaMobilEl.value);
+        const persen = parseFloat(dpPersenEl.value) || 0;
+        
+        if (hargaMobil > 0 && persen >= 0) {
+            const dpRp = Math.round((hargaMobil * persen) / 100);
+            dpRpEl.value = formatAngka(dpRp);
+        }
+        calculateCredit();
+    }, 300));
+
+    tenorSliderEl.addEventListener('input', () => {
+        tenorValueEl.textContent = tenorSliderEl.value;
+        calculateCredit();
+    });
+
+    leasingSelectEl.addEventListener('change', () => {
+        console.log('Leasing changed to:', leasingSelectEl.value); 
+        calculateCredit();
+    });
+
+    // Fetch data leasing rules
+    fetch('../api/get-leasing-rules.php') 
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(result => {
+        if (result.success) {
+            leasingRules = result.data;
+            console.log('Data leasingRules berhasil dimuat:', leasingRules);
+
+            if (leasingSelectEl && leasingRules.length > 0) {
+                leasingSelectEl.innerHTML = '<option value="">-- Pilih Mitra Pembiayaan --</option>' + 
+                    leasingRules
+                        .map(rule => `<option value="${rule.leasing_name}">${rule.leasing_name}</option>`)
+                        .join('');
+            }
+            
+        } else {
+            console.error('API Error:', result.error);
+            alert('Gagal memuat data pembiayaan: ' + result.error);
+        }
+    })
+    .catch(error => {
+        console.error('Gagal total dalam proses fetch:', error);
+        alert('Gagal memuat data pembiayaan. Silakan refresh halaman.');
+    });
+});

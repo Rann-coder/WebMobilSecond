@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-light: #f4f7f9;
+    --bg-dark: #2c3e50;
+    --text-light: #ffffff;
+    --text-dark: #34495e;
+    --border-color: #eaecf0;
+    --radius: 8px;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    font-size: 15px;
+}
+
+/* --- Layout Utama & Sidebar --- */
+.admin-container { display: flex; }
+
+.admin-sidebar {
+    width: 260px;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 100;
+    transition: width 0.3s ease-in-out;
+}
+
+.admin-main {
+    flex-grow: 1;
+    margin-left: 260px;
+    padding: 30px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar-header { position: relative; }
+.sidebar-header h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #4a627a;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-nav ul { list-style: none; }
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 20px;
+    color: #bdc3c7;
+    text-decoration: none;
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.sidebar-nav a:hover { background-color: #34495e; color: var(--text-light); }
+.sidebar-nav .active a { background: var(--primary-gradient); color: var(--text-light); font-weight: 600; }
+
+/* --- Sidebar Toggle & Collapsed State --- */
+.sidebar-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: absolute;
+    right: -50px;
+    top: 25px;
+    padding: 10px;
+}
+.sidebar-toggle span {
+    display: block;
+    width: 22px;
+    height: 3px;
+    background-color: #bdc3c7;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+.admin-container.sidebar-collapsed .admin-sidebar { width: 90px; }
+.admin-container.sidebar-collapsed .admin-main { margin-left: 90px; }
+.admin-container.sidebar-collapsed .sidebar-nav .menu-text,
+.admin-container.sidebar-collapsed .sidebar-header h3 {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* --- Header Utama --- */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 15px 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+.admin-header h1 { font-size: 1.6rem; margin: 0; }
+.header-actions { display: flex; align-items: center; gap: 16px; }
+.header-actions input[type="search"] {
+    padding: 10px 16px;
+    border: 1px solid #dcdfe6;
+    border-radius: var(--radius);
+    min-width: 300px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+.header-actions .btn-primary {
+    padding: 10px 20px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+}
+.header-user { display: flex; align-items: center; gap: 15px; }
+.user-name { font-weight: 600; }
+.btn-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #f8f9fa;
+    border: 1px solid #eef2f7;
+    border-radius: 50%;
+    color: #f44336;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.btn-logout:hover { background-color: #f44336; color: white; border-color: #f44336; transform: rotate(360deg); }
+
+.admin-container.sidebar-collapsed .sidebar-nav .active a {
+    background: transparent;
+    color: #bdc3c7;
+}
+
+/* Hover effect untuk collapsed sidebar */
+.admin-container.sidebar-collapsed .sidebar-nav a:hover {
+    background-color: #34495e;
+    color: var(--text-light);
+}
