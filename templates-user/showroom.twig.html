@@ -84,48 +84,66 @@
         </div>
     </div>
 
-    <div id="cars" class="page-hero">
-        <h1>{{showroom.name}}'s Collection Cars</h1>
-        <p class="subtitle">Temukan partner berkendara yang tepat dari ratusan mobil second berkualitas yang telah kami
-            inspeksi.</p>
-    </div>
+    
 
-    <div class="content-section">
-        <h2 class="title-divider">Filter by Brand</h2>
-        <div class="popular-categories">
-            <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>
+    {% if showroom.status == 'active' %}
+        <div id="cars" class="page-hero">
+            <h1>{{showroom.name}}'s Collection Cars</h1>
+            <p class="subtitle">Temukan partner berkendara yang tepat dari ratusan mobil second berkualitas yang telah kami
+                inspeksi.</p>
+        </div>
 
-            <div id="brands-list" class="brands-container">
-                <button class="filter-btn active" data-brand="All">All</button>
-                {% for brand in brands %}
-                <button class="filter-btn" data-brand="{{ brand.name }}">{{ brand.name }}</button>
-                {% endfor %}
+        <div class="content-section">
+            <h2 class="title-divider">Filter by Brand</h2>
+            <div class="popular-categories">
+                <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>
+
+                <div id="brands-list" class="brands-container">
+                    <button class="filter-btn active" data-brand="All">All</button>
+                    {% for brand in brands %}
+                    <button class="filter-btn" data-brand="{{ brand.name }}">{{ brand.name }}</button>
+                    {% endfor %}
+                </div>
+
+                <button id="scroll-right-btn-brands" class="scroll-btn">&rarr;</button>
             </div>
 
-            <button id="scroll-right-btn-brands" class="scroll-btn">&rarr;</button>
-        </div>
+            <h2 class="title-divider">Find by Your Needs</h2>
+            <div class="popular-categories">
+                <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
 
-        <h2 class="title-divider">Find by Your Needs</h2>
-        <div class="popular-categories">
-            <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
+                <div id="types-list" class="brands-container">
+                    <button class="filter-btn active" data-type="All">All</button>
+                    {% for type in types %}
+                    <button class="filter-btn" data-type="{{ type.name }}">{{ type.name }}</button>
+                    {% endfor %}
+                </div>
 
-            <div id="types-list" class="brands-container">
-                <button class="filter-btn active" data-type="All">All</button>
-                {% for type in types %}
-                <button class="filter-btn" data-type="{{ type.name }}">{{ type.name }}</button>
-                {% endfor %}
+                <button id="scroll-right-btn-types" class="scroll-btn">&rarr;</button>
             </div>
 
-            <button id="scroll-right-btn-types" class="scroll-btn">&rarr;</button>
+            <h2 class="title-divider">Mathcing Your Criteria</h2>
+            <div class="vehicle-grid" id="vehicle-grid">
+                </div>
+            <div class="button-container">
+                <a href="../../php-user/all-cars.php" class="search-more-btn">Advanced Filters</a>
+            </div>
         </div>
+    {% else %}
+        <div class="status-notice-container">
+            <div class="status-notice-icon">
+                {% if showroom.status == 'renovation' %}🚧{% else %}✨{% endif %}
+            </div>
+            <h3 class="status-notice-title">
+                {% if showroom.status == 'renovation' %}
+                    Showroom Sedang Dalam Perbaikan
+                {% else %}
+                    Showroom Akan Segera Dibuka
+                {% endif %}
+            </h3>
+            <p class="status-notice-text">Koleksi mobil untuk showroom ini akan tersedia setelah beroperasi kembali.</p>
+        </div>
+    {% endif %}
 
-        <h2 class="title-divider">Mathcing Your Criteria</h2>
-        <div class="vehicle-grid" id="vehicle-grid">
-            <!-- mobil ditampilkan via Javacscript -->
-        </div>
-        <div class="button-container">
-            <a href="../../php-user/all-cars.php" class="search-more-btn">Advanced Filters</a>
-        </div>
-    </div>
 </main>
 {% include '_footer.twig.html' %}

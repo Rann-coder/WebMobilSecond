@@ -12,14 +12,13 @@ if(!$id_showroom){
 
 try{
     $db = DB::getDB();
-    $sqlShowroom = "SELECT id, name, address, phone, opening_hours 
+$sqlShowroom = "SELECT id, name, address, phone, opening_hours, status 
                     FROM showrooms 
-                    WHERE id = ? AND is_active = 1";
+                    WHERE id = ?";
     
     $qShowroom = $db->prepare($sqlShowroom);
     $qShowroom->execute([$id_showroom]);
     $showroom = $qShowroom->fetch(PDO::FETCH_ASSOC);
-
     if (!$showroom) {
         die("Showroom tidak ditemukan.");
     }

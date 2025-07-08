@@ -1,6 +1,8 @@
-INSERT INTO showrooms (id, name, address, phone, email, manager_name) VALUES
-(1, 'Showroom Medan Jaya', 'Jl. Gatot Subroto No. 123, Medan', '061-123456', 'sales@medanjaya.com', 'Budi Santoso'),
-(2, 'Sumatra Auto Gallery', 'Jl. Sisingamangaraja No. 45, Medan', '061-654321', 'info@sumatraauto.com', 'Citra Lestari');
+INSERT INTO showrooms (id, name, address, phone, email, status) VALUES
+(1, 'Showroom Medan Abadi - Gatsu', 'Jl. Gatot Subroto No. 123, Medan', '061-123456', 'sales@medanjaya.com', 'active'),
+(2, 'Showroom Medan Abadi - Sisimangaraja', 'Jl. Sisingamangaraja No. 45, Medan', '061-654321', 'info@sumatraauto.com', 'active'),
+(3, 'Showroom Medan Abadi - Nibung Raya', 'Jl. Nibung Raya No. 78, Medan', '061-789012', 'contact@majurenovasi.com', 'renovation');
+
 
 INSERT INTO cars (
     id_brand, showroom_id, name, year, price, km, 

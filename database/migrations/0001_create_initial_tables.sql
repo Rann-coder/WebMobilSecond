@@ -20,11 +20,8 @@ CREATE TABLE showrooms (
     address TEXT,
     phone VARCHAR(20),
     email VARCHAR(100),
-    manager_name VARCHAR(100),
     opening_hours VARCHAR(200),
-    latitude DECIMAL(10, 8),
-    longitude DECIMAL(11, 8),
-    is_active BOOLEAN DEFAULT TRUE,
+    status ENUM('active', 'renovation', 'opening_soon') DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

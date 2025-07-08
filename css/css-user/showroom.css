@@ -527,3 +527,32 @@ main {
         flex: 0 0 200px;
     }
 }
+
+.status-notice-container {
+    text-align: center;
+    padding: 50px 20px;
+    margin: 40px auto;
+    max-width: 800px;
+    background-color: #f8f9fa;
+    border: 1px dashed #dee2e6;
+    border-radius: 16px;
+}
+
+.status-notice-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.status-notice-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 8px;
+}
+
+.status-notice-text {
+    font-size: 1rem;
+    color: #6c757d;
+    max-width: 500px;
+    margin: 0 auto;
+}

@@ -1318,4 +1318,36 @@ header{
       .feature-card {
         padding: 2rem;
       }
-    }
+      
+      .showroom-status .info-label {
+    color: #888;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.status-badge.status-renovation {
+    background-color: #ff9800;
+}
+
+.status-badge.status-opening-soon {
+    background-color: #4caf50;
+}
+
+.cta-button--disabled {
+    background: #bdc3c7;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.cta-button--disabled:hover {
+    transform: none;
+    box-shadow: none;
+    background: #bdc3c7;
+}}

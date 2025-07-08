@@ -19,7 +19,7 @@ $qTypes->execute();
 $listTypes = $qTypes->fetchAll(PDO::FETCH_ASSOC);
 
 
-$sqlShowrooms = "SELECT id, name, address, phone, opening_hours FROM showrooms WHERE is_active = 1 ORDER BY name ASC";
+$sqlShowrooms = "SELECT id, name, address, phone, opening_hours, status FROM showrooms ORDER BY name ASC";
 $qShowrooms = $db->prepare($sqlShowrooms);
 $qShowrooms->execute();
 $listShowrooms = $qShowrooms->fetchAll(PDO::FETCH_ASSOC);
