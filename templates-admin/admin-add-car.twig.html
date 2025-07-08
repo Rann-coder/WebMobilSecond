@@ -1,0 +1,158 @@
+{% set page_css = ['../css/css-admin/header.css',  '../css/css-admin/admin-add-car.css', '../css/css-admin/footer.css'] %}
+
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Tambah Mobil Baru</h1>
+    <div class="header-actions">
+        <a href="#" class="btn-secondary">Batal</a>
+        <button type="submit" form="add-car-form" class="btn-primary">Simpan Mobil</button>
+    </div>
+</header>
+
+<section class="admin-content">
+    <form id="add-car-form" action="#" method="POST" enctype="multipart/form-data">
+
+        <div class="form-section">
+            <h2>Informasi Utama</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="car-name">Nama Mobil</label>
+                    <input type="text" id="car-name" name="name" placeholder="Contoh: Avanza 1.5 G CVT" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-brand">Merek</label>
+                    <select id="car-brand" name="id_brand" required>
+                        <option value="">Pilih Merek</option>
+                        <option value="1">Toyota</option>
+                        <option value="2">Honda</option>
+                        </select>
+                </div>
+                <div class="form-group">
+                    <label for="car-price">Harga Cash (Rp)</label>
+                    <input type="number" id="car-price" name="price" placeholder="Contoh: 272500000" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-year">Tahun Pembuatan</label>
+                    <input type="number" id="car-year" name="year" placeholder="Contoh: 2024" required>
+                </div>
+                 <div class="form-group">
+                    <label for="car-color">Warna</label>
+                    <input type="text" id="car-color" name="color" placeholder="Contoh: Putih Mutiara">
+                </div>
+                <div class="form-group">
+                    <label for="car-status">Status Penjualan</label>
+                    <select id="car-status" name="status">
+                        <option value="Available">Available</option>
+                        <option value="Hold">Hold</option>
+                        <option value="Sold Out">Sold Out</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Spesifikasi Teknis</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="car-km">Kilometer</label>
+                    <input type="number" id="car-km" name="km" placeholder="Contoh: 15000">
+                </div>
+                <div class="form-group">
+                    <label for="car-fuel">Tipe Bahan Bakar</label>
+                    <select id="car-fuel" name="fuel_type">
+                        <option value="Gasoline">Gasoline</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Electric">Electric</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="car-engine-cc">CC Mesin</label>
+                    <input type="number" id="car-engine-cc" name="engine_cc" placeholder="Contoh: 1500">
+                </div>
+                <div class="form-group">
+                    <label for="car-horsepower">Tenaga (HP)</label>
+                    <input type="number" id="car-horsepower" name="horsepower" placeholder="Contoh: 106">
+                </div>
+                 <div class="form-group">
+                    <label for="car-transmission">Transmisi</label>
+                    <input type="text" id="car-transmission" name="transmission" placeholder="Contoh: CVT">
+                </div>
+                 <div class="form-group">
+                    <label for="car-engine">Detail Mesin</label>
+                    <input type="text" id="car-engine" name="engine" placeholder="Contoh: 1.5L 4-silinder">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Kondisi & Legalitas</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="car-owners">Pemilik Sebelumnya (Tangan ke-)</label>
+                    <input type="number" id="car-owners" name="previous_owners" value="1">
+                </div>
+                 <div class="form-group">
+                    <label for="car-plate">Plat Nomor</label>
+                    <input type="text" id="car-plate" name="license_plate" placeholder="Contoh: BK 1234 AA">
+                </div>
+                 <div class="form-group">
+                    <label for="car-tax">Pajak Berlaku Hingga</label>
+                    <input type="date" id="car-tax" name="tax_valid_until">
+                </div>
+                 <div class="form-group radio-group">
+                    <label>Bebas Banjir?</label>
+                    <div class="radio-options">
+                        <label><input type="radio" name="is_flood_free" value="Yes" checked> Ya</label>
+                        <label><input type="radio" name="is_flood_free" value="No"> Tidak</label>
+                        <label><input type="radio" name="is_flood_free" value="N/A"> N/A</label>
+                    </div>
+                </div>
+                <div class="form-group radio-group">
+                    <label>Bebas Tabrakan?</label>
+                     <div class="radio-options">
+                        <label><input type="radio" name="is_accident_free" value="Yes" checked> Ya</label>
+                        <label><input type="radio" name="is_accident_free" value="No"> Tidak</label>
+                        <label><input type="radio" name="is_accident_free" value="N/A"> N/A</label>
+                    </div>
+                </div>
+                <div class="form-group radio-group">
+                    <label>Hot Deal?</label>
+                     <div class="radio-options">
+                        <label><input type="radio" name="is_hot_deal" value="Yes" checked> Ya</label>
+                        <label><input type="radio" name="is_hot_deal" value="No"> Tidak</label>
+                        <label><input type="radio" name="is_hot_deal" value="N/A"> N/A</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <div class="form-section">
+    <h2>Deskripsi & Media</h2>
+    
+    <div class="form-group">
+        <label for="car-description">Deskripsi Iklan</label>
+        <textarea id="car-description" name="description" rows="6" placeholder="Jelaskan kondisi dan keunggulan mobil..."></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Gambar Galeri</label>
+        
+        <label for="gallery-files" class="file-input-label">
+            <span>+</span> Pilih Gambar (Bisa lebih dari satu)
+        </label>
+        
+        <input type="file" id="gallery-files" name="gallery_images[]" multiple style="display: none;">
+        
+        <div id="image-preview-container" class="preview-grid">
+            </div>
+        </div>
+    </div>
+
+    </form>
+</section>
+
+{% include '_footer-admin.twig.html' %}

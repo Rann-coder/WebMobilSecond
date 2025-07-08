@@ -2,44 +2,54 @@
 
 {% include '_header.twig.html' %}
 
- <section class="compare-modern-section">
-        <div class="compare-modern-container">
-            <h2 class="compare-modern-heading">Bandingkan Mobil Favorit Anda</h2>
-            <p class="compare-modern-subtitle">
-                Temukan perbedaan fitur, spesifikasi, dan harga dari mobil pilihan Anda secara berdampingan dengan perbandingan yang detail dan akurat.
-            </p>
+<main class="compare-container">
+  <h1 class="compare-heading">Perbandingan Mobil</h1>
 
-            <div class="compare-modern-grid">
-                <div class="compare-modern-card empty-card" onclick="selectCar(1)">
-                    <div class="compare-modern-image empty-image">
-                        <div class="add-car-icon">
-                            <span class="plus-icon">+</span>
-                        </div>
-                    </div>
-                    <div class="compare-modern-details">
-                        <h3>Pilih Mobil Pertama</h3>
-                        <p class="empty-text">Klik untuk menambahkan mobil yang ingin Anda bandingkan</p>
-                    </div>
-                </div>
+  <div class="compare-columns">
+    <div class="car-box">
+      {% if car1 %}
+        <h2>{{ car1.name }}</h2>
+        <img src="../{{ car1.image_url }}" class="car-image" alt="Mobil 1">
+        <table class="spec-table">
+          <tr><td class="spec-label">Harga</td><td class="spec-value">Rp {{ car1.price|number_format(0, ',', '.') }}</td></tr>
+          <tr><td class="spec-label">Tahun</td><td class="spec-value">{{ car1.year }}</td></tr>
+          <tr><td class="spec-label">KM</td><td class="spec-value">{{ car1.km }} km</td></tr>
+          <tr><td class="spec-label">Transmisi</td><td class="spec-value">{{ car1.transmission }}</td></tr>
+          <tr><td class="spec-label">Mesin</td><td class="spec-value">{{ car1.engine }}</td></tr>
+          <tr><td class="spec-label">Bahan Bakar</td><td class="spec-value">{{ car1.fuel_type }}</td></tr>
+          <tr><td class="spec-label">Warna</td><td class="spec-value">{{ car1.color }}</td></tr>
+        </table>
+      {% else %}
+        <a href="compare-select.php?slot=1" class="empty-slot clickable">
+          Mobil 1 belum dipilih.
+        </a>
+      {% endif %}
+    </div>
 
-                <div class="compare-modern-divider"></div>
+    <div class="car-box">
+      {% if car2 %}
+        <h2>{{ car2.name }}</h2>
+        <img src="../{{ car2.image_url }}" class="car-image" alt="Mobil 2">
+        <table class="spec-table">
+          <tr><td class="spec-label">Harga</td><td class="spec-value">Rp {{ car2.price|number_format(0, ',', '.') }}</td></tr>
+          <tr><td class="spec-label">Tahun</td><td class="spec-value">{{ car2.year }}</td></tr>
+          <tr><td class="spec-label">KM</td><td class="spec-value">{{ car2.km }} km</td></tr>
+          <tr><td class="spec-label">Transmisi</td><td class="spec-value">{{ car2.transmission }}</td></tr>
+          <tr><td class="spec-label">Mesin</td><td class="spec-value">{{ car2.engine }}</td></tr>
+          <tr><td class="spec-label">Bahan Bakar</td><td class="spec-value">{{ car2.fuel_type }}</td></tr>
+          <tr><td class="spec-label">Warna</td><td class="spec-value">{{ car2.color }}</td></tr>
+        </table>
+      {% else %}
+        <a href="compare-select.php?slot=2" class="empty-slot clickable">
+          Mobil 2 belum dipilih.
+        </a>
+      {% endif %}
+    </div>
+  </div>
+  <form method="POST" action="compare-reset.php" style="text-align: center; margin-top: 30px;">
+    <button type="submit" class="btn-reset-compare">Reset</button>
+  </form>
 
-                <div class="compare-modern-card empty-card" onclick="selectCar(2)">
-                    <div class="compare-modern-image empty-image">
-                        <div class="add-car-icon">
-                            <span class="plus-icon">+</span>
-                        </div>
-                    </div>
-                    <div class="compare-modern-details">
-                        <h3>Pilih Mobil Kedua</h3>
-                        <p class="empty-text">Klik untuk menambahkan mobil yang ingin Anda bandingkan</p>
-                    </div>
-                </div>
-            </div>
+</main>
 
-            <a href="/compare" class="compare-modern-button">
-                Bandingkan Mobil Lainnya
-                <span>→</span>
-            </a>
-        </div>
-    </section>
+{% include '_footer.twig.html' %}

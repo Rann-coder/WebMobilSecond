@@ -1,347 +1,104 @@
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.compare-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-        }
+.compare-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
 
-        .compare-modern-section {
-            background: #ffffff;
-            position: relative;
-            overflow: hidden;
-            padding: 5rem 1.5rem;
-            text-align: center;
-        }
+.compare-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
 
-        .compare-modern-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(102,126,234,0.03)"/><stop offset="100%" style="stop-color:rgba(102,126,234,0)"/></radialGradient></defs><circle cx="200" cy="200" r="150" fill="url(%23a)"/><circle cx="800" cy="300" r="100" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center/cover;
-            opacity: 0.5;
-        }
+.car-box {
+  flex: 1 1 45%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-        .compare-modern-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
+.car-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
 
-        .compare-modern-heading {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 800;
-            color: #1a202c;
-            margin-bottom: 1rem;
-            text-shadow: none;
-            letter-spacing: -0.02em;
-        }
+.car-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
 
-        .compare-modern-subtitle {
-            color: #4a5568;
-            font-size: 1.125rem;
-            margin-bottom: 3.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 400;
-            line-height: 1.7;
-        }
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-        .compare-modern-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+.spec-table td {
+  padding: 8px 0;
+}
 
-        .compare-modern-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: left;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            cursor: pointer;
-        }
+.spec-label {
+  font-weight: bold;
+  width: 45%;
+  color: #444;
+}
 
-        .compare-modern-card.empty-card {
-            border: 2px dashed #cbd5e0;
-            background: #f8fafc;
-        }
+.spec-value {
+  width: 55%;
+  color: #222;
+}
 
-        .compare-modern-card.empty-card:hover {
-            border-color: #667eea;
-            background: #f0f4ff;
-            transform: translateY(-5px) scale(1.01);
-        }
+.empty-slot {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
 
-        .compare-modern-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
+.empty-slot.clickable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  border: 2px dashed #aaa;
+  border-radius: 10px;
+  font-style: italic;
+  color: #555;
+  text-decoration: none;
+  transition: background-color 0.3s, border-color 0.3s;
+  text-align: center;
+  padding: 1rem;
+}
 
-        .compare-modern-card.empty-card::before {
-            background: #cbd5e0;
-        }
+.empty-slot.clickable:hover {
+  background-color: #f7f7f7;
+  border-color: #777;
+  cursor: pointer;
+}
 
-        .compare-modern-card.empty-card:hover::before {
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
+.btn-reset-compare {
+  font-size: 1.25rem;       /* Lebih besar dari default */
+  padding: 12px 24px;
+  background-color: #888787;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
 
-        .compare-modern-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .compare-modern-image {
-            position: relative;
-            overflow: hidden;
-            height: 200px;
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .compare-modern-image.empty-image {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .add-car-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-
-        .plus-icon {
-            font-size: 4rem;
-            font-weight: 300;
-            line-height: 1;
-        }
-
-        .empty-card:hover .add-car-icon {
-            color: #667eea;
-            transform: scale(1.1);
-        }
-
-        .empty-card:hover .plus-icon {
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .compare-modern-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .compare-modern-card:hover .compare-modern-image img {
-            transform: scale(1.05);
-        }
-
-        .compare-modern-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
-        }
-
-        .compare-modern-details {
-            padding: 1.5rem;
-        }
-
-        .compare-modern-details h3 {
-            font-size: 1.375rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1a202c;
-            letter-spacing: -0.01em;
-        }
-
-        .empty-card h3 {
-            color: #4a5568;
-            text-align: center;
-        }
-
-        .empty-text {
-            color: #718096;
-            font-size: 0.95rem;
-            text-align: center;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        .empty-card:hover h3 {
-            color: #667eea;
-        }
-
-        .empty-card:hover .empty-text {
-            color: #5a67d8;
-        }
-
-        .compare-modern-details ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .compare-modern-details li {
-            font-size: 0.95rem;
-            color: #4a5568;
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .compare-modern-details li:hover {
-            color: #2d3748;
-        }
-
-        .compare-modern-details li:last-child {
-            font-weight: 600;
-            color: #667eea;
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .compare-modern-divider {
-            display: none;
-        }
-
-        .compare-modern-button {
-            margin-top: 3rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #ffffff;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.125rem;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .compare-modern-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .compare-modern-button:hover::before {
-            left: 100%;
-        }
-
-        .compare-modern-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-        }
-
-        .compare-modern-button:active {
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .compare-modern-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .compare-modern-divider {
-                transform: rotate(90deg);
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-
-            .compare-modern-card {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-
-            .compare-modern-section {
-                padding: 3rem 1rem;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .compare-modern-card {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .compare-modern-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .compare-modern-card:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-
-        .compare-modern-divider {
-            animation: fadeInUp 0.6s ease-out 0.15s both;
-        }
-
-        /* Placeholder for missing images */
-        .compare-modern-image:empty::before {
-            content: '🚗';
-            font-size: 4rem;
-            color: #cbd5e0;
-        }
+.btn-reset-compare:hover {
+  background-color: #d32f2f;
+}

@@ -1,0 +1,468 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- Global & Page Layout --- */
+.detail-container {
+    max-width: 1200px;
+    margin: 120px auto 0 auto;
+    padding: 40px 20px;
+    background: #ffffff;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Header Judul --- */
+.detail-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 30px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.detail-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Image Gallery --- */
+.detail-gallery {
+    margin-bottom: 60px;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.main-image-container {
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+#main-car-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-scroller {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.thumbnail-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 8px;
+    flex-grow: 1;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.thumbnail-container::-webkit-scrollbar {
+    display: none;
+}
+
+.thumbnail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 120px;
+    height: auto;
+    border: 2px solid #eef2f7;
+    border-radius: 12px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    background-color: #f8f9fa;
+    flex-shrink: 0;
+}
+
+.thumbnail-item:hover {
+    opacity: 1;
+    border-color: #a0aec0;
+    transform: translateY(-3px);
+}
+
+.thumbnail-item.active {
+    border-color: #667eea;
+    opacity: 1;
+    transform: translateY(-3px) scale(1.05);
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.thumbnail-caption {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #5a6a85;
+    text-align: center;
+}
+
+.scroll-btn {
+    background-color: #ffffff;
+    border: 1px solid #e0e6ed;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: #5a6a85;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.scroll-btn:hover {
+    background-color: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+/* --- Content & Specifications --- */
+.detail-content {
+    margin-top: 0;
+}
+
+.specifications-section {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px; /* Jarak antar section */
+}
+
+.specifications-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.specifications-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f8f9fa;
+    position: relative;
+}
+
+.specifications-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.spec-item {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.spec-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    border-color: rgba(102, 126, 234, 0.2);
+}
+
+.spec-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.spec-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.spec-value.price {
+    color: #667eea;
+    font-size: 1.5rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .detail-container {
+        padding: 20px 15px;
+        margin-top: 100px;
+    }
+    .detail-header h1 {
+        font-size: 2.2rem;
+    }
+    .detail-gallery {
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+    .main-image-container {
+        height: 300px;
+    }
+    .specifications-section {
+        padding: 25px 20px;
+    }
+    .specifications-section h2 {
+        font-size: 1.8rem;
+    }
+    .spec-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-container {
+        margin-top: 80px;
+    }
+    .detail-header h1 {
+        font-size: 1.8rem;
+    }
+    .main-image-container {
+        height: 250px;
+    }
+    .thumbnail-item {
+        width: 80px; /* Perkecil thumbnail di mobile */
+    }
+}
+
+.financing-calculator-section {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.financing-calculator-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f8f9fa;
+    position: relative;
+}
+
+.financing-calculator-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.calculator-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Form lebih besar dari hasil */
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* --- Bagian Form (Kiri) --- */
+.calculator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+#harga-mobil {
+    background-color: #e9ecef;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-group-inline {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+}
+
+/* --- Custom Range Slider --- */
+.tenor-display {
+    text-align: right;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 8px;
+}
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #eef2f7;
+    border-radius: 5px;
+    outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #667eea;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #667eea;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* --- Bagian Hasil (Kanan) --- */
+.calculator-result {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    position: sticky; /* Tetap terlihat saat scroll */
+    top: 20px;
+}
+
+.calculator-result > p {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 24px 0;
+}
+
+.total-dp, .monthly-installment {
+    margin-bottom: 24px;
+}
+
+.total-dp span, .monthly-installment span {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.total-dp strong, .monthly-installment strong {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.result-details {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 20px;
+}
+
+.result-details p {
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.result-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.result-details li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.result-details span {
+    opacity: 0.8;
+}
+
+/* --- Responsive untuk Kalkulator --- */
+@media (max-width: 900px) {
+    .calculator-container {
+        grid-template-columns: 1fr; /* Ubah jadi 1 kolom */
+    }
+    .calculator-result {
+        position: static; /* Hapus sticky di mobile */
+    }
+}

@@ -1,43 +1,35 @@
 <?php
-require_once '../vendor/autoload.php';
 
+session_start();
+
+require_once '../vendor/autoload.php';
 use Uph\Mobilsecond\DB;
 use Uph\Mobilsecond\Twig;
 
-$twig = Twig::make('../templates-user');
-
 $db = DB::getDB();
+
+// Ambil ID mobil dari session
+$id1 = $_SESSION['compare_slot_1'] ?? null;
+$id2 = $_SESSION['compare_slot_2'] ?? null;
 
 $car1 = null;
 $car2 = null;
-$error = null;
 
-// Ambil ID mobil dari URL
-$car1_id = $_GET['car1'] ?? null;
-$car2_id = $_GET['car2'] ?? null;
-
-try {
-    if ($car1_id) {
-        $stmt1 = $db->prepare("SELECT * FROM cars WHERE id = ?");
-        $stmt1->execute([$car1_id]);
-        $car1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-    }
-
-    if ($car2_id) {
-        $stmt2 = $db->prepare("SELECT * FROM cars WHERE id = ?");
-        $stmt2->execute([$car2_id]);
-        $car2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-    }
-
-    if (!$car1 && !$car2) {
-        $error = "Tidak ada mobil yang dipilih untuk dibandingkan.";
-    }
-} catch (PDOException $e) {
-    $error = "Terjadi kesalahan saat mengambil data mobil.";
+if ($id1) {
+    $stmt = $db->prepare("SELECT * FROM cars WHERE id = ?");
+    $stmt->execute([$id1]);
+    $car1 = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+if ($id2) {
+    $stmt = $db->prepare("SELECT * FROM cars WHERE id = ?");
+    $stmt->execute([$id2]);
+    $car2 = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+// Render ke Twig
+$twig = Twig::make('../templates-user');
 echo $twig->render('compare.twig.html', [
     'car1' => $car1,
-    'car2' => $car2,
-    'error' => $error
+    'car2' => $car2
 ]);
