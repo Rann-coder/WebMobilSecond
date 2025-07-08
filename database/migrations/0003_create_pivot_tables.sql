@@ -8,20 +8,6 @@ CREATE TABLE car_types (
 
 
 
-CREATE TABLE car_showrooms (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    car_id BIGINT NOT NULL,
-    showroom_id INT NOT NULL,
-    stock_quantity INT DEFAULT 0,
-    showroom_price DECIMAL(15,2), 
-    is_available BOOLEAN DEFAULT TRUE,
-    notes TEXT, 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY unique_car_showroom (car_id, showroom_id),
-    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (showroom_id) REFERENCES showrooms(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
 
 CREATE TABLE car_images (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -47,4 +33,22 @@ CREATE TABLE leasing_rules (
     interest_rate_4yr DECIMAL(5,2) NOT NULL,
     interest_rate_5yr DECIMAL(5,2) NOT NULL,
     is_active BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE staff_pemasaran (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    jabatan VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    telepon VARCHAR(20),
+    foto_url VARCHAR(255),  
+    
+    showroom_id INT NOT NULL, 
+
+    FOREIGN KEY (showroom_id) 
+        REFERENCES showrooms(id)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

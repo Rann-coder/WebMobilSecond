@@ -4,10 +4,12 @@
 
 <main class="detail-container">
     <header class="detail-header">
+        <a href="../php-user/all-cars.php" class="back-button">Kembali ke Daftar</a>
         <h1>{{car.name}}</h1>
     </header>
 
-    <section class="detail-gallery">
+    <div class="main-content">
+        <section class="detail-gallery">
             <div class="main-image-container">
                 <img id="main-car-image" src="../{{ car.image_url|e }}" alt="Tampak depan {{ car.name|e }}">
             </div>
@@ -31,6 +33,80 @@
                 <button id="scroll-right-thumb" class="scroll-btn">&rarr;</button>
             </div>
         </section>
+
+        <aside class="info-panel">
+            <div class="price-section">
+                <div class="price-cash">Bervariasi</div>
+                <div class="price-main">Rp {{ car.price|number_format(0, ',', '.') }} Cash</div>
+            </div>
+
+            <div class="car-basic-info">
+                <span>📍 {{car.km|number_format(0, ',', '.')}} km</span>
+                <span>⚙️ {{car.transmission}}</span>
+            </div>
+
+            <div class="info-items">
+                <div class="info-item">
+                        <span class="info-label">All Inclusive Price</span>
+                        <span class="info-value">›</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">1-Year Warranty</span>
+                        <span class="info-value">Engine, Transmission, AC</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Road Tax</span>
+                        <span class="info-value">Included</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">1 Year TLO Insurance</span>
+                        <span class="info-value">Included</span>
+                    </div>
+            </div>
+
+            <div class="info-location">
+                <h4>Lokasi Unit</h4>
+                {% if car.showroom_name %}
+                    <p>
+                        <strong>{{ car.showroom_name }}</strong><br>
+                        {{ car.showroom_address }}
+                    </p>
+                {% else %}
+                    <p>Silakan hubungi kami untuk informasi lokasi.</p>
+                {% endif %}
+            </div>
+
+            <div class="action-buttons">
+                    <button class="btn btn-primary">
+                        📞 Book Car
+                        <small style="display: block; font-size: 0.8rem; font-weight: 400;">Refundable Booking</small>
+                    </button>
+                    <button class="btn btn-secondary">
+                        🚗 Free Test Drive
+                        <small style="display: block; font-size: 0.8rem; font-weight: 400;">At Experience Centers</small>
+                    </button>
+                </div>
+
+                <div class="like-share-section">
+                    <div class="like-share-buttons">
+                        <button class="like-btn" id="like-btn">
+                            <span class="heart-icon">🤍</span>
+                            <span class="like-text">Like</span>
+                        </button>
+                        <button class="share-btn" id="share-btn">
+                            <span class="share-icon">📤</span>
+                            <span class="share-text">Share</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="contact-section">
+                    <div class="contact-text">Need more help? Contact us via</div>
+                    <a href="#" class="whatsapp-btn">💬 WhatsApp</a>
+                </div>
+        </aside>
+    </div>
+    
 
 
     
@@ -84,6 +160,10 @@
             <div class="spec-item">
                 <span class="spec-label">Airbags</span>
                 <span class="spec-value">{{ car.airbag_count }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Tipe Mobil</span>
+                <span class="spec-value">{{ car.car_types ?: 'N/A' }}</span>
             </div>
         </div>
     </section>
@@ -168,6 +248,14 @@
                         <li>Uang Muka: <span id="rincian-dp">Rp 0</span></li>
                         <li>Biaya Admin: <span id="rincian-admin">Rp 0</span></li>
                         <li>Cicilan Pertama: <span id="rincian-cicilan1">Rp 0</span></li>
+                    </ul>
+                </div>
+
+                <div class="result-details">
+                    <p><strong>Informasi Mitra</strong></p>
+                    <ul>
+                        <li>DP Minimal: <span id="rincian-dp-min">Rp 0</span></li>
+                        <li>DP Maksimal: <span id="rincian-dp-max">Rp 0</span></li>
                     </ul>
                 </div>
             </div>

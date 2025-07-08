@@ -1,0 +1,131 @@
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/showroom.css', '../css/css-user/all-cars.css','../css/css-user/home.css','../css/css-user/footer.css'] %}
+{% set page_scripts = ['../script/script-user/showrooms.js'] %}
+
+{% include '_header.twig.html' %}
+
+<main>
+    <h2 class="showroom-name">{{ showroom.name }}</h2>
+    <div class="content-section">
+        <div class="showroom-feature">
+            <div class="showroom-image">
+                <img src="../images/showroomA.jpg" alt="{{ showroom.name }} Showroom">
+            </div>
+            
+            <div class="showroom-details">
+                <div class="showroom-info">
+                    <div class="info-item">
+                        <span>📍</span>
+                        <div class="info-content">
+                            <strong class="info-label">Alamat</strong>
+                            <span class="info-value">{{ showroom.address }}</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span>🕒</span>
+                        <div class="info-content">
+                            <strong class="info-label">Jam Buka</strong>
+                            <span class="info-value">{{ showroom.opening_hours }}</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span>📞</span>
+                        <div class="info-content">
+                            <strong class="info-label">Telepon</strong>
+                            <span class="info-value">{{ showroom.phone }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="showroom-staff">
+            <h3>Tim Marketing Kami</h3>
+            {% if staff_list %}
+            <div class="staff-horizontal-scroll">
+                <div class="staff-container">
+                    {% for staff in staff_list %}
+                    <div class="staff-card">
+                        <div class="staff-photo-container">
+                            {% if staff.foto_url %}
+                                <img class="staff-photo" src="../{{ staff.foto_url }}" alt="{{ staff.nama }}">
+                            {% else %}
+                                <div class="staff-photo-placeholder">
+                                    <span>{{ staff.nama|first }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="staff-details">
+                            <h4 class="staff-name">{{ staff.nama }}</h4>
+                            <p class="staff-position">{{ staff.jabatan }}</p>
+                            <div class="staff-contact-info">
+                                <a href="" class="staff-contact-link phone-link">
+                                    <span class="contact-icon">📱</span>
+                                    <span class="contact-text">{{ staff.telepon }}</span>
+                                </a>
+                                <a href="" class="staff-contact-link phone-link">
+                                    <span class="contact-icon">✉️</span>
+                                    <span class="contact-text">{{ staff.email }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="no-staff-message">
+                <div class="no-staff-icon">👥</div>
+                <p class="no-staff-text">Tidak ada informasi tim marketing untuk saat ini</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="cars" class="page-hero">
+        <h1>{{showroom.name}}'s Collection Cars</h1>
+        <p class="subtitle">Temukan partner berkendara yang tepat dari ratusan mobil second berkualitas yang telah kami
+            inspeksi.</p>
+    </div>
+
+    <div class="content-section">
+        <h2 class="title-divider">Filter by Brand</h2>
+        <div class="popular-categories">
+            <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>
+
+            <div id="brands-list" class="brands-container">
+                <button class="filter-btn active" data-brand="All">All</button>
+                {% for brand in brands %}
+                <button class="filter-btn" data-brand="{{ brand.name }}">{{ brand.name }}</button>
+                {% endfor %}
+            </div>
+
+            <button id="scroll-right-btn-brands" class="scroll-btn">&rarr;</button>
+        </div>
+
+        <h2 class="title-divider">Find by Your Needs</h2>
+        <div class="popular-categories">
+            <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
+
+            <div id="types-list" class="brands-container">
+                <button class="filter-btn active" data-type="All">All</button>
+                {% for type in types %}
+                <button class="filter-btn" data-type="{{ type.name }}">{{ type.name }}</button>
+                {% endfor %}
+            </div>
+
+            <button id="scroll-right-btn-types" class="scroll-btn">&rarr;</button>
+        </div>
+
+        <h2 class="title-divider">Mathcing Your Criteria</h2>
+        <div class="vehicle-grid" id="vehicle-grid">
+            <!-- mobil ditampilkan via Javacscript -->
+        </div>
+        <div class="button-container">
+            <a href="../../php-user/all-cars.php" class="search-more-btn">Advanced Filters</a>
+        </div>
+    </div>
+</main>
+{% include '_footer.twig.html' %}

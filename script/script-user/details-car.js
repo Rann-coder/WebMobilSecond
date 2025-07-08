@@ -16,6 +16,19 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
 
+    if (mainImage && thumbnails.length > 0) {
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const newImageSrc = this.dataset.fullImage;
+                mainImage.src = newImageSrc;
+                mainImage.alt = this.querySelector('img').alt;
+                
+                thumbnails.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    }
+
     //Elemen kalkulator
     const hargaMobilEl = document.getElementById('harga-mobil');
     const leasingSelectEl = document.getElementById('mitra-pembiayaan');
@@ -30,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function(){
     const rincianDpEl = document.getElementById('rincian-dp');
     const rincianAdminEl = document.getElementById('rincian-admin');
     const rincianCicilan1El = document.getElementById('rincian-cicilan1');
+    const rincianDpMinEl = document.getElementById('rincian-dp-min');
+    const rincianDpMaxEl = document.getElementById('rincian-dp-max');
+
 
     let leasingRules = [];
 
@@ -85,11 +101,14 @@ document.addEventListener('DOMContentLoaded', function(){
 
         //Validasi DP minimum
         const minDpPercentage = parseFloat(selectedLeasing.min_dp_percentage);
+        const maxDpPercentage = parseFloat(selectedLeasing.max_dp_percentage);
         const minDpRp = hargaMobil * (minDpPercentage/100);
-        
+        const maxDpRp = hargaMobil * (maxDpPercentage/100);
         if(dpRp < minDpRp) {
            hasilAngsuranEl.textContent = 'Rp -';
            hasilTotalDpEl.textContent = 'DP Min. ' + formatRupiah(minDpRp) + ' (' + minDpPercentage + '%)';
+           rincianDpMinEl.textContent =  formatRupiah(minDpRp) + ' (' + minDpPercentage + '%)';
+           rincianDpMaxEl.textContent = formatRupiah(maxDpRp) + ' (' + maxDpPercentage + '%)';
            return; 
         }
 

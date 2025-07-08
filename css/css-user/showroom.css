@@ -1,0 +1,529 @@
+main {
+    padding: 20px 40px;
+    max-width: 2400px;
+    margin: 0 auto;
+}
+
+.content-section {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.showroom-name {
+    font-size: 3.5rem;   
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.2;
+    text-align: center; 
+    margin-bottom: 32px;
+}
+
+
+.showroom-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
+    margin-bottom: 48px;
+}
+
+.showroom-image {
+    flex: 0 0 45%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.showroom-image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+.showroom-image:hover img {
+    transform: scale(1.05);
+}
+
+.showroom-details {
+    flex: 1;
+    padding-left: 24px;
+}
+
+.showroom-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: #004280;
+}
+
+.info-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 40px;
+    text-align: center;
+    padding: 8px;
+    background: linear-gradient(135deg, #004280, #0066cc);
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.info-value {
+    font-size: 1rem;
+    color: #495057;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Tim Marketing Horizontal */
+.showroom-staff {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 2px solid #e9ecef;
+}
+
+.showroom-staff h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 32px;
+    text-align: center;
+    position: relative;
+}
+
+.showroom-staff h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(135deg, #004280, #0066cc);
+    border-radius: 2px;
+}
+
+.staff-horizontal-scroll {
+    overflow-x: auto;
+    padding-bottom: 16px;
+}
+
+.staff-container {
+    display: flex;
+    gap: 24px;
+    padding: 8px;
+    min-width: max-content;
+    justify-content: center;
+}
+
+.staff-card {
+    flex: 0 0 280px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.staff-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #004280, #0066cc);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.staff-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 66, 128, 0.15);
+}
+
+.staff-card:hover::before {
+    opacity: 1;
+}
+
+.staff-photo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.staff-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.staff-card:hover .staff-photo {
+    transform: scale(1.05);
+}
+
+.staff-photo-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #004280, #0066cc);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(0, 66, 128, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.staff-card:hover .staff-photo-placeholder {
+    transform: scale(1.05);
+}
+
+.staff-details {
+    text-align: center;
+}
+
+.staff-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+.staff-position {
+    font-size: 0.9rem;
+    color: #004280;
+    font-weight: 500;
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.staff-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.staff-contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #495057;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.staff-contact-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.staff-contact-link:hover::before {
+    left: 100%;
+}
+
+.staff-contact-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.phone-link:hover {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+    border-color: #25d366;
+}
+
+
+
+.contact-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.contact-text {
+    flex: 1;
+    word-break: break-all;
+    font-size: 0.75rem;
+}
+
+/* Scrollbar Styling */
+.staff-horizontal-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.staff-horizontal-scroll::-webkit-scrollbar-track {
+    background: #f1f3f4;
+    border-radius: 4px;
+}
+
+.staff-horizontal-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #004280, #0066cc);
+    border-radius: 4px;
+}
+
+.staff-horizontal-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #003366, #004280);
+}
+
+/* No Staff Message */
+.no-staff-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 16px;
+    border: 2px dashed #e9ecef;
+    text-align: center;
+}
+
+.no-staff-icon {
+    font-size: 3rem;
+    color: #6c757d;
+    margin-bottom: 16px;
+    opacity: 0.7;
+}
+
+.no-staff-text {
+    font-size: 1.1rem;
+    color: #6c757d;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .showroom-feature {
+        gap: 32px;
+    }
+    
+    .showroom-image {
+        flex: 0 0 40%;
+    }
+    
+    .showroom-image img {
+        height: 300px;
+    }
+    
+    .showroom-name {
+        font-size: 2.5rem;
+    }
+    
+    .staff-card {
+        flex: 0 0 260px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 15px 20px;
+    }
+    
+    .content-section {
+        padding: 24px;
+    }
+    
+    .showroom-feature {
+        flex-direction: column;
+        gap: 32px;
+        margin-bottom: 32px;
+    }
+    
+    .showroom-image {
+        flex: 1 1 100%;
+    }
+    
+    .showroom-details {
+        padding-left: 0;
+    }
+    
+    .showroom-name {
+        font-size: 2rem;
+    }
+    
+    .showroom-image img {
+        height: 250px;
+    }
+    
+    .info-item {
+        padding: 20px;
+    }
+    
+    .info-icon {
+        font-size: 1.5rem;
+        width: 36px;
+    }
+    
+    .staff-card {
+        flex: 0 0 240px;
+        padding: 16px;
+    }
+    
+    .staff-photo,
+    .staff-photo-placeholder {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .staff-photo-placeholder {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 15px;
+    }
+    
+    .content-section {
+        padding: 20px;
+    }
+    
+    .showroom-feature {
+        gap: 24px;
+        margin-bottom: 24px;
+    }
+    
+    .showroom-name {
+        font-size: 1.8rem;
+    }
+    
+    .showroom-image img {
+        height: 200px;
+    }
+    
+    .info-item {
+        padding: 16px;
+        gap: 16px;
+    }
+    
+    .info-icon {
+        font-size: 1.3rem;
+        width: 32px;
+    }
+    
+    .info-label {
+        font-size: 1rem;
+    }
+    
+    .info-value {
+        font-size: 0.9rem;
+    }
+    
+    .showroom-staff h3 {
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+    }
+    
+    .staff-card {
+        flex: 0 0 220px;
+        padding: 16px;
+    }
+    
+    .staff-photo,
+    .staff-photo-placeholder {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .staff-photo-placeholder {
+        font-size: 1.5rem;
+    }
+    
+    .staff-name {
+        font-size: 1rem;
+    }
+    
+    .staff-position {
+        font-size: 0.8rem;
+    }
+    
+    .staff-contact-link {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+    }
+    
+    .contact-text {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .showroom-name {
+        font-size: 1.6rem;
+    }
+    
+    .showroom-image img {
+        height: 180px;
+    }
+    
+    .staff-card {
+        flex: 0 0 200px;
+    }
+}
