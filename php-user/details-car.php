@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../vendor/autoload.php';
 use Uph\Mobilsecond\DB;
 use Uph\Mobilsecond\Twig;
@@ -62,6 +62,7 @@ echo $twig->render(
     [
       'car'=> $car,
       'galleryImages' => $galleryImages,
-      'leasingPartners' => $leasingPartners
+      'leasingPartners' => $leasingPartners,
+      'session' => $_SESSION // <-- penting agar bisa diakses di Twig
     ]
 );

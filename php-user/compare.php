@@ -31,5 +31,6 @@ if ($id2) {
 $twig = Twig::make('../templates-user');
 echo $twig->render('compare.twig.html', [
     'car1' => $car1,
-    'car2' => $car2
+    'car2' => $car2,
+    'session' => $_SESSION // <-- penting agar bisa diakses di Twig
 ]);

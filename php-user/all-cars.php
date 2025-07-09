@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../vendor/autoload.php';
 
 use Uph\Mobilsecond\DB;
@@ -22,5 +22,6 @@ echo $twig->render(
     [
       'brands'=> $listBrands,
       'types'=> $listTypes,
+      'session' => $_SESSION // <-- penting agar bisa diakses di Twig
     ]
 );
