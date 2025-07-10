@@ -48,3 +48,14 @@ CREATE TABLE leasing_rules (
     interest_rate_5yr DECIMAL(5,2) NOT NULL,
     is_active BOOLEAN DEFAULT TRUE
 );
+
+INSERT INTO daftarBahanBakar (name) VALUES
+('Pertalite'),
+('Pertamax'),
+('Pertamax Turbo'),
+('Solar'),
+('Dexlite'),
+('Pertamina Dex'),
+('Bio Solar'),
+('Premium'),
+('Pertamax Green 95');

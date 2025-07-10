@@ -37,7 +37,8 @@ $brandStmt = $db->query("SELECT id, name FROM daftarBrands ORDER BY name");
 $brands = $brandStmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Ambil data bahan bakar
-
+$fuelStmt = $db->query("SELECT name FROM daftarBahanBakar ORDER BY name");
+$fuels = $fuelStmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Tampilkan halaman dengan data brands dan fuels
 $twig = Twig::make('../templates-admin');

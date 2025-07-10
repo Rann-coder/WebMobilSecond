@@ -11,13 +11,13 @@ try {
     $stmt = $db->query($sql);
     $rules = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // kirim hasil kembali sebagai JSON
+    
     echo json_encode([
         'success' => true,
         'data' => $rules,
     ]);
 } catch (Exception $e) {
-    // Jika ada error, kirim pesan error yang jelas
+    
     http_response_code(500);
     echo json_encode([
         'success' => false,

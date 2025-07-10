@@ -7,7 +7,7 @@ CREATE TABLE cars (
     price DECIMAL(15,2),
     km INT,
     engine_cc SMALLINT,
-    fuel_type ENUM('Gasoline', 'Diesel', 'Hybrid', 'Electric', 'Pertalite', 'Pertamax', 'Pertamax Turbo', 'Dexlite', ), 
+    fuel_type ENUM('Gasoline', 'Diesel', 'Hybrid', 'Electric', 'Pertalite', 'Pertamax', 'Pertamax Turbo', 'Dexlite'), 
     previous_owners TINYINT, 
     license_plate VARCHAR(20),                     
     tax_valid_until DATE,                           
