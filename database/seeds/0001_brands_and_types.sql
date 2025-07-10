@@ -33,3 +33,4 @@ INSERT INTO daftarTypes (name) VALUES
 ('Diesel'),
 ('Van'),
 ('Pick-up');
+
