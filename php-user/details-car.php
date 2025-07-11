@@ -56,12 +56,15 @@ try{
     die("Terjadi kesalahan pada server: ". $e->getMessage());
 }
 
+
+
+
 $twig = Twig::make('../templates-user');
 echo $twig->render(
     'details-car.twig.html',
     [
       'car'=> $car,
       'galleryImages' => $galleryImages,
-      'leasingPartners' => $leasingPartners
+      'leasingPartners' => $leasingPartners,
     ]
 );
