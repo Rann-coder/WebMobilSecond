@@ -48,13 +48,119 @@
 
             <div class="filters-panel active" id="filters-panel">
                 <div class="filters-grid">
-                    <!-- Filter Inputs Seperti Sebelumnya -->
+                    <div class="filters-grid">
+                    <div class="filter-group">
+                        <label>Price Range</label>
+                        <div class="range-container">
+                            <input type="number" class="filter-input" id="price-min" placeholder="Min Price" min="0"
+                                step="1000000">
+                            <span>-</span>
+                            <input type="number" class="filter-input" id="price-max" placeholder="Max Price" min="0"
+                                step="1000000">
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Year Range</label>
+                        <div class="range-container">
+                            <select class="filter-input" id="year-min">
+                                <option value="">Min Year</option>
+                            </select>
+                            <span>-</span>
+                            <select class="filter-input" id="year-max">
+                                <option value="">Max Year</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Mileage (KM)</label>
+                        <div class="range-container">
+                            <input type="number" class="filter-input" id="km-min" placeholder="Min KM" min="0"
+                                step="1000">
+                            <span>-</span>
+                            <input type="number" class="filter-input" id="km-max" placeholder="Max KM" min="0"
+                                step="1000">
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Transmission</label>
+                        <select class="filter-input" id="transmission-filter">
+                            <option value="">Any Transmission</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="CVT">CVT</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Previous Owner</label>
+                        <select class="filter-input" id="owner-filter">
+                            <option value="">Any</option>
+                            <option value="1">1st Hand</option>
+                            <option value="2">2nd Hand</option>
+                            <option value="3">3rd Hand</option>
+                            <option value="4+">4+ Hand</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Fuel Type</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="Gasoline" class="fuel-checkbox">
+                                <span>Gasoline</span>
+                            </label>
+
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="Diesel" class="fuel-checkbox">
+                                <span>Diesel</span>
+                            </label>
+
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="Hybrid" class="fuel-checkbox">
+                                <span>Hybrid</span>
+                            </label>
+
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="Electric" class="fuel-checkbox">
+                                <span>Electric</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Engine Size (CC)</label>
+                        <select class="filter-input" id="engine-filter">
+                            <option value="">Any Size</option>
+                            <option value="0-1000">Under 1000cc</option>
+                            <option value="1000-1500">1000-1500cc</option>
+                            <option value="1500-2000">1500-2000cc</option>
+                            <option value="2000-3000">2000-3000cc</option>
+                            <option value="3000+">Above 3000cc</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button class="btn btn-secondary" id="clear-filters">Clear All</button>
+                        <button class="btn btn-primary" id="apply-filters">Apply Filters</button>
+                    </div>
+
+
+                    </div>
                 </div>
             </div>
         </div>
 
         <h2 class="title-divider">Matching Your Criteria</h2>
         <div class="results-count" id="results-count"></div>
+         <div class="search-container">
+            <div class="search-bar">
+                <input type="text" id="car-search-input" placeholder="Ketik nama mobil, contoh: Avanza, Civic, Pajero...">
+                <button id="search-button">Cari</button>
+            </div>
+        </div>
 
         <div class="vehicle-grid" id="vehicle-grid">
             {% for car in cars %}

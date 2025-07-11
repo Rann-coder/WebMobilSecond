@@ -17,8 +17,8 @@ try {
     //Ambil data
     $selectedBrands = json_decode($_POST['brands'] ?? '["All"]'); //'["Toyota"] --> ['Toyota']
     $selectedTypes = json_decode($_POST['types'] ?? '["All"]');
+    $showroomId = $_POST['showroom_id'] ?? null;
     //Distinct --> pastikan ga ada data double
-    $searchTerm = trim($_POST['search_term'] ?? '');
     $sql = "SELECT DISTINCT 
                 c.id, c.name, c.year, c.price, c.km, c.fuel_type, c.engine_cc, c.previous_owners, c.specifications, c.image_url, c.slug, b.name AS brand_name 
             FROM 
@@ -35,20 +35,17 @@ try {
     $params = [];
     $typesToMatch = 0;
 
-    if (!empty($searchTerm)) {
-        $sql .= " AND (c.name LIKE ? OR b.name LIKE ?)";
-        $params[] = '%' . $searchTerm . '%';
-        $params[] = '%' . $searchTerm . '%';
+    if ($showroomId) {
+        $sql .= " AND c.showroom_id = ?";
+        $params[] = $showroomId;
     }
 
-    // kondisi filter untuk Brands
     if (!empty($selectedBrands) && !in_array('All', $selectedBrands)) {
-        $placeholders = implode(',', array_fill(0, count($selectedBrands), '?')); // toyota dan honda, jadi ['?', '?'] lalu implote jadi str "?,?"
+        $placeholders = implode(',', array_fill(0, count($selectedBrands), '?')); 
         $sql .= " AND b.name IN ($placeholders)";
         $params = array_merge($params, $selectedBrands);
     }
 
-    // kondisi filter untuk Types
     if (!empty($selectedTypes) && !in_array('All', $selectedTypes)) {
         $placeholders = implode(',', array_fill(0, count($selectedTypes), '?'));
         $sql .= " AND dt.name IN ($placeholders)";
@@ -56,17 +53,20 @@ try {
         $typesToMatch = count($selectedTypes);
     }
     
-
+    if ($typesToMatch > 1) {
+        $sql .= " GROUP BY c.id HAVING COUNT(DISTINCT dt.id) = ?";
+        $params[] = $typesToMatch;
+    } else if ($typesToMatch == 1) {
+        $sql .= " GROUP BY c.id";
+    }
     
     $sql .= " ORDER BY c.name ASC";
     
-    //Eksekusi Query
     $db = DB::getDB();
     $q = $db->prepare($sql);
     $q->execute($params);
     $cars = $q->fetchAll(PDO::FETCH_ASSOC);
 
-    // Format harga
     foreach ($cars as &$car) {
         if ($car['price']) {
             $car['formatted_price'] = 'Rp ' . number_format($car['price'], 0, ',', '.');
@@ -81,7 +81,6 @@ try {
         }
     }
 
-    // kirim hasil kembali sebagai JSON
     echo json_encode([
         'success' => true,
         'data' => $cars,
@@ -89,7 +88,6 @@ try {
     ]);
 
 } catch (Exception $e) {
-    // Jika ada error, kirim pesan error yang jelas
     http_response_code(500);
     echo json_encode([
         'success' => false,
