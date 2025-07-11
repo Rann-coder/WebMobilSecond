@@ -33,3 +33,14 @@ INSERT INTO daftarTypes (name) VALUES
 ('Diesel'),
 ('Van'),
 ('Pick-up');
+
+-- INSERT INTO daftarBahanBakar (name) VALUES
+-- ('Pertalite'),
+-- ('Pertamax'),
+-- ('Pertamax Turbo'),
+-- ('Solar'),
+-- ('Dexlite'),
+-- ('Pertamina Dex'),
+-- ('Bio Solar'),
+-- ('Premium'),
+-- ('Pertamax Green 95');
