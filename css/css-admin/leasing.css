@@ -1,0 +1,102 @@
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.header-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn.btn-primary {
+    background: linear-gradient(135deg, #2c5aa0, #1e3f73);
+    color: white;
+    box-shadow: 0 4px 15px rgba(44, 90, 160, 0.2);
+}
+
+.btn.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(44, 90, 160, 0.3);
+}
+
+
+.content-panel {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.data-table th, .data-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.data-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.data-table .text-center {
+    text-align: center;
+    padding: 40px;
+    color: #868e96;
+}
+
+
+.actions-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.btn-action:hover {
+    background-color: #e9ecef;
+}

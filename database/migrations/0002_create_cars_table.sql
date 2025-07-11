@@ -14,6 +14,8 @@ CREATE TABLE cars (
     
     km INT,
     engine_cc SMALLINT,
+                       
+
     fuel_type ENUM('Gasoline', 'Diesel', 'Hybrid', 'Electric'),
     transmission VARCHAR(50),
     engine VARCHAR(100),
@@ -24,6 +26,7 @@ CREATE TABLE cars (
     status ENUM('Available', 'Hold', 'Sold Out') DEFAULT 'Available',
     approval_status ENUM('Pending', 'Reviewed', 'Approved', 'Rejected') NOT NULL DEFAULT 'Pending',
     previous_owners TINYINT,
+
     is_accident_free ENUM('Yes', 'No', 'N/A') DEFAULT 'N/A',
     is_flood_free ENUM('Yes', 'No', 'N/A') DEFAULT 'N/A',
     
