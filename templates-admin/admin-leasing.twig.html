@@ -32,13 +32,14 @@
                             <td data-label="Nama Mitra">{{ leasing.leasing_name }}</td>
                             <td data-label="Min DP">{{ leasing.min_dp_percentage|number_format(2, ',', '.') }}%</td>
                             <td data-label="Max DP">{{ leasing.max_dp_percentage|number_format(2, ',', '.') }}%</td>
-                            <td data-label="Penggunaan">{{ leasing.usage_count }} kali</td>
+                            <td data-label="Penggunaan">{{ leasing.usage_count ?? '0' }} kali</td>
                             <td data-label="Aksi" class="actions-cell">
-                                <a href="edit_leasing.php?id={{ leasing.id }}" class="btn-action btn-edit" title="Edit">✏</a>
-                                
-                                <form action="delete_leasing.php" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus leasing ini?');" style="display: inline-block;">
+                                <a href="edit-leasing.php?id={{ leasing.id }}" class="btn-action btn-edit" title="Edit">&#9998;</a>
+
+                                <form action="delete-leasing.php" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus leasing ini?');" style="display: inline-block;">
                                     <input type="hidden" name="leasing_id" value="{{ leasing.id }}">
-                                    <button type="submit" class="btn-action btn-delete" title="Hapus">🗑</button>
+                                    <button type="submit" class="btn-action btn-delete" title="Hapus">🗑
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -52,6 +53,5 @@
         </div>
     </div>
 </main>
-
 
 {% include '_footer-admin.twig.html' %}
