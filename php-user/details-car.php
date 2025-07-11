@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../vendor/autoload.php';
 use Uph\Mobilsecond\DB;
 use Uph\Mobilsecond\Twig;
@@ -29,6 +29,7 @@ try{
     
     $stmt = $db->prepare($sql);
     $stmt->execute([$slug]);
+    
 
     $car = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -48,6 +49,13 @@ try{
     $sql_leasing = "SELECT leasing_name FROM leasing_rules WHERE is_active = TRUE ORDER BY leasing_name ASC";
     $stmt_leasing = $db->query($sql_leasing);
     $leasingPartners = $stmt_leasing->fetchAll(PDO::FETCH_ASSOC);
+
+    $alreadyLiked = false;
+    if (isset($_SESSION['user'])) {
+        $stmtLiked = $db->prepare("SELECT COUNT(*) FROM likes WHERE user_id = ? AND car_id = ?");
+        $stmtLiked->execute([$_SESSION['user']['id'], $car['id']]);
+        $alreadyLiked = $stmtLiked->fetchColumn() > 0;
+    }
 
 
 
@@ -81,5 +89,7 @@ echo $twig->render(
       'galleryImages' => $galleryImages,
       'leasingPartners' => $leasingPartners,
       'whatsapp_url' => $whatsapp_url
+      'session' => $_SESSION, // <-- penting agar bisa diakses di Twig
+      'alreadyLiked' => $alreadyLiked
     ]
 );

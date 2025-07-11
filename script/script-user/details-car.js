@@ -29,6 +29,41 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
 
+
+    const likeBtn = document.getElementById('like-btn');
+
+    if (likeBtn) {
+        likeBtn.addEventListener('click', function () {
+            const carId = this.dataset.carId;
+
+            fetch('../php-user/like.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'car_id=' + encodeURIComponent(carId)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    if (data.liked) {
+                        likeBtn.classList.add('liked');
+                        likeBtn.querySelector('.like-text').textContent = 'Liked';
+                    } else {
+                        likeBtn.classList.remove('liked');
+                        likeBtn.querySelector('.like-text').textContent = 'Like';
+                    }
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(err => {
+                alert('Gagal koneksi ke server.');
+                console.error(err);
+            });
+        });
+    }
+    
     //Elemen kalkulator
     const hargaMobilEl = document.getElementById('harga-mobil');
     const leasingSelectEl = document.getElementById('mitra-pembiayaan');

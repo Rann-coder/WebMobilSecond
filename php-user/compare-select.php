@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../vendor/autoload.php';
 
 use Uph\Mobilsecond\DB;
@@ -12,4 +13,5 @@ $cars = $q->fetchAll(PDO::FETCH_ASSOC);
 $twig = Twig::make('../templates-user');
 echo $twig->render('compare-select.twig.html', [
     'cars' => $cars,
+    'session' => $_SESSION // <-- penting agar bisa diakses di Twig
 ]);
