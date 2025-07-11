@@ -35,6 +35,18 @@ CREATE TABLE leasing_rules (
     is_active BOOLEAN DEFAULT TRUE
 );
 
+
+INSERT INTO daftarBahanBakar (name) VALUES
+('Pertalite'),
+('Pertamax'),
+('Pertamax Turbo'),
+('Solar'),
+('Dexlite'),
+('Pertamina Dex'),
+('Bio Solar'),
+('Premium'),
+('Pertamax Green 95');
+
 CREATE TABLE staff_pemasaran (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(100) NOT NULL,
@@ -53,6 +65,7 @@ CREATE TABLE staff_pemasaran (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+
 CREATE TABLE likes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id VARCHAR(100),
@@ -62,3 +75,4 @@ CREATE TABLE likes (
     CONSTRAINT fk_car FOREIGN KEY (car_id) REFERENCES cars(id),
     CONSTRAINT unique_like UNIQUE (user_id, car_id)
 );
+

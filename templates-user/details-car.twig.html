@@ -58,8 +58,82 @@
             </div>
 
             <div class="action-buttons">
+
+                    <button class="btn btn-primary">
+                        📞 Book Car
+                        <small style="display: block; font-size: 0.8rem; font-weight: 400;">Refundable Booking</small>
+                    </button>
+                    <button class="btn btn-secondary">
+                        🚗 Free Test Drive
+                        <small style="display: block; font-size: 0.8rem; font-weight: 400;">At Experience Centers</small>
+                    </button>
+                </div>
+
+                <div class="like-share-section">
+                    <div class="like-share-buttons">
+                        <button class="like-btn" id="like-btn">
+                            <span class="heart-icon">🤍</span>
+                            <span class="like-text">Like</span>
+                        </button>
+                        <button class="share-btn" id="share-btn">
+                            <span class="share-icon">📤</span>
+                            <span class="share-text">Share</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="contact-section">
+                    <div class="contact-text">Need more help? Contact us via</div>
+                    <a href="{{ whatsapp_url }}" class="whatsapp-btn">💬 WhatsApp</a>
+                </div>
+        </aside>
+    </div>
+    
+
+
+    
+
+    <div class="detail-content">
+
+    {# BAGIAN SPESIFIKASI LENGKAP #}
+    <section class="specifications-section">
+        <h2>Spesifikasi Lengkap</h2>
+        <div class="spec-grid"> 
+            <div class="spec-item">
+                <span class="spec-label">Harga Cash</span>
+                <span class="spec-value price">Rp {{ car.price|number_format(0, ',', '.') }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Tahun</span>
+                <span class="spec-value">{{ car.year }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Kilometer</span>
+                <span class="spec-value">{{ car.km|number_format(0, ',', '.') }} km</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Mesin</span>
+                <span class="spec-value">{{ car.engine }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Transmisi</span>
+                <span class="spec-value">{{ car.transmission }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Tenaga</span>
+                <span class="spec-value">{{ car.horsepower }} HP</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Bahan Bakar</span>
+                <span class="spec-value">{{ car.fuel_type }}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">CC Mesin</span>
+                <span class="spec-value">{{ car.engine_cc == 0 ? 'Listrik' : car.engine_cc ~ ' cc' }}</span>
+
                 <button class="btn btn-primary">📞 Book Car<small>Refundable Booking</small></button>
                 <button class="btn btn-secondary">🚗 Free Test Drive<small>At Experience Centers</small></button>
+
             </div>
 
             <div class="like-share-section">

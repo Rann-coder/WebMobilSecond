@@ -64,6 +64,23 @@ try{
     die("Terjadi kesalahan pada server: ". $e->getMessage());
 }
 
+$nomor_wa_tujuan = '6282168498081'; 
+
+$pesan_raw = "Halo MobilSecond.id,\n\n" .
+             "Saya tertarik dan ingin memesan mobil berikut:\n\n" .
+             "Nama Mobil: " . $car['name'] . "\n" .
+             "Plat Nomor: " . $car['license_plate'] . "\n" .
+             "Tahun: " . $car['year'] . "\n" .
+             "Kilometer: " . number_format($car['km']) . " km\n" .
+             "Harga: Rp " . number_format($car['price']) . "\n\n" .
+             "Mohon informasinya lebih lanjut. Terima kasih.";
+
+
+$pesan_encoded = urlencode($pesan_raw);
+
+
+$whatsapp_url = "https://wa.me/" . $nomor_wa_tujuan . "?text=" . $pesan_encoded;
+
 $twig = Twig::make('../templates-user');
 echo $twig->render(
     'details-car.twig.html',
@@ -71,6 +88,7 @@ echo $twig->render(
       'car'=> $car,
       'galleryImages' => $galleryImages,
       'leasingPartners' => $leasingPartners,
+      'whatsapp_url' => $whatsapp_url
       'session' => $_SESSION, // <-- penting agar bisa diakses di Twig
       'alreadyLiked' => $alreadyLiked
     ]

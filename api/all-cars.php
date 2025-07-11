@@ -11,11 +11,21 @@ header('Access-Control-Allow-Headers: Content-Type');
 try {
     $selectedBrands = json_decode($_POST['brands'] ?? '["All"]');
     $selectedTypes = json_decode($_POST['types'] ?? '["All"]');
+    $searchTerm = trim($_POST['search_term'] ?? '');
 
     $priceMin = !empty($_POST['priceMin']) ? (int)$_POST['priceMin'] : null;
     $priceMax = !empty($_POST['priceMax']) ? (int)$_POST['priceMax'] : null;
+
     $yearMin = !empty($_POST['yearMin']) ? (int)$_POST['yearMin'] : null;
     $yearMax = !empty($_POST['yearMax']) ? (int)$_POST['yearMax'] : null;
+
+    $kmMin = !empty($_POST['kmMin']) ? (int)$_POST['kmMin'] : null;
+    $kmMax = !empty($_POST['kmMax']) ? (int)$_POST['kmMax'] : null;
+
+    $transmission = trim($_POST['transmission'] ?? '');
+    $owners = trim($_POST['owners'] ?? '');
+    $engine = trim($_POST['engine'] ?? '');
+    $fuelTypes = json_decode($_POST['fuelType'] ?? '[]');
 
     $sql = "SELECT DISTINCT 
                 c.id, c.name, c.year, c.price, c.km, c.fuel_type, c.engine_cc, c.previous_owners, c.specifications, c.image_url, c.slug, b.name AS brand_name 
@@ -27,10 +37,17 @@ try {
                 car_types AS ct ON c.id = ct.car_id
             LEFT JOIN 
                 daftarTypes AS dt ON ct.type_id = dt.id
-            WHERE 1=1";
+            WHERE c.approval_status = 'Approved'"; 
 
     $params = [];
     $typesToMatch = 0;
+
+    if (!empty($searchTerm)) {
+        // Mencari di nama mobil ATAU nama merek
+        $sql .= " AND (c.name LIKE ? OR b.name LIKE ?)";
+        $params[] = '%' . $searchTerm . '%';
+        $params[] = '%' . $searchTerm . '%';
+    }
 
     // kondisi filter untuk Brands
     if (!empty($selectedBrands) && !in_array('All', $selectedBrands)) {
@@ -47,21 +64,45 @@ try {
         $typesToMatch = count($selectedTypes);
     }
 
-    if ($priceMin !== null) {
-        $sql .= " AND c.price >= ?";
-        $params[] = $priceMin;
+    if ($priceMin !== null) { $sql .= " AND c.price >= ?"; $params[] = $priceMin; }
+    if ($priceMax !== null) { $sql .= " AND c.price <= ?"; $params[] = $priceMax; }
+    if ($yearMin !== null) { $sql .= " AND c.year >= ?"; $params[] = $yearMin; }
+    if ($yearMax !== null) { $sql .= " AND c.year <= ?"; $params[] = $yearMax; }
+
+    if ($kmMin !== null) { $sql .= " AND c.km >= ?"; $params[] = $kmMin; }
+    if ($kmMax !== null) { $sql .= " AND c.km <= ?"; $params[] = $kmMax; }
+    
+    if (!empty($transmission)) {
+        $sql .= " AND c.transmission = ?";
+        $params[] = $transmission;
     }
-    if ($priceMax !== null) {
-        $sql .= " AND c.price <= ?";
-        $params[] = $priceMax;
+
+    if (!empty($owners)) {
+        if ($owners === '4+') {
+            $sql .= " AND c.previous_owners >= ?";
+            $params[] = 4;
+        } else {
+            $sql .= " AND c.previous_owners = ?";
+            $params[] = (int)$owners;
+        }
     }
-    if ($yearMin !== null) {
-        $sql .= " AND c.year >= ?";
-        $params[] = $yearMin;
+
+    if (!empty($engine)) {
+        if ($engine === '3000+') {
+            $sql .= " AND c.engine_cc >= ?";
+            $params[] = 3000;
+        } else {
+            list($engineMin, $engineMax) = explode('-', $engine);
+            $sql .= " AND c.engine_cc BETWEEN ? AND ?";
+            $params[] = (int)$engineMin;
+            $params[] = (int)$engineMax;
+        }
     }
-    if ($yearMax !== null) {
-        $sql .= " AND c.year <= ?";
-        $params[] = $yearMax;
+
+    if (!empty($fuelTypes)) {
+        $placeholders = implode(',', array_fill(0, count($fuelTypes), '?'));
+        $sql .= " AND c.fuel_type IN ($placeholders)";
+        $params = array_merge($params, $fuelTypes);
     }
 
     // Grouping jika ada multiple type dipilih

@@ -1,4 +1,4 @@
-{% set page_css = ['../css/css-user/header.css', '../css/css-user/showroom.css', '../css/css-user/all-cars.css','../css/css-user/home.css','../css/css-user/footer.css'] %}
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/showroom.css','../css/css-user/home.css','../css/css-user/footer.css'] %}
 {% set page_scripts = ['../script/script-user/showrooms.js'] %}
 
 {% include '_header.twig.html' %}
@@ -123,7 +123,7 @@
             </div>
 
             <h2 class="title-divider">Mathcing Your Criteria</h2>
-            <div class="vehicle-grid" id="vehicle-grid">
+            <div class="vehicle-grid" id="vehicle-grid" data-showroom-id="{{ showroom.id }}">
                 </div>
             <div class="button-container">
                 <a href="../../php-user/all-cars.php" class="search-more-btn">Advanced Filters</a>
@@ -144,6 +144,8 @@
             <p class="status-notice-text">Koleksi mobil untuk showroom ini akan tersedia setelah beroperasi kembali.</p>
         </div>
     {% endif %}
+
+    
 
 </main>
 {% include '_footer.twig.html' %}
