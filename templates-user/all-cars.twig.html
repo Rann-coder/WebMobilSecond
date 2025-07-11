@@ -1,23 +1,21 @@
-{% set page_css = ['../css/css-user/header.css', '../css/css-user/all-cars.css', '../css/css-user/footer.css',] %}
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/all-cars.css', '../css/css-user/footer.css'] %}
 {% set page_scripts = ['../script/script-user/all-cars.js'] %}
 {% include '_header.twig.html' %}
 
 <main>
     <div id="cars" class="page-hero">
         <h1>Ready to Find Your Next Car?</h1>
-        <p class="subtitle">Temukan partner berkendara yang tepat dari ratusan mobil second berkualitas yang telah kami
-            inspeksi.</p>
+        <p class="subtitle">Temukan partner berkendara yang tepat dari ratusan mobil second berkualitas yang telah kami inspeksi.</p>
     </div>
 
     <div class="content-section">
         <h2 class="title-divider">Filter by Brand</h2>
         <div class="popular-categories">
             <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>
-
             <div id="brands-list" class="brands-container">
                 <button class="filter-btn active" data-brand="All">All</button>
                 {% for brand in brands %}
-                <button class="filter-btn" data-brand="{{brand.name}}">{{brand.name}}</button>
+                <button class="filter-btn" data-brand="{{ brand.name }}">{{ brand.name }}</button>
                 {% endfor %}
             </div>
             <button id="scroll-right-btn-brands" class="scroll-btn">&rarr;</button>
@@ -26,15 +24,21 @@
         <h2 class="title-divider">Find by Your Needs</h2>
         <div class="popular-categories">
             <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
-
             <div id="types-list" class="brands-container">
                 <button class="filter-btn active" data-type="All">All</button>
                 {% for type in types %}
-                <button class="filter-btn" data-type="{{type.name}}">{{type.name}}</button>
+                <button class="filter-btn" data-type="{{ type.name }}">{{ type.name }}</button>
                 {% endfor %}
             </div>
             <button id="scroll-right-btn-types" class="scroll-btn">&rarr;</button>
         </div>
+
+        {# Compare Slot Notification #}
+        {% if app.slot %}
+        <div class="compare-slot-alert">
+            <p>Anda sedang memilih mobil untuk slot ke-{{ app.slot }} perbandingan.</p>
+        </div>
+        {% endif %}
 
         <div class="advanced-filters-container">
             <button class="toggle-filters-btn" id="toggle-filters">
@@ -44,14 +48,15 @@
 
             <div class="filters-panel active" id="filters-panel">
                 <div class="filters-grid">
+                    <div class="filters-grid">
                     <div class="filter-group">
                         <label>Price Range</label>
                         <div class="range-container">
                             <input type="number" class="filter-input" id="price-min" placeholder="Min Price" min="0"
-                                step="100000000">
+                                step="1000000">
                             <span>-</span>
                             <input type="number" class="filter-input" id="price-max" placeholder="Max Price" min="0"
-                                step="100000000">
+                                step="1000000">
                         </div>
                     </div>
 
@@ -91,7 +96,7 @@
 
                     <div class="filter-group">
                         <label>Previous Owner</label>
-                        <select class="filter-input" id="owners-filter">
+                        <select class="filter-input" id="owner-filter">
                             <option value="">Any</option>
                             <option value="1">1st Hand</option>
                             <option value="2">2nd Hand</option>
@@ -143,16 +148,34 @@
                     </div>
 
 
+                    </div>
                 </div>
             </div>
         </div>
 
-
-
         <h2 class="title-divider">Matching Your Criteria</h2>
         <div class="results-count" id="results-count"></div>
+         <div class="search-container">
+            <div class="search-bar">
+                <input type="text" id="car-search-input" placeholder="Ketik nama mobil, contoh: Avanza, Civic, Pajero...">
+                <button id="search-button">Cari</button>
+            </div>
+        </div>
+
         <div class="vehicle-grid" id="vehicle-grid">
-            <!--Bakal diisi oleh java script-->
+            {% for car in cars %}
+            <div class="car-card">
+                <img src="../{{ car.image_url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <p>Rp {{ car.price|number_format(0, ',', '.') }}</p>
+
+                {% if app.slot %}
+                    <a href="compare-set.php?slot={{ app.slot }}&id={{ car.id }}" class="select-compare-btn">Pilih Mobil Ini</a>
+                {% else %}
+                    <a href="detail-car.php?id={{ car.id }}" class="view-details-btn">Lihat Detail</a>
+                {% endif %}
+            </div>
+            {% endfor %}
         </div>
 
         <div class="no-results" id="no-results" style="display: none;">

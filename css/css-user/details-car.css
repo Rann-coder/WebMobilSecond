@@ -1,92 +1,206 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* --- Global & Page Layout --- */
-.detail-container {
-    max-width: 1200px;
-    margin: 120px auto 0 auto;
-    padding: 40px 20px;
-    background: #ffffff;
-    position: relative;
-    z-index: 1;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* --- Header Judul --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+.detail-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
 .detail-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     padding: 30px 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .detail-header h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: #1a1a1a;
     line-height: 1.2;
-    margin: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Image Gallery --- */
 .detail-gallery {
-    margin-bottom: 60px;
     background: #ffffff;
-    border-radius: 24px;
-    padding: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    width: 100%; /* Pastikan tidak melebihi parent */
+    overflow: hidden; /* Cegah content overflow */
 }
 
 .main-image-container {
     width: 100%;
-    height: 500px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 20px;
+    /* Hapus max-width: 1000px yang menyebabkan masalah */
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    background-color: #f8f9fa;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Tambahkan max-height untuk kontrol yang lebih baik */
+    max-height: 400px;
 }
 
 #main-car-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: opacity 0.4s ease;
+    /* Pastikan gambar tidak overflow */
+    max-width: 100%;
+    max-height: 100%;
 }
 
-.gallery-scroller {
+/* Perbaikan untuk detail-gallery */
+.detail-gallery {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    width: 100%; /* Pastikan tidak melebihi parent */
+    overflow: hidden; /* Cegah content overflow */
+    position: relative; /* Pastikan z-index bekerja */
+    z-index: 1; /* Lebih rendah dari header */
+}
+
+.main-image-container {
+    width: 100%;
+    /* Hapus max-width: 1000px yang menyebabkan masalah */
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    background-color: #f8f9fa;
+    border-radius: 16px;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-top: 24px;
+    justify-content: center;
+    /* Tambahkan max-height untuk kontrol yang lebih baik */
+    max-height: 400px;
 }
 
+#main-car-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.4s ease;
+    /* Pastikan gambar tidak overflow */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Perbaikan untuk container utama - pastikan tidak tembus header */
+.detail-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 1; /* Pastikan dibawah header */
+}
+
+/* Perbaikan gallery scroller - sejajarkan arrow dengan thumbnail */
+.gallery-scroller {
+    display: flex;
+    align-items: center; /* Sejajarkan vertikal */
+    gap: 12px;
+    margin-top: 20px; /* Beri jarak dari gambar utama */
+}
+
+.scroll-btn {
+    background-color: #ffffff;
+    border: 1px solid #e0e6ed;
+    border-radius: 50%;
+    width: 40px; /* Sedikit lebih besar */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: #5a6a85;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    /* Posisi untuk sejajar dengan tengah thumbnail */
+    align-self: center;
+    margin-top: -10px; /* Sesuaikan dengan tinggi thumbnail */
+}
+
+.scroll-btn:hover {
+    background-color: #667eea;
+    color: white;
+    border-color: #667eea;
+    transform: scale(1.1);
+}
+
+/* Perlebar area galeri - ubah proporsi grid */
+.main-content {
+    display: grid;
+    grid-template-columns: 1.8fr 0.7fr; /* Lebih banyak ruang untuk galeri */
+    gap: 40px;
+    margin-bottom: 50px;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Perbaikan untuk thumbnail container */
 .thumbnail-container {
     display: flex;
     gap: 16px;
     overflow-x: auto;
     scroll-behavior: smooth;
-    padding: 8px;
+    padding: 12px 8px; /* Sedikit lebih besar padding vertikal */
     flex-grow: 1;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    max-width: 100%;
+    /* Sejajarkan dengan button */
+    align-items: center;
 }
 
 .thumbnail-container::-webkit-scrollbar {
     display: none;
 }
 
+/* Perbaiki proporsi thumbnail - buat lebih persegi dan proposional */
 .thumbnail-item {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 120px;
+    width: 140px; /* Sedikit lebih lebar */
     height: auto;
     border: 2px solid #eef2f7;
     border-radius: 12px;
-    padding: 8px;
+    padding: 10px; /* Sedikit lebih besar padding */
     cursor: pointer;
     transition: all 0.3s ease;
     opacity: 0.8;
@@ -110,24 +224,124 @@
 
 .thumbnail-item img {
     width: 100%;
-    height: 70px;
+    height: 90px; /* Tinggi lebih proposional */
     object-fit: cover;
     border-radius: 8px;
+    aspect-ratio: 4/3; /* Ratio yang lebih baik */
 }
 
 .thumbnail-caption {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: #5a6a85;
     text-align: center;
+    line-height: 1.2;
+    max-height: 2.4em; /* Batasi tinggi caption */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+/* Responsive fixes */
+@media (max-width: 900px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .main-image-container {
+        max-height: 300px;
+    }
+    
+    .scroll-btn {
+        width: 36px;
+        height: 36px;
+        margin-top: -8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-gallery {
+        padding: 15px;
+    }
+    
+    .main-image-container {
+        height: 250px;
+        max-height: 250px;
+    }
+    
+    .gallery-scroller {
+        margin-top: 15px;
+    }
+    
+    .scroll-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+        margin-top: -6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-gallery {
+        padding: 15px;
+    }
+    
+    .main-image-container {
+        height: 250px;
+        max-height: 250px;
+    }
+}
+
+/* Tambahan CSS untuk mengatasi masalah z-index header */
+.detail-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Jika ada header yang sticky, pastikan z-index lebih tinggi */
+header, .header, .navbar {
+    position: relative;
+    z-index: 999 !important;
+}
+
+/* Perbaikan untuk semua section agar tidak tembus header */
+.specifications-section, .financing-calculator-section {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 480px) {
+    .main-image-container {
+        height: 220px;
+        max-height: 220px;
+    }
+
+    .thumbnail-item {
+        width: 110px; /* Sedikit lebih kecil di mobile */
+    }
+    
+    .thumbnail-item img {
+        height: 75px; /* Sesuaikan tinggi di mobile */
+    }
+    
+    .scroll-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+        margin-top: -4px;
+    }
+    
+    .gallery-scroller {
+        margin-top: 12px;
+        gap: 8px;
+    }
+}
 .scroll-btn {
     background-color: #ffffff;
     border: 1px solid #e0e6ed;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,12 +358,202 @@
     border-color: #667eea;
 }
 
-/* --- Content & Specifications --- */
-.detail-content {
-    margin-top: 0;
+.info-panel {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    height: fit-content;
 }
 
-.specifications-section {
+.price-section {
+    margin-bottom: 25px;
+}
+
+.price-main {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-bottom: 5px;
+}
+
+.price-cash {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.car-basic-info {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.car-basic-info span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.info-items {
+    margin-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.info-value {
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: right;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.btn-primary {
+    background-color: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    color: #667eea;
+    border: 1px solid #667eea;
+}
+
+.btn-secondary:hover {
+    background-color: #667eea;
+    color: white;
+}
+
+.like-share-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.like-btn, .share-btn {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #e0e6ed;
+    border-radius: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.like-btn:hover {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.like-btn.liked {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.like-btn.liked .heart-icon {
+    animation: heartBeat 0.6s ease-in-out;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+}
+
+.share-btn:hover {
+    background-color: #f0f9ff;
+    border-color: #bae6fd;
+    color: #0284c7;
+}
+
+.contact-section {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #f1f3f4;
+}
+
+.contact-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.whatsapp-btn {
+    background-color: #25d366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    background-color: #22c55e;
+    transform: translateY(-2px);
+}
+
+.specifications-section, .financing-calculator-section {
     background: #ffffff;
     border-radius: 20px;
     padding: 40px;
@@ -157,10 +561,14 @@
     border: 1px solid rgba(0, 0, 0, 0.05);
     position: relative;
     overflow: hidden;
-    margin-bottom: 40px; /* Jarak antar section */
+    margin-bottom: 40px;
 }
 
-.specifications-section::before {
+.specifications-section:last-of-type, .financing-calculator-section:last-of-type {
+    margin-bottom: 0;
+}
+
+.specifications-section::before, .financing-calculator-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -170,7 +578,7 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.specifications-section h2 {
+.specifications-section h2, .financing-calculator-section h2 {
     font-size: 2.2rem;
     font-weight: 700;
     color: #1a1a1a;
@@ -180,7 +588,7 @@
     position: relative;
 }
 
-.specifications-section h2::after {
+.specifications-section h2::after, .financing-calculator-section h2::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -192,7 +600,7 @@
 
 .spec-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
 }
 
@@ -230,85 +638,13 @@
     font-size: 1.5rem;
 }
 
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-    .detail-container {
-        padding: 20px 15px;
-        margin-top: 100px;
-    }
-    .detail-header h1 {
-        font-size: 2.2rem;
-    }
-    .detail-gallery {
-        padding: 20px;
-        margin-bottom: 40px;
-    }
-    .main-image-container {
-        height: 300px;
-    }
-    .specifications-section {
-        padding: 25px 20px;
-    }
-    .specifications-section h2 {
-        font-size: 1.8rem;
-    }
-    .spec-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .detail-container {
-        margin-top: 80px;
-    }
-    .detail-header h1 {
-        font-size: 1.8rem;
-    }
-    .main-image-container {
-        height: 250px;
-    }
-    .thumbnail-item {
-        width: 80px; /* Perkecil thumbnail di mobile */
-    }
-}
-
-.financing-calculator-section {
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.financing-calculator-section h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 35px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #f8f9fa;
-    position: relative;
-}
-
-.financing-calculator-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
 .calculator-container {
     display: grid;
-    grid-template-columns: 1.5fr 1fr; /* Form lebih besar dari hasil */
+    grid-template-columns: 1.5fr 1fr;
     gap: 40px;
     align-items: flex-start;
 }
 
-/* --- Bagian Form (Kiri) --- */
 .calculator-form {
     display: flex;
     flex-direction: column;
@@ -357,13 +693,6 @@
     gap: 12px;
 }
 
-/* --- Custom Range Slider --- */
-.tenor-display {
-    text-align: right;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-top: 8px;
-}
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -373,6 +702,7 @@ input[type="range"] {
     border-radius: 5px;
     outline: none;
 }
+
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -384,6 +714,7 @@ input[type="range"]::-webkit-slider-thumb {
     border: 3px solid white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+
 input[type="range"]::-moz-range-thumb {
     width: 20px;
     height: 20px;
@@ -394,13 +725,19 @@ input[type="range"]::-moz-range-thumb {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* --- Bagian Hasil (Kanan) --- */
+.tenor-display {
+    text-align: right;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 8px;
+}
+
 .calculator-result {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 30px;
     border-radius: 16px;
-    position: sticky; /* Tetap terlihat saat scroll */
+    position: sticky;
     top: 20px;
 }
 
@@ -432,12 +769,6 @@ input[type="range"]::-moz-range-thumb {
     padding-top: 20px;
 }
 
-.result-details p {
-    margin: 0 0 12px 0;
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
 .result-details ul {
     list-style: none;
     padding: 0;
@@ -457,12 +788,105 @@ input[type="range"]::-moz-range-thumb {
     opacity: 0.8;
 }
 
-/* --- Responsive untuk Kalkulator --- */
 @media (max-width: 900px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
     .calculator-container {
-        grid-template-columns: 1fr; /* Ubah jadi 1 kolom */
+        grid-template-columns: 1fr;
     }
+
     .calculator-result {
-        position: static; /* Hapus sticky di mobile */
+        position: static;
     }
+}
+
+@media (max-width: 768px) {
+    .detail-container {
+        padding: 20px 15px;
+        margin-top: 20px;
+    }
+
+    .detail-header h1 {
+        font-size: 2rem;
+    }
+
+    .price-main {
+        font-size: 1.8rem;
+    }
+
+    .car-basic-info {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .main-image-container {
+        height: 250px;
+    }
+
+    .specifications-section, .financing-calculator-section {
+        padding: 25px 20px;
+    }
+
+    .specifications-section h2, .financing-calculator-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .spec-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .main-image-container {
+        height: 220px;
+    }
+
+    .thumbnail-item {
+        width: 100px;
+    }
+}
+
+.info-location {
+    background-color: #f8f9fa;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #eef2f7;
+    margin-top: 24px;
+}
+.info-location h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+.info-location p {
+    font-size: 0.9rem;
+    color: #5a6a85;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.back-button {
+    display: inline-block;
+    margin-bottom: 15px; 
+    padding: 8px 15px;
+    background-color: #f0f0f0;
+    color: #333; 
+    text-decoration: none; 
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    transition: background-color 0.2s, color 0.2s; 
+}
+.back-button:hover {
+    background-color: #e0e0e0; 
+    color: #000;
 }

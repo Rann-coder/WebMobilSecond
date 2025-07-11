@@ -1,33 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // State variables
     let selectedBrands = ['All'];
     let selectedTypes = ['All'];
-    let searchTerm = '';
     let allCars = [];
     let isShowingAll = false;
+
+    // DOM elements
     const brandsList = document.getElementById('brands-list');
     const typesList = document.getElementById('types-list');
     const vehicleGrid = document.querySelector('.vehicle-grid');
-    const searchInput = document.getElementById('car-search-input');
-const searchButton = document.getElementById('search-button');
     
     const scrollLeftBrands = document.getElementById('scroll-left-btn-brands');
     const scrollRightBrands = document.getElementById('scroll-right-btn-brands');
     const scrollLeftTypes = document.getElementById('scroll-left-btn-types');
     const scrollRightTypes = document.getElementById('scroll-right-btn-types');
 
+    // Event listeners
     function initializeEventListeners() {
+        // Brand filter events
         brandsList.addEventListener('click', function(e) {
             if (e.target.classList.contains('filter-btn')) {
                 handleBrandSelection(e.target);
             }
         });
 
+        // Type filter events
         typesList.addEventListener('click', function(e) {
             if (e.target.classList.contains('filter-btn')) {
                 handleTypeSelection(e.target);
             }
         });
 
+        // Scroll events for brands
         scrollLeftBrands.addEventListener('click', () => {
             brandsList.scrollBy({ left: -200, behavior: 'smooth' });
         });
@@ -36,6 +40,7 @@ const searchButton = document.getElementById('search-button');
             brandsList.scrollBy({ left: 200, behavior: 'smooth' });
         });
 
+        // Scroll events for types
         scrollLeftTypes.addEventListener('click', () => {
             typesList.scrollBy({ left: -200, behavior: 'smooth' });
         });
@@ -43,38 +48,28 @@ const searchButton = document.getElementById('search-button');
         scrollRightTypes.addEventListener('click', () => {
             typesList.scrollBy({ left: 200, behavior: 'smooth' });
         });
-
-        searchButton.addEventListener('click', () => {
-        searchTerm = searchInput.value;
-        filterCars();
-    });
-
-    // Event listener baru untuk trigger cari saat menekan 'Enter'
-    searchInput.addEventListener('keyup', (event) => {
-        if (event.key === 'Enter') {
-            searchTerm = searchInput.value;
-            filterCars();
-        }
-    });
-    
     }
 
+    // Brand selection handler
     function handleBrandSelection(button) {
         const brandName = button.textContent.trim();
         
         if (brandName === 'All') {
+            // Reset all other brand selections
             selectedBrands = ['All'];
             brandsList.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             button.classList.add('active');
         } else {
+            // Remove 'All' selection when specific brand is selected
             if (selectedBrands.includes('All')) {
                 selectedBrands = [];
                 const allButton = brandsList.querySelector('[data-brand="All"]');
                 if (allButton) allButton.classList.remove('active');
             }
 
+            // Toggle brand selection
             if (selectedBrands.includes(brandName)) {
                 selectedBrands = selectedBrands.filter(brand => brand !== brandName);
                 button.classList.remove('active');
@@ -83,6 +78,7 @@ const searchButton = document.getElementById('search-button');
                 button.classList.add('active');
             }
 
+            // If no brands selected, default to 'All'
             if (selectedBrands.length === 0) {
                 selectedBrands = ['All'];
                 const allButton = brandsList.querySelector('[data-brand="All"]');
@@ -93,22 +89,26 @@ const searchButton = document.getElementById('search-button');
         filterCars();
     }
 
+    // Type selection handler
     function handleTypeSelection(button) {
         const typeName = button.textContent.trim();
         
         if (typeName === 'All') {
+            // Reset all other type selections
             selectedTypes = ['All'];
             typesList.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             button.classList.add('active');
         } else {
+            // Remove 'All' selection when specific type is selected
             if (selectedTypes.includes('All')) {
                 selectedTypes = [];
                 const allButton = typesList.querySelector('[data-type="All"]');
                 if (allButton) allButton.classList.remove('active');
             }
 
+            // Toggle type selection
             if (selectedTypes.includes(typeName)) {
                 selectedTypes = selectedTypes.filter(type => type !== typeName);
                 button.classList.remove('active');
@@ -117,6 +117,7 @@ const searchButton = document.getElementById('search-button');
                 button.classList.add('active');
             }
 
+            // If no types selected, default to 'All'
             if (selectedTypes.length === 0) {
                 selectedTypes = ['All'];
                 const allButton = typesList.querySelector('[data-type="All"]');
@@ -127,16 +128,22 @@ const searchButton = document.getElementById('search-button');
         filterCars();
     }
 
+    // Filter cars function
     function filterCars() {
         isShowingAll = false;
         vehicleGrid.innerHTML = '<div class="loading">Loading cars...</div>';
-
+        const showroomId = vehicleGrid.dataset.showroomId;
         const formData = new FormData();
         formData.append('brands', JSON.stringify(selectedBrands));
         formData.append('types', JSON.stringify(selectedTypes));
-        formData.append('search_term', searchTerm); 
 
-        fetch('../api/filter_cars.php', {
+
+        if (showroomId) {
+            formData.append('showroom_id', showroomId);
+        }
+
+        // Send AJAX request to filter_cars.php
+        fetch('../api/filter_cars_showroom.php', {
             method: 'POST',
             body: formData
         })
@@ -155,6 +162,7 @@ const searchButton = document.getElementById('search-button');
         });
     }
 
+    // Display filtered cars
     function displayCars(cars) {
         allCars = cars;
 
@@ -173,6 +181,7 @@ const searchButton = document.getElementById('search-button');
         vehicleGrid.innerHTML = carsHTML + seeMoreCard;
     }
 
+    // Create individual car card HTML
     function createCarCard(car) {
         let specs = {};
         try {
@@ -210,6 +219,7 @@ const searchButton = document.getElementById('search-button');
         `;
     }
 
+    // Create specification item HTML
     function createSpecItem(label, value, title) {
         if (value == null) return '';
         return `
@@ -220,17 +230,20 @@ const searchButton = document.getElementById('search-button');
         `;
     }
 
+    // Create engine specification item
     function createEngineSpecItem(engineCc) {
         if (engineCc == null) return '';
         const value = engineCc === 0 ? 'Listrik' : `${engineCc} cc`;
         return createSpecItem('CC Mesin', value, 'CC Mesin');
     }
 
+    // Create owner specification item
     function createOwnerSpecItem(previousOwners) {
         if (previousOwners == null) return '';
         return createSpecItem('Pemilik', `Tangan ke-${previousOwners}`, 'Pemilik Sebelumnya');
     }
 
+    // Create "See More" card HTML
     function createSeeMoreCard(remainingCount) {
         return `
             <div class="vehicle-card see-more-card" onclick="showAllCars()">
@@ -251,6 +264,7 @@ const searchButton = document.getElementById('search-button');
         `;
     }
 
+    // Create car icon SVG
     function createCarIcon() {
         return `
             <svg class="car-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -259,16 +273,18 @@ const searchButton = document.getElementById('search-button');
         `;
     }
 
+    // Show all cars function (global scope for onclick)
     window.showAllCars = function() {
         isShowingAll = true;
         displayCars(allCars);
     };
 
+    // Initialize the application
     function init() {
         initializeEventListeners();
-        filterCars(); 
+        filterCars(); // Load initial cars
     }
 
-    
+    // Start the application
     init();
 });

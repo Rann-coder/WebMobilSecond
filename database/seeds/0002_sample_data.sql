@@ -1,5 +1,11 @@
+INSERT INTO showrooms (id, name, address, phone, email, status) VALUES
+(1, 'Showroom Medan Abadi - Gatsu', 'Jl. Gatot Subroto No. 123, Medan', '061-123456', 'sales@medanjaya.com', 'active'),
+(2, 'Showroom Medan Abadi - Sisimangaraja', 'Jl. Sisingamangaraja No. 45, Medan', '061-654321', 'info@sumatraauto.com', 'active'),
+(3, 'Showroom Medan Abadi - Nibung Raya', 'Jl. Nibung Raya No. 78, Medan', '061-789012', 'contact@majurenovasi.com', 'renovation');
+
+
 INSERT INTO cars (
-    id_brand, name, year, price, km, 
+    id_brand, showroom_id, name, year, price, km, 
     engine_cc, fuel_type, previous_owners, 
     license_plate, tax_valid_until, color, seat_count, airbag_count,
     is_accident_free, is_flood_free, hot_deal_label,
@@ -7,69 +13,69 @@ INSERT INTO cars (
     image_url, description, specifications, slug
 ) VALUES
 (
-    1, 'Avanza 1.5 G CVT', 2024, 272500000.00, 15000,
+    1, 1, 'Avanza 1.5 G CVT', 2024, 272500000.00, 15000,
     1500, 'Gasoline', 1, 'BK 1234 AA', '2025-08-20', 'White', 7, 2, 'Yes', 'Yes', 'Like New',
-    '1.5L 4-silinder', 'CVT', 106, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '1.5L 4-silinder', 'CVT', 106, 'Available', 'Approved', 
     '../../images/raize.png', 'Generasi terbaru dari MPV terlaris di Indonesia.', '{"torque": "137 Nm"}', 'toyota-avanza-1-5-g-cvt-2024-1'
 ),
 (
-    3, 'Pajero Sport Dakar Ultimate 4x2', 2024, 675600000.00, 22000,
+    3, 2, 'Pajero Sport Dakar Ultimate 4x2', 2024, 675600000.00, 22000,
     2400, 'Diesel', 1, 'BK 5678 BB', '2025-05-15', 'Black', 7, 7, 'Yes', 'Yes', 'Best Deal',
-    '2.4L MIVEC Diesel', '8-speed AT', 181, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '2.4L MIVEC Diesel', '8-speed AT', 181, 'Available', 'Approved', 
     '../../images/raize.png', 'SUV ladder-frame yang tangguh dan mewah.', '{"torque": "430 Nm"}', 'mitsubishi-pajero-sport-dakar-ultimate-4x2-2024-2'
 ),
 (
-    2, 'Brio Satya E CVT', 2025, 198300000.00, 5500,
+    2, 1, 'Brio Satya E CVT', 2025, 198300000.00, 5500,
     1200, 'Gasoline', 1, 'BK 9101 CC', '2026-01-30', 'Red', 5, 2, 'No', 'Yes', 'Low KM',
-    '1.2L i-VTEC', 'CVT', 90, 'Hold', 'Pending', -- Akan muncul di tabel "Perlu Direview"
+    '1.2L i-VTEC', 'CVT', 90, 'Hold', 'Pending',
     '../../images/raize.png', 'City car terpopuler dengan desain sporty.', '{"torque": "110 Nm"}', 'honda-brio-satya-e-cvt-2025-3'
 ),
 (
-    6, 'Ioniq 5 Prime Standard Range', 2024, 782000000.00, 12000,
+    6, 2, 'Ioniq 5 Prime Standard Range', 2024, 782000000.00, 12000,
     0, 'Electric', 1, 'B 2024 EV', '2025-11-05', 'Silver', 5, 6, 'Yes', 'Yes', NULL,
-    'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 170, 'Available', 'Approved', -- Sudah tampil di halaman user
+    'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 170, 'Available', 'Approved',
     '../../images/raize.png', 'Mobil listrik murni dengan desain futuristik.', '{"torque": "350 Nm"}', 'hyundai-ioniq-5-prime-sr-2024-4'
 ),
 (
-    4, 'Ertiga Hybrid Cruise AT', 2024, 299000000.00, 9800,
+    4, 1, 'Ertiga Hybrid Cruise AT', 2024, 299000000.00, 9800,
     1500, 'Hybrid', 1, 'BK 1122 DD', '2025-09-10', 'Gray', 7, 2, 'Yes', 'Yes', 'Kondisi Mulus',
-    '1.5L K15B + ISG', '4-speed AT', 104, 'Sold Out', 'Rejected', -- Contoh data ditolak
+    '1.5L K15B + ISG', '4-speed AT', 104, 'Sold Out', 'Rejected', 
     '../../images/raize.png', 'MPV keluarga yang efisien berkat teknologi hybrid.', '{"torque": "138 Nm"}', 'suzuki-ertiga-hybrid-cruise-at-2024-5'
 ),
 (
-    5, 'Rocky 1.0 R TC CVT ASA', 2024, 273450000.00, 18000,
+    5, 2, 'Rocky 1.0 R TC CVT ASA', 2024, 273450000.00, 18000,
     1000, 'Gasoline', 1, 'BK 3344 EE', '2025-07-22', 'Yellow', 5, 6, 'Yes', 'Yes', 'Harga Spesial',
-    '1.0L Turbo 3-silinder', 'D-CVT', 98, 'Available', 'Reviewed', -- Revisi: Akan muncul di tabel "Siap Disetujui"
+    '1.0L Turbo 3-silinder', 'D-CVT', 98, 'Available', 'Reviewed', 
     '../../images/raize.png', 'SUV kompak dengan mesin turbo yang responsif.', '{"torque": "140 Nm"}', 'daihatsu-rocky-1-0-r-tc-cvt-asa-2024-6'
 ),
 (
-    7, 'Air EV Long Range', 2024, 299500000.00, 7000,
+    7, 1, 'Air EV Long Range', 2024, 299500000.00, 7000,
     0, 'Electric', 1, 'BK 5566 FF', '2025-12-01', 'White', 4, 2, 'Yes', 'Yes', 'Cocok Untuk Kota',
-    'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 40, 'Available', 'Approved', -- Sudah tampil di halaman user
+    'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 40, 'Available', 'Approved', 
     '../../images/raize.png', 'Mobil listrik mungil untuk perkotaan yang praktis.', '{"torque": "110 Nm"}', 'wuling-air-ev-long-range-2024-7'
 ),
 (
-    1, 'Kijang Innova Zenix G Hybrid CVT', 2024, 477600000.00, 25000,
+    1, 2, 'Kijang Innova Zenix G Hybrid CVT', 2024, 477600000.00, 25000,
     2000, 'Hybrid', 1, 'BK 7788 GG', '2025-04-18', 'Black', 7, 6, 'Yes', 'No', 'Hot Deal',
-    '2.0L M20A-FXS Hybrid', 'e-CVT', 186, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '2.0L M20A-FXS Hybrid', 'e-CVT', 186, 'Available', 'Approved', 
     '../../images/raize.png', 'Revolusi dari Kijang Innova dengan teknologi hybrid.', '{"torque": "205 Nm"}', 'toyota-kijang-innova-zenix-g-hybrid-2024-8'
 ),
 (
-    2, 'HR-V 1.5L Turbo RS', 2024, 540300000.00, 16500,
+    2, 1, 'HR-V 1.5L Turbo RS', 2024, 540300000.00, 16500,
     1500, 'Gasoline', 1, 'BK 9900 HH', '2025-06-25', 'Red', 5, 6, 'Yes', 'Yes', 'Tipe Tertinggi',
-    '1.5L VTEC Turbo', 'CVT', 177, 'Hold', 'Reviewed', -- Revisi: Akan muncul di tabel "Siap Disetujui"
+    '1.5L VTEC Turbo', 'CVT', 177, 'Hold', 'Reviewed', 
     '../../images/raize.png', 'Compact SUV dengan desain coupe yang stylish.', '{"torque": "240 Nm"}', 'honda-hr-v-1-5l-turbo-rs-2024-9'
 ),
 (
-    11, '320i M Sport', 2024, 1165000000.00, 8500,
+    11, 2, '320i M Sport', 2024, 1165000000.00, 8500,
     2000, 'Gasoline', 1, 'B 320 BOS', '2025-10-10', 'Blue', 5, 8, 'Yes', 'Yes', 'Collector Item',
-    '2.0L BMW TwinPower Turbo', '8-speed Steptronic', 184, 'Available', 'Approved', -- Sudah tampil di halaman user
+    '2.0L BMW TwinPower Turbo', '8-speed Steptronic', 184, 'Available', 'Approved',
     '../../images/raize.png', 'Sedan sport legendaris yang mendefinisikan kenikmatan berkendara.', '{"torque": "300 Nm"}', 'bmw-320i-m-sport-2024-10'
 ),
 (
-    8, 'Omoda 5 RZ', 2024, 404900000.00, 11000,
+    8, 1, 'Omoda 5 RZ', 2024, 404900000.00, 11000,
     1500, 'Gasoline', 1, 'BK 1505 RZ', '2025-03-12', 'Gray', 5, 6, 'N/A', 'N/A', 'Futuristik',
-    '1.5L Turbo', '9-speed CVT', 145, 'Available', 'Pending', -- Akan muncul di tabel "Perlu Direview"
+    '1.5L Turbo', '9-speed CVT', 145, 'Available', 'Pending', 
     '../../images/raize.png', 'Crossover futuristik dengan desain "Art in Motion".', '{"torque": "230 Nm"}', 'chery-omoda-5-rz-2024-11'
 );
 
@@ -181,22 +187,9 @@ INSERT INTO car_types (car_id, type_id) VALUES
 (11, 5),
 (11, 1); -- BMW X3 = SUV
 
-INSERT INTO showrooms (id, name, address, phone, email, manager_name) VALUES
-(1, 'Showroom Medan Jaya', 'Jl. Gatot Subroto No. 123, Medan', '061-123456', 'sales@medanjaya.com', 'Budi Santoso'),
-(2, 'Sumatra Auto Gallery', 'Jl. Sisingamangaraja No. 45, Medan', '061-654321', 'info@sumatraauto.com', 'Citra Lestari');
 
-INSERT INTO car_showrooms (car_id, showroom_id, stock_quantity, showroom_price, is_available) VALUES 
--- Showroom A inventory
-(1, 1, 3, 250000000.00, TRUE),  -- Avanza di Showroom A
-(2, 1, 2, 550000000.00, TRUE),  -- Fortuner di Showroom A
-(3, 1, 1, 650000000.00, TRUE),  -- Civic di Showroom A
-(4, 1, 0, 750000000.00, FALSE), -- CR-V di Showroom A (out of stock)
 
--- Showroom B inventory
-(1, 2, 5, 248000000.00, TRUE),  -- Avanza di Showroom B (harga beda)
-(3, 2, 2, 645000000.00, TRUE),  -- Civic di Showroom B (harga beda)
-(4, 2, 3, 745000000.00, TRUE),  -- CR-V di Showroom B
-(5, 2, 1, 1200000000.00, TRUE); -- BMW X3 di Showroom B saja
+
 
 INSERT INTO users (user_id, name, no_hp, password, email, role, alamat)VALUES 
 ('USR001', 'Bryan Cen', '08123456789', 'admin01', 'bryancenbryan@gmail.com', 'customer', 'Jl. Melati No. 1'),
@@ -209,3 +202,10 @@ INSERT INTO leasing_rules (leasing_name, min_dp_percentage, max_dp_percentage, a
 ('BCA Finance', 20.00, 80.00, 500000.00, 3.88, 4.28, 4.58, 4.88, 5.28),
 ('Adira Finance', 15.00, 75.00, 750000.00, 4.10, 4.50, 4.80, 5.10, 5.50),
 ('Mandiri Tunas Finance', 25.00, 85.00, 600000.00, 3.95, 4.35, 4.65, 4.95, 5.35);
+
+INSERT INTO staff_pemasaran (nama, jabatan, email, telepon, showroom_id) 
+VALUES 
+('Andi Wijaya', 'Sales Head', 'andi.w@email.com', '081234567890', 1),
+('Citra Lestari', 'Sales Executive', 'citra.l@email.com', '081234567891', 1),
+('Anton', 'Sales Head', 'anton.w@email.com', '08123456890', 1),
+('Rann', 'Sales Executive', 'rann.l@email.com', '08134567891', 1);

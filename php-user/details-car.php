@@ -12,12 +12,20 @@ if(!$slug){
 
 try{
     $db = DB::getDB();
-    $sql = "SELECT 
-                c.*, 
-                b.name AS brand_name 
-            FROM cars AS c
-            JOIN daftarBrands AS b ON c.id_brand = b.id
-            WHERE c.slug = ?";
+    $sql = "SELECT  
+            c.*,  
+            b.name AS brand_name, 
+            s.name AS showroom_name, 
+            s.address AS showroom_address, 
+            s.phone AS showroom_phone,
+            GROUP_CONCAT(t.name SEPARATOR ', ') AS car_types
+        FROM cars AS c 
+        JOIN daftarBrands AS b ON c.id_brand = b.id 
+        LEFT JOIN showrooms AS s ON c.showroom_id = s.id
+        LEFT JOIN car_types AS ct ON c.id = ct.car_id
+        LEFT JOIN daftarTypes AS t ON ct.type_id = t.id
+        WHERE c.slug = ?
+        GROUP BY c.id"; 
     
     $stmt = $db->prepare($sql);
     $stmt->execute([$slug]);
@@ -40,6 +48,8 @@ try{
     $sql_leasing = "SELECT leasing_name FROM leasing_rules WHERE is_active = TRUE ORDER BY leasing_name ASC";
     $stmt_leasing = $db->query($sql_leasing);
     $leasingPartners = $stmt_leasing->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 } catch (Exception $e){
     http_response_code(500);

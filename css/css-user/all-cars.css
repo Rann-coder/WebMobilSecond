@@ -722,3 +722,42 @@ p {
         grid-template-columns: 1fr;
     }
 }
+
+.search-container {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.search-bar {
+    display: flex;
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+#car-search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1rem;
+    outline: none;
+}
+
+#search-button {
+    border: none;
+    background: linear-gradient(135deg, #2c5aa0, #1e3f73);
+    color: white;
+    padding: 0 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#search-button:hover {
+    background: linear-gradient(135deg, #3a6bb9, #2a4f8a);
+}
+
