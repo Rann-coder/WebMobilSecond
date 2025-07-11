@@ -1,0 +1,23 @@
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/liked-cars.css'] %}
+{% include '_header.twig.html' %}
+
+<section class="liked-cars-section">
+  <h2>Mobil yang Anda Sukai</h2>
+  <div class="liked-cars-grid">
+    {% for car in likedCars %}
+      <div class="car-card">
+        <img src="../{{ car.image_url }}" alt="{{ car.name }}">
+        <div class="car-info">
+          <h3>{{ car.name }}</h3>
+         <p>Rp {{ car.price is defined and car.price is not null ? car.price|number_format(0, ',', '.') : 'N/A' }}</p>
+         <p>{{ car.km is defined and car.km is not null ? car.km|number_format(0, ',', '.') ~ ' km' : 'N/A' }} | {{ car.transmission ?? 'N/A' }}</p>
+
+          <a href="details-car.php?slug={{ car.slug }}" class="details-btn">Lihat Detail</a>
+          <button class="like-btn liked">Liked</button>
+        </div>
+      </div>
+    {% else %}
+      <p>Belum ada mobil yang Anda sukai.</p>
+    {% endfor %}
+  </div>
+</section>

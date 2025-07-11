@@ -52,3 +52,13 @@ CREATE TABLE staff_pemasaran (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+CREATE TABLE likes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(100),
+    car_id BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT fk_car FOREIGN KEY (car_id) REFERENCES cars(id),
+    CONSTRAINT unique_like UNIQUE (user_id, car_id)
+);

@@ -64,10 +64,10 @@
 
             <div class="like-share-section">
                 <div class="like-share-buttons">
-                    {% if session.user is defined %}
-                        <button class="like-btn" id="like-btn">
+                   {% if session.user is defined %}
+                        <button class="like-btn {{ alreadyLiked ? 'liked' : '' }}" id="like-btn" data-car-id="{{ car.id }}">
                             <span class="heart-icon">💖</span>
-                            <span class="like-text">Like</span>
+                            <span class="like-text">{{ alreadyLiked ? 'Liked' : 'Like' }}</span>
                         </button>
                     {% else %}
                         <a href="login.php" class="like-btn">
@@ -75,6 +75,7 @@
                             <span class="like-text">Login untuk Like</span>
                         </a>
                     {% endif %}
+
                     <button class="share-btn" id="share-btn">
                         <span class="share-icon">📤</span>
                         <span class="share-text">Share</span>
