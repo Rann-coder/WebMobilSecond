@@ -37,15 +37,10 @@ CREATE TABLE leasing_rules (
 
 
 INSERT INTO daftarBahanBakar (name) VALUES
-('Pertalite'),
-('Pertamax'),
-('Pertamax Turbo'),
-('Solar'),
-('Dexlite'),
-('Pertamina Dex'),
-('Bio Solar'),
-('Premium'),
-('Pertamax Green 95');
+('Gasoline'),
+('Diesel'),
+('Hybrid'),
+('Electric');
 
 CREATE TABLE staff_pemasaran (
     id INT AUTO_INCREMENT PRIMARY KEY,

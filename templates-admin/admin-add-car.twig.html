@@ -1,5 +1,5 @@
 {% set page_css = ['../css/css-admin/header.css',  '../css/css-admin/admin-add-car.css', '../css/css-admin/footer.css'] %}
-
+{% set page_scripts = ['../script/script-admin/admin-image-handler.js'] %}
 {% include '_header-admin.twig.html' %}
 
 <header class="admin-header">
@@ -132,24 +132,78 @@
             </div>
         </div>
 
-        <!-- Deskripsi & Media -->
         <div class="form-section">
-            <h2>Deskripsi & Media</h2>
-            <div class="form-group">
-                <label for="car-description">Deskripsi Iklan</label>
-                <textarea id="car-description" name="description" rows="6" placeholder="Jelaskan kondisi dan keunggulan mobil..."></textarea>
+                <h2>Deskripsi & Media</h2>
+                <div class="form-group">
+                    <label for="car-description">Deskripsi Iklan</label>
+                    <textarea id="car-description" name="description" rows="4" placeholder="Jelaskan kondisi dan keunggulan mobil..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Gambar Galeri (Wajib isi minimal 1 gambar & caption)</label>
+                    <div class="image-upload-grid">
+
+                        <div class="image-upload-slot">
+                            <label for="file-1" class="image-placeholder">
+                                <img id="preview-1" src="" alt="Preview 1" class="image-preview">
+                                <span>+ Tambah Gambar Utama</span>
+                                <button type="button" class="remove-image" onclick="removeImage(1)">×</button>
+                                <div class="success-indicator">✓</div>
+                            </label>
+                            <input type="file" id="file-1" name="gallery_images[]" accept="image/*" class="file-input" required>
+                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar utama..." required>
+                        </div>
+
+                        <div class="image-upload-slot">
+                            <label for="file-2" class="image-placeholder">
+                                <img id="preview-2" src="" alt="Preview 2" class="image-preview">
+                                <span>+ Tambah Gambar 2</span>
+                                <button type="button" class="remove-image" onclick="removeImage(2)">×</button>
+                                <div class="success-indicator">✓</div>
+                            </label>
+                            <input type="file" id="file-2" name="gallery_images[]" accept="image/*" class="file-input">
+                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar 2...">
+                        </div>
+
+                        <div class="image-upload-slot">
+                            <label for="file-3" class="image-placeholder">
+                                <img id="preview-3" src="" alt="Preview 3" class="image-preview">
+                                <span>+ Tambah Gambar 3</span>
+                                <button type="button" class="remove-image" onclick="removeImage(3)">×</button>
+                                <div class="success-indicator">✓</div>
+                            </label>
+                            <input type="file" id="file-3" name="gallery_images[]" accept="image/*" class="file-input">
+                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar 3...">
+                        </div>
+
+                        <div class="image-upload-slot">
+                            <label for="file-4" class="image-placeholder">
+                                <img id="preview-4" src="" alt="Preview 4" class="image-preview">
+                                <span>+ Tambah Gambar 4</span>
+                                <button type="button" class="remove-image" onclick="removeImage(4)">×</button>
+                                <div class="success-indicator">✓</div>
+                            </label>
+                            <input type="file" id="file-4" name="gallery_images[]" accept="image/*" class="file-input">
+                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar 4...">
+                        </div>
+                        
+                        <div class="image-upload-slot">
+                            <label for="file-5" class="image-placeholder">
+                                <img id="preview-5" src="" alt="Preview 5" class="image-preview">
+                                <span>+ Tambah Gambar 5</span>
+                                <button type="button" class="remove-image" onclick="removeImage(5)">×</button>
+                                <div class="success-indicator">✓</div>
+                            </label>
+                            <input type="file" id="file-5" name="gallery_images[]" accept="image/*" class="file-input">
+                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar 5...">
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Gambar Galeri</label>
-                <label for="gallery-files" class="file-input-label">
-                    <span>+</span> Pilih Gambar (Bisa lebih dari satu)
-                </label>
-                <input type="file" id="gallery-files" name="gallery_images[]" multiple style="display: none;">
-                <div id="image-preview-container" class="preview-grid"></div>
-            </div>
-        </div>
 
     </form>
 </section>
+
 
 {% include '_footer-admin.twig.html' %}
