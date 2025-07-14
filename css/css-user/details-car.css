@@ -473,6 +473,7 @@ header, .header, .navbar {
     display: flex;
     gap: 12px;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
 .like-btn, .share-btn {
@@ -490,6 +491,7 @@ header, .header, .navbar {
     font-size: 0.9rem;
     font-weight: 500;
     color: #6c757d;
+    text-decoration: none;
 }
 
 .like-btn:hover {

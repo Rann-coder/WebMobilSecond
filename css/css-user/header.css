@@ -115,3 +115,34 @@ nav a:hover {
     justify-content: flex-end;
   }
 }
+
+.user-avatar-greeting {
+  text-decoration: none; /* HILANGKAN underline */
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.user-avatar-greeting:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.user-avatar-greeting .avatar-circle {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}

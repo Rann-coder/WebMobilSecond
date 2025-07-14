@@ -23,7 +23,12 @@
     </nav>
     <div class="auth-buttons">
       {% if session.user is defined %}
-        <span>Halo, {{ session.user.name }}</span>
+        <div class="user-avatar-greeting">
+           <a href="../php-user/profile.php" class="user-avatar-greeting">
+            <div class="avatar-circle">{{ session.user.name[:1]|upper }}</div>
+            <span class="greeting-text">Halo, {{ session.user.name|split(' ')[0]|capitalize }}</span>
+           </a>
+        </div>
         <a href="../php-user/logout.php">Logout</a>
       {% else %}
         <a href="../php-user/login.php">Login</a>
