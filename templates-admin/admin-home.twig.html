@@ -1,4 +1,4 @@
-{% set page_css = ['../css/css-admin/header.css',  '../css/css-admin/admin-home.css', '../css/css-admin/footer.css'] %}
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-home.css', '../css/css-admin/footer.css'] %}
 
 {% include '_header-admin.twig.html' %}
 
@@ -89,6 +89,17 @@
                                     {% if car.approval_status != 'Reviewed' %}disabled{% endif %}
                                     title="{% if car.approval_status != 'Reviewed' %}Mobil harus direview terlebih dahulu{% else %}Tolak mobil ini{% endif %}">
                                     Tolak
+                                </button>
+                            </form>
+
+                            <form method="POST" action="{{ base_url }}/php-admin/admin-delete-car.php" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus mobil ini?');">
+                                <input type="hidden" name="car_id" value="{{ car.id }}">
+                                <button 
+                                    type="submit" 
+                                    class="btn-delete"
+                                    {% if car.approval_status != 'Reviewed' %}disabled{% endif %}
+                                    title="{% if car.approval_status != 'Reviewed' %}Mobil harus direview terlebih dahulu{% else %}Hapus mobil ini{% endif %}">
+                                    Hapus
                                 </button>
                             </form>
                         </td>

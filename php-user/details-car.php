@@ -89,7 +89,7 @@ echo $twig->render(
       'galleryImages' => $galleryImages,
       'leasingPartners' => $leasingPartners,
       'whatsapp_url' => $whatsapp_url,
-      'session' => $_SESSION, // <-- penting agar bisa diakses di Twig
+      'session' => $_SESSION, 
       'alreadyLiked' => $alreadyLiked
     ]
 );
