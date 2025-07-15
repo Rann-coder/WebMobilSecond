@@ -49,6 +49,7 @@ CREATE TABLE staff_pemasaran (
     email VARCHAR(100) UNIQUE,
     telepon VARCHAR(20),
     foto_url VARCHAR(255),  
+    status ENUM('active', 'inactive') NOT NULL DEFAULT 'active',
     
     showroom_id INT NOT NULL, 
 
@@ -59,7 +60,6 @@ CREATE TABLE staff_pemasaran (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
 
 CREATE TABLE likes (
     id INT AUTO_INCREMENT PRIMARY KEY,

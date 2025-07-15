@@ -21,7 +21,7 @@ CREATE TABLE showrooms (
     phone VARCHAR(20),
     email VARCHAR(100),
     opening_hours VARCHAR(200),
-    status ENUM('active', 'renovation', 'opening_soon') DEFAULT 'active',
+   status ENUM('active', 'renovation', 'opening_soon', 'permanent_closed') DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

@@ -1,0 +1,96 @@
+{% set page_css = ['../css/css-admin/header.css',  '../css/css-admin/admin-showroom.css', '../css/css-admin/footer.css'] %}
+{% set page_scripts = ['../script/script-admin/admin-image-handler.js'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Our Showrooms</h1>
+    <div class="header-actions">
+        <a href="admin-add-showroom.php" class="btn-primary">+ Tambah Showroom Baru</a>
+    </div>
+</header>
+
+<main>
+
+  
+    
+    <h2 id="showroom">Our Showrooms</h2>
+    <div class="content-section">
+    {% for showroom in showrooms %}
+<div class="showroom-feature {% if loop.index is even %}showroom-feature--reverse{% endif %}">
+    <div class="showroom-details">
+        <h3 class="showroom-name">{{ showroom.name }}</h3>
+        
+        <div class="showroom-info">
+            <div class="info-item">
+                <span class="info-icon">📍</span>
+                <div class="info-content">
+                    <strong class="info-label">Alamat</strong>
+                    <span class="info-value">{{ showroom.address }}</span>
+                </div>
+            </div>
+
+        
+            {% if showroom.status == 'active' %}
+                <div class="info-item">
+                    <span class="info-icon">🕒</span>
+                    <div class="info-content">
+                        <strong class="info-label">Jam Buka</strong>
+                        <span class="info-value">{{ showroom.opening_hours }}</span>
+                    </div>
+                </div>
+            {% else %}
+                <div class="info-item showroom-status">
+                    {% if showroom.status == 'renovation' %}
+                        <span class="info-icon">🚧</span>
+                        <div class="info-content">
+                            <strong class="info-label">Status</strong>
+                            <span class="info-value status-badge status-renovation">Sedang Renovasi</span>
+                        </div>
+                    {% elseif showroom.status == 'opening_soon' %}
+                        <span class="info-icon">✨</span>
+                        <div class="info-content">
+                            <strong class="info-label">Status</strong>
+                            <span class="info-value status-badge status-opening-soon">Segera Buka</span>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+   
+
+            <div class="info-item">
+                <span class="info-icon">📞</span>
+                <div class="info-content">
+                    <strong class="info-label">Telepon</strong>
+                    <span class="info-value">{{ showroom.phone }}</span>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <div class="showroom-actions">
+            <a href="showroom.php?id={{ showroom.id }}" class="cta-button">Lihat Halaman</a>
+            
+            <a href="admin-edit-showroom.php?id={{ showroom.id }}" class="btn-action btn-edit">
+                ✏ Edit
+            </a>
+
+          <a href="admin-delete-showroom.php?id={{ showroom.id }}" 
+   class="btn-action btn-delete" 
+   onclick="return confirm('Anda yakin ingin menghapus showroom {{ showroom.name|e('js') }}?');">
+    🗑 Hapus
+</a>
+        </div>
+
+        
+
+    </div>
+
+    <div class="showroom-image">
+        <img src="../images/showroomA.jpg" alt="{{ showroom.name }} Showroom">
+    </div>
+</div>
+{% endfor %}
+</div>
+
+{% include '_footer-admin.twig.html' %}

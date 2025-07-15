@@ -3,46 +3,58 @@
 require_once '../vendor/autoload.php';
 
 use Uph\Mobilsecond\DB;
-use Uph\Mobilsecond\Twig;
+
+$db = DB::getDB();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nama     = $_POST['nama'] ?? '';
+    $jabatan  = $_POST['jabatan'] ?? '';
+    $email    = $_POST['email'] ?? '';
+    $telepon  = $_POST['telepon'] ?? '';
+    $status   = $_POST['status'] ?? 'inactive';
+    $showroom = $_POST['showroom_id'] ?? null;
+
+    if (!$nama || !$jabatan || !$email || !$telepon || !$showroom) {
+        die("Data tidak lengkap.");
+    }
+
+    // Upload foto
+    $fotoUrl = null;
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../uploads/staffs/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+
+        $filename = uniqid() . '_' . basename($_FILES['foto']['name']);
+        $targetFile = $uploadDir . $filename;
+
+        if (move_uploaded_file($_FILES['foto']['tmp_name'], $targetFile)) {
+            $fotoUrl = 'uploads/staffs/' . $filename;
+        } else {
+            die("Gagal mengupload foto.");
+        }
+    }
+
     try {
-        $db = DB::getDB();
-
-        $sql = "INSERT INTO leasing_rules (
-                    leasing_name, admin_fee, min_dp_percentage, max_dp_percentage,
-                    interest_rate_1yr, interest_rate_2yr, interest_rate_3yr,
-                    interest_rate_4yr, interest_rate_5yr, is_active
-                ) VALUES (
-                    :leasing_name, :admin_fee, :min_dp, :max_dp,
-                    :rate_1, :rate_2, :rate_3, :rate_4, :rate_5, :is_active
-                )";
-
-        $stmt = $db->prepare($sql);
+        $stmt = $db->prepare("
+            INSERT INTO staff_pemasaran (nama, jabatan, email, telepon, foto_url, status, showroom_id)
+            VALUES (:nama, :jabatan, :email, :telepon, :foto_url, :status, :showroom_id)
+        ");
         $stmt->execute([
-            'leasing_name' => $_POST['leasing_name'],
-            'admin_fee' => $_POST['admin_fee'],
-            'min_dp' => $_POST['min_dp_percentage'],
-            'max_dp' => $_POST['max_dp_percentage'],
-            'rate_1' => $_POST['interest_rate_1yr'],
-            'rate_2' => $_POST['interest_rate_2yr'],
-            'rate_3' => $_POST['interest_rate_3yr'],
-            'rate_4' => $_POST['interest_rate_4yr'],
-            'rate_5' => $_POST['interest_rate_5yr'],
-            'is_active' => $_POST['is_active']
+            ':nama'        => $nama,
+            ':jabatan'     => $jabatan,
+            ':email'       => $email,
+            ':telepon'     => $telepon,
+            ':foto_url'    => $fotoUrl,
+            ':status'      => $status,
+            ':showroom_id' => $showroom
         ]);
 
-        header("Location: admin-management.php");
+        header('Location: admin-staffs.php');
         exit;
-    } catch (Exception $e) {
-        die("Gagal menyimpan data leasing: " . $e->getMessage());
+
+    } catch (PDOException $e) {
+        die("Gagal menyimpan data: " . $e->getMessage());
     }
-} else {
-    $twig = Twig::make('../templates-admin');
-    echo $twig->render(
-        'admin-add-leasing.twig.html',
-        [
-            'page_title' => 'Tambah Mitra Leasing'
-        ]
-    );
 }
