@@ -45,24 +45,7 @@
                 <span>⚙ {{car.transmission}}</span>
             </div>
 
-            <div class="info-items">
-                <div class="info-item">
-                        <span class="info-label">All Inclusive Price</span>
-                        <span class="info-value">›</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">1-Year Warranty</span>
-                        <span class="info-value">Engine, Transmission, AC</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Road Tax</span>
-                        <span class="info-value">Included</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">1 Year TLO Insurance</span>
-                        <span class="info-value">Included</span>
-                    </div>
-            </div>
+            
 
             <div class="info-location">
                 <h4>Lokasi Unit</h4>
@@ -77,17 +60,25 @@
             </div>
 
             <div class="action-buttons">
-                    <button class="btn btn-primary">
-                        📞 Book Car
-                        <small style="display: block; font-size: 0.8rem; font-weight: 400;">Refundable Booking</small>
-                    </button>
-                    <button class="btn btn-secondary">
-                        🚗 Free Test Drive
-                        <small style="display: block; font-size: 0.8rem; font-weight: 400;">At Experience Centers</small>
-                    </button>
+                    {% if session.user is defined %}
+                    <a href="{{ whatsapp_url_booking }}" class="btn btn-primary" style="text-decoration: none;" target="_blank">
+                        📞 Book Car<br><small>Refundable Booking</small>
+                    </a>    
+                    <a href="{{ whatsapp_url_testdrive }}" class="btn btn-secondary" style="text-decoration: none;" target="_blank">
+                        🚗 Test Drive<br><small>Test It Before You Buy</small>
+                    </a>
+                {% else %}
+                    <a href="login.php" class="btn btn-primary" style="text-decoration: none;">
+                        📞 Book Car<br><small>Login to Book</small>
+                    </a>    
+                    <a href="login.php" class="btn btn-secondary" style="text-decoration: none;">
+                        🚗 Test Drive<br><small>Login to Request</small>
+                    </a>
+                {% endif %}
+
                 </div>
 
-                <div class="like-share-section">
+            <div class="like-share-section">
                 <div class="like-share-buttons">
                    {% if session.user is defined %}
                         <button class="like-btn {{ alreadyLiked ? 'liked' : '' }}" id="like-btn" data-car-id="{{ car.id }}">
@@ -108,12 +99,14 @@
                 </div>
             </div>
 
+
                 <div class="contact-section">
-                    <div class="contact-text">Need more help? Contact us via</div>
-                    <a href="{{ whatsapp_url }}" class="whatsapp-btn">💬 WhatsApp</a>
-                </div>
+                <div class="contact-text">Need more help? Contact us via</div>
+                <a href="{{ whatsapp_url_diskusi }}" class="whatsapp-btn">💬 WhatsApp</a>
+            </div>  
         </aside>
     </div>
+
     
 
 
@@ -207,7 +200,25 @@
         </div>
     </section>
 
-    
+    <section class="inspection-gallery-section">
+    <h2>Laporan Inspeksi & Detail Foto</h2>
+    <div class="inspection-grid">
+        {# Sekarang menggunakan variabel 'inspectionImages' yang benar #}
+        {% for image in inspectionImages %}
+            <div class="inspection-item">
+                <div class="inspection-image-container">
+                    <img src="../{{ image.image_path|e }}" alt="{{ image.caption|e }}">
+                </div>
+                <div class="inspection-caption">
+                    {{ image.caption|e }}
+                </div>
+            </div>
+        {% else %}
+             <p style="text-align:center; color: #888; grid-column: 1 / -1;">Tidak ada foto laporan inspeksi untuk mobil ini.</p>
+        {% endfor %}
+    </div>
+</section>
+
     <section class="financing-calculator-section">
         <h2>Kalkulator Kredit</h2>
         <div class="calculator-container">

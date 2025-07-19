@@ -13,5 +13,5 @@ $cars = $q->fetchAll(PDO::FETCH_ASSOC);
 $twig = Twig::make('../templates-user');
 echo $twig->render('compare-select.twig.html', [
     'cars' => $cars,
-    'session' => $_SESSION // <-- penting agar bisa diakses di Twig
+    'session' => $_SESSION 
 ]);

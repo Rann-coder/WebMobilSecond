@@ -1,7 +1,5 @@
 <?php
-session_start();        // Mulai sesi
-session_destroy();      // Hapus semua data session
-
-// Redirect ke halaman login (atau halaman utama)
+session_start();      
+session_destroy();   
 header('Location: home.php');
 exit;

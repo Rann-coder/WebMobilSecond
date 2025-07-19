@@ -1,0 +1,183 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-add-car.css', '../css/css-admin/footer.css'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Review Data Mobil</h1>
+    <div class="header-actions">
+        <div class="header-actions">
+    <a href="../php-admin/admin-home.php" class="btn-secondary">← Kembali</a>
+    <a href="admin-home.php" class="btn-primary" style="margin-left: 10px;">✔ Sudah Direview</a>
+</div>
+
+    </div>
+</header>
+
+<section class="admin-content">
+    {% if car %}
+        <div class="form-section">
+            <h2>Informasi Utama</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nama Mobil</label>
+                    <p>{{ car.name }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Merek</label>
+                    <p>{{ car.brand_name }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Harga Cash (Rp)</label>
+                    <p>Rp {{ car.price|number_format(0, ',', '.') }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Tahun Pembuatan</label>
+                    <p>{{ car.year }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Warna</label>
+                    <p>{{ car.color }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Status Penjualan</label>
+                    <p>{{ car.status }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Lokasi Showroom</label>
+                    <p>{{ car.showroom_name ?? 'Tidak diketahui' }}</p>
+                </div>
+                <div class="form-group form-group-full-width">
+                    <label>Tipe Mobil</label>
+                    {% if car.car_types is defined and car.car_types|length > 0 %}
+                        <div class="car-types-display">
+                            {% for type in car.car_types %}
+                                <span class="type-badge">{{ type.name }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>Tidak ada tipe yang dipilih</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Spesifikasi Teknis</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Kilometer</label>
+                    <p>{{ car.km }} km</p>
+                </div>
+                <div class="form-group">
+                    <label>Tipe Bahan Bakar</label>
+                    <p>{{ car.fuel_type }}</p>
+                </div>
+                <div class="form-group">
+                    <label>CC Mesin</label>
+                    <p>{{ car.engine_cc }} cc</p>
+                </div>
+                <div class="form-group">
+                    <label>Tenaga (HP)</label>
+                    <p>{{ car.horsepower }} HP</p>
+                </div>
+                <div class="form-group">
+                    <label>Transmisi</label>
+                    <p>{{ car.transmission }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Detail Mesin</label>
+                    <p>{{ car.engine }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Jumlah Kursi</label>
+                    <p>{{ car.seat_count }} kursi</p>
+                </div>
+                <div class="form-group">
+                    <label>Jumlah Airbag</label>
+                    <p>{{ car.airbag_count }} airbag</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Kondisi & Legalitas</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Pemilik Sebelumnya (Tangan ke-)</label>
+                    <p>{{ car.previous_owners }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Plat Nomor</label>
+                    <p>{{ car.license_plate }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Pajak Berlaku Hingga</label>
+                    <p>{{ car.tax_valid_until|date('d-m-Y') }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Bebas Banjir</label>
+                    <p>{{ car.is_flood_free }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Bebas Tabrakan</label>
+                    <p>{{ car.is_accident_free }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Deskripsi Mobil</h2>
+            <div class="form-group">
+                <p>{{ car.description|raw }}</p>
+            </div>
+        </div>
+
+        <div class="form-section">
+    <h2>Galeri Mobil</h2>
+    {% if car.gallery is defined and car.gallery|length > 0 %}
+        <div class="gallery-grid">
+            {% for item in car.gallery %}
+                <div class="gallery-item">
+                    <div class="gallery-image-container">
+                        <img src="../{{ item.image_path }}" alt="{{ item.caption }}" class="gallery-image">
+                    </div>
+                    {% if item.caption %}
+                        <div class="caption">
+                            {{ item.caption }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Belum ada gambar galeri yang ditambahkan.</p>
+    {% endif %}
+</div>
+
+<div class="form-section">
+    <h2>Hasil Inspeksi</h2>
+    {% if inspectionImages is not empty %}
+        <div class="gallery-grid">
+            {% for item in inspectionImages %}
+                <div class="gallery-item">
+                    <div class="gallery-image-container">
+                        <img src="../{{ item.image_path }}" alt="{{ item.caption }}" class="gallery-image">
+                    </div>
+                    {% if item.caption %}
+                        <div class="caption">
+                            {{ item.caption }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Belum ada gambar hasil inspeksi yang ditambahkan.</p>
+    {% endif %}
+</div>
+
+    {% else %}
+        <p class="no-data-message">Data mobil tidak ditemukan.</p>
+    {% endif %}
+</section>
+
+{% include '_footer-admin.twig.html' %}

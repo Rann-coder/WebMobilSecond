@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // === 1. STATE MANAGEMENT ===
     let selectedBrands = ['All'];
     let selectedTypes = ['All'];
     let searchTerm = '';
     let allCarsData = [];
 
-    // === 2. DOM ELEMENT SELECTION ===
     const brandsList = document.getElementById('brands-list');
     const typesList = document.getElementById('types-list');
     const vehicleGrid = document.querySelector('.vehicle-grid');
@@ -20,8 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const scrollRightBrands = document.getElementById('scroll-right-btn-brands');
     const scrollLeftTypes = document.getElementById('scroll-left-btn-types');
     const scrollRightTypes = document.getElementById('scroll-right-btn-types');
-
-    // === 3. CORE FUNCTIONS ===
 
     function filterCars() {
         vehicleGrid.innerHTML = '<div class="loading">Memuat mobil...</div>';
@@ -93,8 +89,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return values;
     }
-
-    // === 4. HELPER & EVENT HANDLER FUNCTIONS ===
 
     function handleBrandSelection(button) {
         const brandName = button.textContent.trim();
@@ -230,8 +224,6 @@ document.addEventListener('DOMContentLoaded', function () {
         yearMaxSelect.value = '';
     }
 
-    // === 5. EVENT LISTENERS INITIALIZATION ===
-    
     function initializeEventListeners() {
         searchButton.addEventListener('click', () => {
             searchTerm = searchInput.value.trim();

@@ -1,0 +1,100 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-sale-detail.css', '../css/css-admin/footer.css'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Detail Transaksi</h1>
+    <div class="header-actions">
+        <a href="admin-sales-history.php" class="btn-secondary">‹ Kembali ke Riwayat</a>
+    </div>
+</header>
+
+<main class="detail-page-layout">
+    <div class="main-content-column">
+        
+        <div class="detail-card">
+            <h3>Mobil yang Terjual</h3>
+            <div class="car-profile">
+                <img src="{{ sale.car_image_url ?: '../images/default-car.png' }}" alt="{{ sale.car_name }}" class="car-profile__image">
+                <div class="car-profile__info">
+                    <h4>{{ sale.car_name }}</h4>
+                    <p>{{ sale.car_year }} • {{ sale.license_plate }} • {{ sale.color }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <h3>Rincian Finansial</h3>
+            <table class="financial-table">
+                <tbody>
+                    <tr>
+                        <td>Harga Mobil</td>
+                        <td>Rp {{ sale.car_price|number_format(0, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Biaya Administrasi</td>
+                        <td>Rp {{ sale.admin_fee|number_format(0, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Diskon</td>
+                        <td class="discount">- Rp {{ sale.discount|number_format(0, ',', '.') }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total Pembayaran</td>
+                        <td>Rp {{ sale.total_price|number_format(0, ',', '.') }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+
+    <aside class="sidebar-column">
+        
+        <div class="detail-card">
+            <h3>Status Transaksi</h3>
+            <dl class="summary-list">
+                <dt>ID Transaksi</dt>
+                <dd>#{{ sale.transaction_code }}</dd>
+                <dt>Tanggal</dt>
+                <dd>{{ sale.sale_date|date("d F Y") }}</dd>
+                <dt>Status</dt>
+                <dd><span class="status-badge status-{{ sale.status|lower }}">{{ sale.status|capitalize }}</span></dd>
+            </dl>
+        </div>
+
+        {# KARTU BARU: Hanya tampil jika status DP dan ada info kredit #}
+        {% if sale.status == 'dp' and sale.leasing_rule_id %}
+        <div class="detail-card due-date-card">
+            <h3>Info Pembayaran Berikutnya</h3>
+            <dl class="summary-list">
+                <dt>Jatuh Tempo Berikutnya</dt>
+                <dd class="due-date__next">{{ sale.next_due_date }}</dd>
+                <dt>Cicilan per Bulan</dt>
+                <dd>Rp {{ sale.monthly_installment|number_format(0, ',', '.') }}</dd>
+                <dt>Akhir Masa Kredit</dt>
+                <dd>{{ sale.loan_end_date }}</dd>
+            </dl>
+        </div>
+        {% endif %}
+        
+        <div class="detail-card">
+            <h3>Pihak Terlibat</h3>
+            <dl class="summary-list">
+                <dt>Nama Pelanggan</dt>
+                <dd>{{ sale.customer_name }}</dd>
+                <dt>Kontak Pelanggan</dt>
+                <dd>{{ sale.customer_phone }}</dd>
+                <hr>
+                <dt>Staff Penjualan</dt>
+                <dd>{{ sale.staff_name }}</dd>
+                <dt>Showroom</dt>
+                <dd>{{ sale.showroom_name }}</dd>
+            </dl>
+        </div>
+
+    </aside>
+</main>
+
+{% include '_footer-admin.twig.html' %}

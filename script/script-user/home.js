@@ -49,7 +49,6 @@ const searchButton = document.getElementById('search-button');
         filterCars();
     });
 
-    // Event listener baru untuk trigger cari saat menekan 'Enter'
     searchInput.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
             searchTerm = searchInput.value;

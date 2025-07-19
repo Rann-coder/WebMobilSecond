@@ -1,28 +1,14 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+session_start();
+require_once '../vendor/autoload.php';
 
-$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../templates-admin');
-$twig = new \Twig\Environment($loader);
+use Uph\Mobilsecond\Twig;
+$notification = $_SESSION['notification'] ?? null;
 
-$validUsername = 'admin123';
-$validPassword = 'adminpass';
+unset($_SESSION['notification']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = trim($_POST['password'] ?? '');
+$twig = Twig::make('../templates-admin');
 
-    if (strlen($username) < 5 || strlen($password) < 5) {
-        echo $twig->render('admin-login.twig.html', [
-            'error' => 'Username dan password harus minimal 5 karakter.'
-        ]);
-    } elseif ($username === $validUsername && $password === $validPassword) {
-        header('Location: admin-home.php');
-        exit;
-    } else {
-        echo $twig->render('admin-login.twig.html', [
-            'error' => 'Username atau password salah.'
-        ]);
-    }
-} else {
-    echo $twig->render('admin-login.twig.html');
-}
+echo $twig->render('admin-login.twig.html', [
+    'notification' => $notification
+]);

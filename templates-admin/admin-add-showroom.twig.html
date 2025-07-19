@@ -1,0 +1,88 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-add-showroom.css', '../css/css-admin/footer.css'] %}
+{% set page_scripts = ['../script/script-admin/admin-add-showroom.js'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Tambah Showroom Baru</h1>
+    <div class="header-actions">
+        <a href="admin-showroom.php" class="btn-secondary">Batal</a>
+        <button type="submit" form="add-showroom-form" class="btn-primary">Simpan Showroom</button>
+    </div>
+</header>
+
+<main>
+    <section class="form-container">
+<form id="add-showroom-form" action="admin-add-showroom-process.php" method="POST" enctype="multipart/form-data">
+    <div class="form-section">
+        <h2>Detail Showroom</h2>
+        <div class="form-grid two-columns">
+            
+            <div class="form-group full-width">
+                <label for="showroom-name">Nama Showroom</label>
+                <input type="text" id="showroom-name" name="name" placeholder="Contoh: Medan Abadi - Gatot Subroto" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="showroom-address">Alamat Lengkap</label>
+                <textarea id="showroom-address" name="address" rows="3" placeholder="Masukkan alamat jalan, kota, dan kode pos" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="showroom-phone">Nomor Telepon</label>
+                <input type="tel" id="showroom-phone" name="phone" placeholder="Contoh: 061-123456">
+            </div>
+
+            <div class="form-group">
+                <label for="showroom-email">Email</label>
+                <input type="email" id="showroom-email" name="email" placeholder="Contoh: info@medanabadi.com">
+            </div>
+
+            <div class="form-group full-width">
+                <label for="showroom-hours">Jam Operasional</label>
+                <input type="text" id="showroom-hours" name="opening_hours" placeholder="Contoh: Senin - Sabtu: 09:00 - 18:00">
+            </div>
+
+            <div class="form-group full-width">
+                <label>Status Showroom</label>
+                <div class="radio-options">
+                    <label class="radio-label">
+                        <input type="radio" name="status" value="active" checked>
+                        <span>Active</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="status" value="renovation">
+                        <span>Renovation</span>
+                    </label>
+                     <label class="radio-label">
+                        <input type="radio" name="status" value="opening_soon">
+                        <span>Opening Soon</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="status" value="permanent_closed">
+                        <span>Permanent Closed</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <h2>Gambar Showroom</h2>
+        <div class="form-group">
+            <label for="showroom-photo-input" class="photo-upload-label">
+                <div id="photo-preview-container">
+                    <img id="showroom-photo-preview" src="#" alt="Preview Foto Showroom" style="display: none;">
+                    <span id="photo-placeholder">
+                        <span class="upload-icon">🖼️</span>
+                        <span class="upload-text">Klik untuk memilih gambar</span>
+                    </span>
+                </div>
+            </label>
+            <input type="file" id="showroom-photo-input" name="showroom_image" accept="image/png, image/jpeg, image/webp" style="display: none;">
+        </div>
+    </div>
+</form>
+    </section>
+</main>
+
+{% include '_footer-admin.twig.html' %}

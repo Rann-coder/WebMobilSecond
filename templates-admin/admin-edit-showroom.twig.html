@@ -1,0 +1,87 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-edit-showroom.css', '../css/css-admin/footer.css'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Edit Data Showroom</h1>
+    <div class="header-actions">
+        <a href="admin-showroom.php" class="btn-secondary">Kembali</a>
+        <button type="submit" form="edit-showroom-form" class="btn-primary">Simpan Perubahan</button>
+    </div>
+</header>
+
+<main>
+    <section class="form-container">
+        <form id="edit-showroom-form" action="admin-edit-showroom-process.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{ showroom.id }}">
+            
+            <div class="form-section">
+                <h2>Informasi Showroom</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Nama Showroom*</label>
+                        <input type="text" id="name" name="name" value="{{ showroom.name }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Alamat Lengkap*</label>
+                        <textarea id="address" name="address" rows="3" required>{{ showroom.address }}</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Nomor Telepon*</label>
+                        <input type="tel" id="phone" name="phone" value="{{ showroom.phone }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input type="email" id="email" name="email" value="{{ showroom.email }}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="opening_hours">Jam Operasional*</label>
+                        <input type="text" id="opening_hours" name="opening_hours" value="{{ showroom.opening_hours }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Status Showroom*</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="status" value="active" {% if showroom.status == 'active' %}checked{% endif %}>
+                                <span>Aktif</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="renovation" {% if showroom.status == 'renovation' %}checked{% endif %}>
+                                <span>Renovasi</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="opening_soon" {% if showroom.status == 'opening_soon' %}checked{% endif %}>
+                                <span>Segera Buka</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="permanent_closed" {% if showroom.status == 'permanent_closed' %}checked{% endif %}>
+                                <span>Tutup Permanen</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Gambar Showroom</h2>
+                <div class="form-group">
+                    <label for="image">Upload Gambar Baru</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                    
+                    {% if showroom.image_url %}
+                        <div class="current-image">
+                            <p>Gambar Saat Ini:</p>
+                            <img src="../{{ showroom.image_url }}" alt="{{ showroom.name }}" class="showroom-image">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+
+{% include '_footer-admin.twig.html' %}

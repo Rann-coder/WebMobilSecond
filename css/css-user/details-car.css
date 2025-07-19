@@ -890,3 +890,83 @@ input[type="range"]::-moz-range-thumb {
     background-color: #e0e0e0; 
     color: #000;
 }
+/* --- Gaya Galeri Foto Inspeksi --- */
+
+/* Penampung utama section */
+.inspection-gallery-section {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+}
+
+.inspection-gallery-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f8f9fa;
+    position: relative;
+    text-align: center;
+}
+
+.inspection-gallery-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%; /* Posisikan di tengah */
+    transform: translateX(-50%); /* Sentering yang presisi */
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Grid untuk semua kartu gambar */
+.inspection-grid {
+    display: grid;
+    /* Membuat kolom responsif, minimal 300px, maksimal 1fr (seimbang) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+/* Setiap kartu gambar individu */
+.inspection-item {
+    background-color: #f8f9fa;
+    border: 1px solid #eef2f7;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.inspection-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Penampung gambar di dalam kartu */
+.inspection-image-container {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Menjaga rasio gambar tetap konsisten */
+    background-color: #e9ecef;
+}
+
+.inspection-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Caption di bawah gambar */
+.inspection-caption {
+    padding: 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    line-height: 1.4;
+}

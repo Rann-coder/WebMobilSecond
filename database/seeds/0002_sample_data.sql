@@ -1,80 +1,80 @@
-INSERT INTO showrooms (id, name, address, phone, email, status) VALUES
-(1, 'Showroom Medan Abadi - Gatsu', 'Jl. Gatot Subroto No. 123, Medan', '061-123456', 'sales@medanjaya.com', 'active'),
-(2, 'Showroom Medan Abadi - Sisimangaraja', 'Jl. Sisingamangaraja No. 45, Medan', '061-654321', 'info@sumatraauto.com', 'active'),
-(3, 'Showroom Medan Abadi - Nibung Raya', 'Jl. Nibung Raya No. 78, Medan', '061-789012', 'contact@majurenovasi.com', 'renovation');
+INSERT INTO showrooms (id, name, address, phone, email, status, opening_hours) VALUES
+(1, 'Showroom Medan Abadi - Gatsu', 'Jl. Gatot Subroto No. 123, Medan', '061-123456', 'sales@medanjaya.com', 'active', 'Senin - Sabtu: 09:00 - 18:00'),
+(2, 'Showroom Medan Abadi - Sisimangaraja', 'Jl. Sisingamangaraja No. 45, Medan', '061-654321', 'info@sumatraauto.com', 'active', 'Senin - Sabtu: 09:00 - 18:00'),
+(3, 'Showroom Medan Abadi - Nibung Raya', 'Jl. Nibung Raya No. 78, Medan', '061-789012', 'contact@majurenovasi.com', 'renovation', NULL);
 
 
 INSERT INTO cars (
     id_brand, showroom_id, name, year, price, km, 
     engine_cc, fuel_type, previous_owners, 
     license_plate, tax_valid_until, color, seat_count, airbag_count,
-    is_accident_free, is_flood_free, hot_deal_label,
+    is_accident_free, is_flood_free,
     engine, transmission, horsepower, status, approval_status,
     image_url, description, specifications, slug
 ) VALUES
 (
     1, 1, 'Avanza 1.5 G CVT', 2024, 272500000.00, 15000,
-    1500, 'Gasoline', 1, 'BK 1234 AA', '2025-08-20', 'White', 7, 2, 'Yes', 'Yes', 'Like New',
+    1500, 'Gasoline', 1, 'BK 1234 AA', '2025-08-20', 'White', 7, 2, 'Yes', 'Yes', 
     '1.5L 4-silinder', 'CVT', 106, 'Available', 'Approved', 
     '../../images/raize.png', 'Generasi terbaru dari MPV terlaris di Indonesia.', '{"torque": "137 Nm"}', 'toyota-avanza-1-5-g-cvt-2024-1'
 ),
 (
     3, 2, 'Pajero Sport Dakar Ultimate 4x2', 2024, 675600000.00, 22000,
-    2400, 'Diesel', 1, 'BK 5678 BB', '2025-05-15', 'Black', 7, 7, 'Yes', 'Yes', 'Best Deal',
+    2400, 'Diesel', 1, 'BK 5678 BB', '2025-05-15', 'Black', 7, 7, 'Yes', 'Yes', 
     '2.4L MIVEC Diesel', '8-speed AT', 181, 'Available', 'Approved', 
     '../../images/raize.png', 'SUV ladder-frame yang tangguh dan mewah.', '{"torque": "430 Nm"}', 'mitsubishi-pajero-sport-dakar-ultimate-4x2-2024-2'
 ),
 (
     2, 1, 'Brio Satya E CVT', 2025, 198300000.00, 5500,
-    1200, 'Gasoline', 1, 'BK 9101 CC', '2026-01-30', 'Red', 5, 2, 'No', 'Yes', 'Low KM',
+    1200, 'Gasoline', 1, 'BK 9101 CC', '2026-01-30', 'Red', 5, 2, 'No', 'Yes', 
     '1.2L i-VTEC', 'CVT', 90, 'Hold', 'Pending',
     '../../images/raize.png', 'City car terpopuler dengan desain sporty.', '{"torque": "110 Nm"}', 'honda-brio-satya-e-cvt-2025-3'
 ),
 (
     6, 2, 'Ioniq 5 Prime Standard Range', 2024, 782000000.00, 12000,
-    0, 'Electric', 1, 'B 2024 EV', '2025-11-05', 'Silver', 5, 6, 'Yes', 'Yes', NULL,
+    0, 'Electric', 1, 'B 2024 EV', '2025-11-05', 'Silver', 5, 6, 'Yes', 'Yes', 
     'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 170, 'Available', 'Approved',
     '../../images/raize.png', 'Mobil listrik murni dengan desain futuristik.', '{"torque": "350 Nm"}', 'hyundai-ioniq-5-prime-sr-2024-4'
 ),
 (
     4, 1, 'Ertiga Hybrid Cruise AT', 2024, 299000000.00, 9800,
-    1500, 'Hybrid', 1, 'BK 1122 DD', '2025-09-10', 'Gray', 7, 2, 'Yes', 'Yes', 'Kondisi Mulus',
+    1500, 'Hybrid', 1, 'BK 1122 DD', '2025-09-10', 'Gray', 7, 2, 'Yes', 'Yes', 
     '1.5L K15B + ISG', '4-speed AT', 104, 'Sold Out', 'Rejected', 
     '../../images/raize.png', 'MPV keluarga yang efisien berkat teknologi hybrid.', '{"torque": "138 Nm"}', 'suzuki-ertiga-hybrid-cruise-at-2024-5'
 ),
 (
     5, 2, 'Rocky 1.0 R TC CVT ASA', 2024, 273450000.00, 18000,
-    1000, 'Gasoline', 1, 'BK 3344 EE', '2025-07-22', 'Yellow', 5, 6, 'Yes', 'Yes', 'Harga Spesial',
+    1000, 'Gasoline', 1, 'BK 3344 EE', '2025-07-22', 'Yellow', 5, 6, 'Yes', 'Yes', 
     '1.0L Turbo 3-silinder', 'D-CVT', 98, 'Available', 'Reviewed', 
     '../../images/raize.png', 'SUV kompak dengan mesin turbo yang responsif.', '{"torque": "140 Nm"}', 'daihatsu-rocky-1-0-r-tc-cvt-asa-2024-6'
 ),
 (
     7, 1, 'Air EV Long Range', 2024, 299500000.00, 7000,
-    0, 'Electric', 1, 'BK 5566 FF', '2025-12-01', 'White', 4, 2, 'Yes', 'Yes', 'Cocok Untuk Kota',
+    0, 'Electric', 1, 'BK 5566 FF', '2025-12-01', 'White', 4, 2, 'Yes', 'Yes', 
     'Permanent Magnet Synchronous Motor', 'Single Speed Reduction Gear', 40, 'Available', 'Approved', 
     '../../images/raize.png', 'Mobil listrik mungil untuk perkotaan yang praktis.', '{"torque": "110 Nm"}', 'wuling-air-ev-long-range-2024-7'
 ),
 (
     1, 2, 'Kijang Innova Zenix G Hybrid CVT', 2024, 477600000.00, 25000,
-    2000, 'Hybrid', 1, 'BK 7788 GG', '2025-04-18', 'Black', 7, 6, 'Yes', 'No', 'Hot Deal',
+    2000, 'Hybrid', 1, 'BK 7788 GG', '2025-04-18', 'Black', 7, 6, 'Yes', 'No', 
     '2.0L M20A-FXS Hybrid', 'e-CVT', 186, 'Available', 'Approved', 
     '../../images/raize.png', 'Revolusi dari Kijang Innova dengan teknologi hybrid.', '{"torque": "205 Nm"}', 'toyota-kijang-innova-zenix-g-hybrid-2024-8'
 ),
 (
     2, 1, 'HR-V 1.5L Turbo RS', 2024, 540300000.00, 16500,
-    1500, 'Gasoline', 1, 'BK 9900 HH', '2025-06-25', 'Red', 5, 6, 'Yes', 'Yes', 'Tipe Tertinggi',
+    1500, 'Gasoline', 1, 'BK 9900 HH', '2025-06-25', 'Red', 5, 6, 'Yes', 'Yes', 
     '1.5L VTEC Turbo', 'CVT', 177, 'Hold', 'Reviewed', 
     '../../images/raize.png', 'Compact SUV dengan desain coupe yang stylish.', '{"torque": "240 Nm"}', 'honda-hr-v-1-5l-turbo-rs-2024-9'
 ),
 (
     11, 2, '320i M Sport', 2024, 1165000000.00, 8500,
-    2000, 'Gasoline', 1, 'B 320 BOS', '2025-10-10', 'Blue', 5, 8, 'Yes', 'Yes', 'Collector Item',
+    2000, 'Gasoline', 1, 'B 320 BOS', '2025-10-10', 'Blue', 5, 8, 'Yes', 'Yes', 
     '2.0L BMW TwinPower Turbo', '8-speed Steptronic', 184, 'Available', 'Approved',
     '../../images/raize.png', 'Sedan sport legendaris yang mendefinisikan kenikmatan berkendara.', '{"torque": "300 Nm"}', 'bmw-320i-m-sport-2024-10'
 ),
 (
     8, 1, 'Omoda 5 RZ', 2024, 404900000.00, 11000,
-    1500, 'Gasoline', 1, 'BK 1505 RZ', '2025-03-12', 'Gray', 5, 6, 'N/A', 'N/A', 'Futuristik',
+    1500, 'Gasoline', 1, 'BK 1505 RZ', '2025-03-12', 'Gray', 5, 6, 'N/A', 'N/A', 
     '1.5L Turbo', '9-speed CVT', 145, 'Available', 'Pending', 
     '../../images/raize.png', 'Crossover futuristik dengan desain "Art in Motion".', '{"torque": "230 Nm"}', 'chery-omoda-5-rz-2024-11'
 );
@@ -138,6 +138,26 @@ INSERT INTO car_images (car_id, image_path, caption, display_order) VALUES
 -- Galeri untuk Mobil ID 11 (Omoda 5 - 5 Seater)
 (11, '../../images/raize.png', 'Eksterior - Tampak Depan', 1), (11, '../../images/raize.png', 'Eksterior - Tampak Belakang', 2), (11, '../../images/raize.png', 'Eksterior - Sisi Kanan', 3), (11, '../../images/raize.png', 'Eksterior - Sisi Kiri', 4), (11, '../../images/raize.png', 'Eksterior - Depan Serong', 5), (11, '../../images/raize.png', 'Eksterior - Belakang Serong', 6), (11, '../../images/raize.png', 'Detail - Roda Depan', 7), (11, '../../images/raize.png', 'Detail - Roda Belakang', 8), (11, '../../images/raize.png', 'Detail - Lampu Depan LED', 9), (11, '../../images/raize.png', 'Detail - Lampu Belakang', 10), (11, '../../images/raize.png', 'Detail - Ruang Mesin Turbo', 11), (11, '../../images/raize.png', 'Interior - Dasbor & Kemudi', 12), (11, '../../images/raize.png', 'Interior - View Pengemudi', 13), (11, '../../images/raize.png', 'Interior - Jok Kulit', 14), (11, '../../images/raize.png', 'Detail - Panel Instrumen Digital', 15), (11, '../../images/raize.png', 'Detail - Head Unit Utama', 16), (11, '../../images/raize.png', 'Interior - Kabin Belakang', 17), (11, '../../images/raize.png', 'Interior - Ambient Lighting', 18), (11, '../../images/raize.png', 'Interior - Plafon & Sunroof', 19), (11, '../../images/raize.png', 'Detail - Konsol Tengah & Transmisi', 20), (11, '../../images/raize.png', 'Detail - Kontrol AC Digital', 21), (11, '../../images/raize.png', 'Detail - Panel Pintu', 22), (11, '../../images/raize.png', 'Detail - Bagasi (Tertutup)', 23), (11, '../../images/raize.png', 'Detail - Bagasi (Terbuka)', 24), (11, '../../images/raize.png', 'Fitur - Kamera 360', 25), (11, '../../images/raize.png', 'Fitur - ADAS', 26);
 
+
+INSERT INTO car_inspection_images (car_id, image_path, caption, display_order) VALUES
+-- Foto Inspeksi untuk Mobil ID 1 (Avanza)
+(1, '../../images/raize.png', 'Inspeksi - Goresan halus pada bumper depan', 1),
+(1, '../../images/raize.png', 'Inspeksi - Ketebalan alur ban depan kanan 80%', 2),
+(1, '../../images/raize.png', 'Inspeksi - Ruang mesin kering dan bersih', 3),
+(1, '../../images/raize.png', 'Inspeksi - Kondisi dashboard tanpa cacat', 4),
+(1, '../../images/raize.png', 'Inspeksi - Fungsi AC & panel bekerja normal', 5),
+(1, '../../images/raize.png', 'Inspeksi - Odometer menunjukkan kilometer asli', 6),
+(1, '../../images/raize.png', 'Inspeksi - Kondisi jok baris kedua bersih', 7),
+(1, '../../images/raize.png', 'Inspeksi - Kelengkapan dokumen BPKB', 8),
+(1, '../../images/raize.png', 'Inspeksi - Kelengkapan dokumen STNK', 9),
+
+-- Foto Inspeksi untuk Mobil ID 2 (Pajero Sport)
+(2, '../../images/raize.png', 'Inspeksi - Kondisi kaki-kaki tidak ada rembesan', 1),
+(2, '../../images/raize.png', 'Inspeksi - Kualitas dan volume oli mesin', 2),
+(2, '../../images/raize.png', 'Inspeksi - Sunroof terbuka dan tertutup normal', 3),
+(2, '../../images/raize.png', 'Inspeksi - Semua sisi kamera 360 berfungsi', 4);
+
+
 INSERT INTO car_types (car_id, type_id) VALUES
 -- Avanza (id=1) adalah MPV (id=2)
 (1, 2),
@@ -192,11 +212,17 @@ INSERT INTO car_types (car_id, type_id) VALUES
 
 
 INSERT INTO users (user_id, name, no_hp, password, email, role, alamat)VALUES 
-('USR001', 'Bryan Cen', '08123456789', 'admin01', 'bryancenbryan@gmail.com', 'customer', 'Jl. Melati No. 1'),
-('USR002', 'Randy', '08121234567', 'staff01', 'randy@gmail.com', 'admin', 'Jl. Mawar No. 10'),
-('USR003', 'Budi Hartono', '08129876543', 'tester', 'budi@example.com', 'customer', 'Jl. Kenanga No. 5');
+('USR001', 'Bryan Cen', '08123456789', '$2y$12$CJmgB3OqQXUFgC4nAoLS7OdV0V92HZCPFsJnfjudV/nlk9qKHzlF6', 'bryancenbryan@gmail.com', 'customer', 'Jl. Melati No. 1'),
+('USR002', 'Randy', '08121234567', '$2y$12$g.TSz1lJE5loXaf6/dn1I.88n0RRONEF4CmtBfAiVIJyHudfA0mA.', 'randy@gmail.com', 'admin', 'Jl. Mawar No. 10');
 
 
+
+
+INSERT INTO daftarBahanBakar (name) VALUES
+('Gasoline'),
+('Diesel'),
+('Hybrid'),
+('Electric');
 
 INSERT INTO leasing_rules (leasing_name, min_dp_percentage, max_dp_percentage, admin_fee, interest_rate_1yr, interest_rate_2yr, interest_rate_3yr, interest_rate_4yr, interest_rate_5yr) VALUES
 ('BCA Finance', 20.00, 80.00, 500000.00, 3.88, 4.28, 4.58, 4.88, 5.28),
@@ -209,3 +235,14 @@ VALUES
 ('Citra Lestari', 'Sales Executive', 'citra.l@email.com', '081234567891', 1),
 ('Anton', 'Sales Head', 'anton.w@email.com', '08123456890', 1),
 ('Rann', 'Sales Executive', 'rann.l@email.com', '08134567891', 1);
+
+INSERT INTO penjualan 
+(transaction_code, car_id, customer_id, guest_customer_name, showroom_id, staff_id, sale_date, car_price_at_sale, admin_fee, discount, final_price, status, leasing_rule_id, dp_amount, loan_tenor_years, monthly_installment) 
+VALUES
+-- Skenario 1: Penjualan LUNAS (tanpa kredit, kolom kredit diisi NULL)
+('TRX-001', 1, 'USR002', NULL, 1, 1, '2025-07-10', 272000000, 500000, 2000000, 270500000, 'lunas', NULL, NULL, NULL, NULL),
+
+-- Skenario 2: Penjualan dengan DP KREDIT (kolom kredit diisi)
+('TRX-002', 2, NULL, 'Ibu Citra Lestari (Tamu)', 2, 2, '2025-07-08', 675000000, 750000, 0, 675750000, 'dp', 2, 150000000, 5, 11562500),
+
+('TRX-003', 3, 'USR002', NULL, 1, 1, '2025-07-05', 198000000, 0, 0, 198000000, 'batal', NULL, NULL, NULL, NULL);

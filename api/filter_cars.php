@@ -17,7 +17,6 @@ try {
     //Ambil data
     $selectedBrands = json_decode($_POST['brands'] ?? '["All"]'); //'["Toyota"] --> ['Toyota']
     $selectedTypes = json_decode($_POST['types'] ?? '["All"]');
-    //Distinct --> pastikan ga ada data double
     $searchTerm = trim($_POST['search_term'] ?? '');
     $sql = "SELECT DISTINCT 
                 c.id, c.name, c.year, c.price, c.km, c.fuel_type, c.engine_cc, c.previous_owners, c.specifications, c.image_url, c.slug, b.name AS brand_name 
@@ -29,7 +28,8 @@ try {
                 car_types AS ct ON c.id = ct.car_id
             LEFT JOIN 
                 daftarTypes AS dt ON ct.type_id = dt.id
-            WHERE c.approval_status = 'Approved'"; 
+            WHERE c.approval_status = 'Approved' AND c.status = 'Available'"; 
+
 
 
     $params = [];
@@ -41,14 +41,12 @@ try {
         $params[] = '%' . $searchTerm . '%';
     }
 
-    // kondisi filter untuk Brands
     if (!empty($selectedBrands) && !in_array('All', $selectedBrands)) {
         $placeholders = implode(',', array_fill(0, count($selectedBrands), '?')); // toyota dan honda, jadi ['?', '?'] lalu implote jadi str "?,?"
         $sql .= " AND b.name IN ($placeholders)";
         $params = array_merge($params, $selectedBrands);
     }
 
-    // kondisi filter untuk Types
     if (!empty($selectedTypes) && !in_array('All', $selectedTypes)) {
         $placeholders = implode(',', array_fill(0, count($selectedTypes), '?'));
         $sql .= " AND dt.name IN ($placeholders)";
@@ -60,13 +58,11 @@ try {
     
     $sql .= " ORDER BY c.name ASC";
     
-    //Eksekusi Query
     $db = DB::getDB();
     $q = $db->prepare($sql);
     $q->execute($params);
     $cars = $q->fetchAll(PDO::FETCH_ASSOC);
 
-    // Format harga
     foreach ($cars as &$car) {
         if ($car['price']) {
             $car['formatted_price'] = 'Rp ' . number_format($car['price'], 0, ',', '.');
@@ -81,7 +77,6 @@ try {
         }
     }
 
-    // kirim hasil kembali sebagai JSON
     echo json_encode([
         'success' => true,
         'data' => $cars,
@@ -89,7 +84,6 @@ try {
     ]);
 
 } catch (Exception $e) {
-    // Jika ada error, kirim pesan error yang jelas
     http_response_code(500);
     echo json_encode([
         'success' => false,

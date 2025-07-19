@@ -30,7 +30,6 @@ CREATE TABLE cars (
     is_accident_free ENUM('Yes', 'No', 'N/A') DEFAULT 'N/A',
     is_flood_free ENUM('Yes', 'No', 'N/A') DEFAULT 'N/A',
     
-    hot_deal_label VARCHAR(50),
     image_url VARCHAR(255),
     description TEXT,
     specifications JSON,

@@ -17,13 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $db = DB::getDB();
 
-    // Cek apakah email sudah digunakan
     $check = $db->prepare("SELECT * FROM users WHERE email = ?");
     $check->execute([$email]);
     if ($check->fetch()) {
         $error = "Email sudah terdaftar. Gunakan email lain.";
     } else {
-        $user_id = uniqid('user_'); // Buat user_id manual karena tidak auto increment
+        $user_id = uniqid('user_'); 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $insert = $db->prepare("INSERT INTO users (user_id, name, no_hp, password, email, alamat) VALUES (?, ?, ?, ?, ?, ?)");

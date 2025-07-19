@@ -1,5 +1,13 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['admin_user'])) {
+    $_SESSION['notification'] = [
+        'type' => 'error',
+        'message' => 'Anda harus login sebagai admin untuk mengakses halaman ini.'
+    ];
+    header('Location: admin-login.php');
+    exit(); 
+}
 require_once '../vendor/autoload.php';
 
 use Uph\Mobilsecond\DB;
@@ -10,16 +18,15 @@ try {
     
     
     $sql = "SELECT 
-                lr.id, 
-                lr.leasing_name, 
-                lr.min_dp_percentage, 
-                lr.max_dp_percentage
+                id, 
+                leasing_name, 
+                min_dp_percentage, 
+                max_dp_percentage,
+                is_active
             FROM 
-                leasing_rules AS lr
-            GROUP BY 
-                lr.id
+                leasing_rules 
             ORDER BY 
-                lr.leasing_name ASC";
+                leasing_name ASC";
             
     $q = $db->prepare($sql);
     $q->execute();

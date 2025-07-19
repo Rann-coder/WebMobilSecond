@@ -1,3 +1,21 @@
+CREATE DATABASE IF NOT EXISTS web_mobil_second;
+USE web_mobil_second;
+
+DROP TABLE IF EXISTS penjualan;
+DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS car_images;
+DROP TABLE IF EXISTS car_inspection_images;
+DROP TABLE IF EXISTS car_types;
+DROP TABLE IF EXISTS cars;
+DROP TABLE IF EXISTS staff_pemasaran;
+DROP TABLE IF EXISTS leasing_rules;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS showrooms;
+DROP TABLE IF EXISTS daftarTypes;
+DROP TABLE IF EXISTS daftarBrands;
+DROP TABLE IF EXISTS daftarBahanBakar;
+
+
 CREATE TABLE daftarBrands (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE,
@@ -21,7 +39,8 @@ CREATE TABLE showrooms (
     phone VARCHAR(20),
     email VARCHAR(100),
     opening_hours VARCHAR(200),
-    status ENUM('active', 'renovation', 'opening_soon') DEFAULT 'active',
+    status ENUM('active', 'renovation', 'opening_soon', 'permanent_closed') DEFAULT 'active',
+    image_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

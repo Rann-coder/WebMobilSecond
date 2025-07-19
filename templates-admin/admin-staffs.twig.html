@@ -1,0 +1,54 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-staffs.css', '../css/css-admin/footer.css'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Daftar Staff Pemasaran</h1>
+    <div class="header-actions">
+        <a href="admin-add-staff.php" class="btn-primary">
+            Tambah Staff Baru
+        </a>
+    </div>
+</header>
+
+<main>
+    <div class="staff-grid">
+        {% for staff in all_staff %}
+            <div class="staff-card">
+                <div class="staff-card__header">
+                    <img src="../{{ staff.foto_url ?: 'images/default-avatar.png' }}" alt="Foto {{ staff.nama }}">
+                </div>
+                
+                <div class="staff-card__body">
+                    <h3 class="staff-card__name">{{ staff.nama }}</h3>
+                    <p class="staff-card__title">{{ staff.jabatan }}</p>
+                    
+                    <div class="staff-card__info">
+                        <div class="info-item">
+                            <span class="info-icon">📧</span>
+                            <a href="mailto:{{ staff.email }}">{{ staff.email }}</a>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📞</span>
+                            <span>{{ staff.telepon }}</span>
+                        </div>
+                        <div class="info-item">
+                            {% if staff.status == 'active' %}
+                                <span class="info-icon">📍</span>
+                                <span>Bertugas di <strong>{{ staff.showroom_name }}</strong></span>
+                            {% else %}
+                                <span class="info-icon">❌</span>
+                                <span>Status: <strong style="color: #dc3545;">Tidak Aktif</strong></span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-card__footer">
+                    <a href="admin-edit-staff.php?id={{ staff.id }}" class="btn-action btn-edit">Edit</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% include '_footer-admin.twig.html' %}

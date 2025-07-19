@@ -22,6 +22,6 @@ echo $twig->render(
     [
       'brands'=> $listBrands,
       'types'=> $listTypes,
-      'session' => $_SESSION // <-- penting agar bisa diakses di Twig
+      'session' => $_SESSION 
     ]
 );

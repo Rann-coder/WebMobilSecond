@@ -11,7 +11,7 @@
 </header>
 
 <section class="admin-content">
-    <form id="add-car-form" action="#" method="POST" enctype="multipart/form-data">
+    <form id="add-car-form" action="admin-add-car-process.php" method="POST" enctype="multipart/form-data">
 
         <div class="form-section">
             <h2>Informasi Utama</h2>
@@ -39,15 +39,35 @@
                 </div>
                 <div class="form-group">
                     <label for="car-color">Warna</label>
-                    <input type="text" id="car-color" name="color" placeholder="Contoh: Putih Mutiara">
+                    <input type="text" id="car-color" name="color" placeholder="Contoh: Putih Mutiara" required>
                 </div>
                 <div class="form-group">
                     <label for="car-status">Status Penjualan</label>
-                    <select id="car-status" name="status">
+                    <select id="car-status" name="status" required>
                         <option value="Available">Available</option>
                         <option value="Hold">Hold</option>
                         <option value="Sold Out">Sold Out</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="car-showroom">Lokasi Showroom</label>
+                    <select id="car-showroom" name="showroom_id" required>
+                        <option value="">Pilih Showroom</option>
+                        {% for showroom in showrooms %}
+                            <option value="{{ showroom.id }}">{{ showroom.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group form-group-full-width">
+                    <label>Tipe Mobil (Pilih Minimal satu)</label>
+                    <div class="checkbox-group">
+                        {% for type in car_types_list %}
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="car_types[]" value="{{ type.id }}"> 
+                                {{ type.name }}
+                            </label>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,7 +77,7 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label for="car-km">Kilometer</label>
-                    <input type="number" id="car-km" name="km" placeholder="Contoh: 15000">
+                    <input type="number" id="car-km" name="km" placeholder="Contoh: 15000" required>
                 </div>
                 <div class="form-group">
                     <label for="car-fuel">Tipe Bahan Bakar</label>
@@ -70,20 +90,28 @@
                 </div>
                 <div class="form-group">
                     <label for="car-engine-cc">CC Mesin</label>
-                    <input type="number" id="car-engine-cc" name="engine_cc" placeholder="Contoh: 1500">
+                    <input type="number" id="car-engine-cc" name="engine_cc" placeholder="Contoh: 1500" required>
                 </div>
                 <div class="form-group">
                     <label for="car-horsepower">Tenaga (HP)</label>
-                    <input type="number" id="car-horsepower" name="horsepower" placeholder="Contoh: 106">
+                    <input type="number" id="car-horsepower" name="horsepower" placeholder="Contoh: 106" required>
                 </div>
                 <div class="form-group">
                     <label for="car-transmission">Transmisi</label>
-                    <input type="text" id="car-transmission" name="transmission" placeholder="Contoh: CVT">
+                    <input type="text" id="car-transmission" name="transmission" placeholder="Contoh: CVT" required>
                 </div>
                 <div class="form-group">
                     <label for="car-engine">Detail Mesin</label>
-                    <input type="text" id="car-engine" name="engine" placeholder="Contoh: 1.5L 4-silinder">
+                    <input type="text" id="car-engine" name="engine" placeholder="Contoh: 1.5L 4-silinder" required>
                 </div>
+                <div class="form-group">
+                    <label for="car-seat-count">Jumlah Kursi</label>
+                    <input type="number" id="car-seat-count" name="seat_count" placeholder="Contoh: 7" min="1" required> 
+                </div>
+                <div class="form-group">
+                    <label for="car-airbag-count">Jumlah Airbag</label>
+                    <input type="number" id="car-airbag-count" name="airbag_count" placeholder="Contoh: 2" min="0" required> 
+                </div>
             </div>
         </div>
 
@@ -92,20 +120,20 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label for="car-owners">Pemilik Sebelumnya (Tangan ke-)</label>
-                    <input type="number" id="car-owners" name="previous_owners" value="1">
+                    <input type="number" id="car-owners" name="previous_owners" value="1" required>
                 </div>
                 <div class="form-group">
                     <label for="car-plate">Plat Nomor</label>
-                    <input type="text" id="car-plate" name="license_plate" placeholder="Contoh: BK 1234 AA">
+                    <input type="text" id="car-plate" name="license_plate" placeholder="Contoh: BK 1234 AA" required>
                 </div>
                 <div class="form-group">
                     <label for="car-tax">Pajak Berlaku Hingga</label>
-                    <input type="date" id="car-tax" name="tax_valid_until">
+                    <input type="date" id="car-tax" name="tax_valid_until" required>
                 </div>
                 <div class="form-group radio-group">
                     <label>Bebas Banjir?</label>
                     <div class="radio-options">
-                        <label><input type="radio" name="is_flood_free" value="Yes" checked> Ya</label>
+                        <label><input type="radio" name="is_flood_free" value="Yes" checked required> Ya</label>
                         <label><input type="radio" name="is_flood_free" value="No"> Tidak</label>
                         <label><input type="radio" name="is_flood_free" value="N/A"> N/A</label>
                     </div>
@@ -118,18 +146,10 @@
                         <label><input type="radio" name="is_accident_free" value="N/A"> N/A</label>
                     </div>
                 </div>
-                <div class="form-group radio-group">
-                    <label>Hot Deal?</label>
-                    <div class="radio-options">
-                        <label><input type="radio" name="is_hot_deal" value="Yes" checked> Ya</label>
-                        <label><input type="radio" name="is_hot_deal" value="No"> Tidak</label>
-                        <label><input type="radio" name="is_hot_deal" value="N/A"> N/A</label>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <div class="form-section">
+         <div class="form-section">
                 <h2>Deskripsi & Media</h2>
                 <div class="form-group">
                     <label for="car-description">Deskripsi Iklan</label>
@@ -137,67 +157,46 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Gambar Galeri (Wajib isi minimal 1 gambar & caption)</label>
-                    <div class="image-upload-grid">
-
-                        <div class="image-upload-slot">
+                    <label>Gambar Galeri</label>
+                    <div id="image-upload-container" class="image-upload-grid">
+                        
+                        <div class="image-upload-slot main-slot">
                             <label for="file-1" class="image-placeholder">
                                 <img id="preview-1" src="" alt="Preview 1" class="image-preview">
-                                <span>+ Tambah Gambar Utama</span>
-                                <button type="button" class="remove-image" onclick="removeImage(1)">×</button>
-                                <div class="success-indicator">✓</div>
+                                <span class="placeholder-text">+ Tambah Gambar Utama</span>
                             </label>
                             <input type="file" id="file-1" name="gallery_images[]" accept="image/*" class="file-input" required>
-                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar utama..." required>
-                        </div>
-
-                        <div class="image-upload-slot">
-                            <label for="file-2" class="image-placeholder">
-                                <img id="preview-2" src="" alt="Preview 2" class="image-preview">
-                                <span>+ Tambah Gambar 2</span>
-                                <button type="button" class="remove-image" onclick="removeImage(2)">×</button>
-                                <div class="success-indicator">✓</div>
-                            </label>
-                            <input type="file" id="file-2" name="gallery_images[]" accept="image/*" class="file-input">
-                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar 2...">
-                        </div>
-
-                        <div class="image-upload-slot">
-                            <label for="file-3" class="image-placeholder">
-                                <img id="preview-3" src="" alt="Preview 3" class="image-preview">
-                                <span>+ Tambah Gambar 3</span>
-                                <button type="button" class="remove-image" onclick="removeImage(3)">×</button>
-                                <div class="success-indicator">✓</div>
-                            </label>
-                            <input type="file" id="file-3" name="gallery_images[]" accept="image/*" class="file-input">
-                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar 3...">
-                        </div>
-
-                        <div class="image-upload-slot">
-                            <label for="file-4" class="image-placeholder">
-                                <img id="preview-4" src="" alt="Preview 4" class="image-preview">
-                                <span>+ Tambah Gambar 4</span>
-                                <button type="button" class="remove-image" onclick="removeImage(4)">×</button>
-                                <div class="success-indicator">✓</div>
-                            </label>
-                            <input type="file" id="file-4" name="gallery_images[]" accept="image/*" class="file-input">
-                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar 4...">
-                        </div>
-                        
-                        <div class="image-upload-slot">
-                            <label for="file-5" class="image-placeholder">
-                                <img id="preview-5" src="" alt="Preview 5" class="image-preview">
-                                <span>+ Tambah Gambar 5</span>
-                                <button type="button" class="remove-image" onclick="removeImage(5)">×</button>
-                                <div class="success-indicator">✓</div>
-                            </label>
-                            <input type="file" id="file-5" name="gallery_images[]" accept="image/*" class="file-input">
-                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption untuk gambar 5...">
+                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption gambar utama..." required>
                         </div>
 
                     </div>
+                    <button type="button" id="add-image-slot-btn" class="btn-add-more">+ Tambah Foto Lain</button>
                 </div>
             </div>
+
+            <div class="form-section">
+    <h2>Gambar Hasil Inspeksi</h2>
+    <div class="form-group">
+        <label>Upload Foto & Caption Hasil Inspeksi</label>
+        
+        <div id="inspection-upload-container" class="image-upload-grid">
+            
+            <div class="image-upload-slot">
+                <label for="inspection-file-1" class="image-placeholder">
+                    <img id="inspection-preview-1" src="" alt="Preview Inspeksi 1" class="image-preview">
+                    <span class="placeholder-text">+ Tambah Foto Inspeksi</span>
+                </label>
+                <input type="file" id="inspection-file-1" name="inspection_images[]" accept="image/*" class="file-input">
+                <input type="text" name="inspection_captions[]" class="caption-input" placeholder="Caption hasil inspeksi...">
+            </div>
+
+        </div>
+        
+        <button type="button" id="add-inspection-slot-btn" class="btn-add-more">
+            + Tambah Foto Inspeksi Lain
+        </button>
+    </div>
+</div>
     </form>
 </section>
 

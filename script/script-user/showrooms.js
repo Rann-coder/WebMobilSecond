@@ -15,23 +15,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollLeftTypes = document.getElementById('scroll-left-btn-types');
     const scrollRightTypes = document.getElementById('scroll-right-btn-types');
 
-    // Event listeners
     function initializeEventListeners() {
-        // Brand filter events
         brandsList.addEventListener('click', function(e) {
             if (e.target.classList.contains('filter-btn')) {
                 handleBrandSelection(e.target);
             }
         });
 
-        // Type filter events
         typesList.addEventListener('click', function(e) {
             if (e.target.classList.contains('filter-btn')) {
                 handleTypeSelection(e.target);
             }
         });
 
-        // Scroll events for brands
         scrollLeftBrands.addEventListener('click', () => {
             brandsList.scrollBy({ left: -200, behavior: 'smooth' });
         });
@@ -40,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
             brandsList.scrollBy({ left: 200, behavior: 'smooth' });
         });
 
-        // Scroll events for types
         scrollLeftTypes.addEventListener('click', () => {
             typesList.scrollBy({ left: -200, behavior: 'smooth' });
         });
@@ -50,26 +45,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Brand selection handler
     function handleBrandSelection(button) {
         const brandName = button.textContent.trim();
         
         if (brandName === 'All') {
-            // Reset all other brand selections
             selectedBrands = ['All'];
             brandsList.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             button.classList.add('active');
         } else {
-            // Remove 'All' selection when specific brand is selected
             if (selectedBrands.includes('All')) {
                 selectedBrands = [];
                 const allButton = brandsList.querySelector('[data-brand="All"]');
                 if (allButton) allButton.classList.remove('active');
             }
 
-            // Toggle brand selection
             if (selectedBrands.includes(brandName)) {
                 selectedBrands = selectedBrands.filter(brand => brand !== brandName);
                 button.classList.remove('active');
@@ -78,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.classList.add('active');
             }
 
-            // If no brands selected, default to 'All'
             if (selectedBrands.length === 0) {
                 selectedBrands = ['All'];
                 const allButton = brandsList.querySelector('[data-brand="All"]');
@@ -88,27 +78,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         filterCars();
     }
-
-    // Type selection handler
     function handleTypeSelection(button) {
         const typeName = button.textContent.trim();
         
         if (typeName === 'All') {
-            // Reset all other type selections
             selectedTypes = ['All'];
             typesList.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             button.classList.add('active');
         } else {
-            // Remove 'All' selection when specific type is selected
             if (selectedTypes.includes('All')) {
                 selectedTypes = [];
                 const allButton = typesList.querySelector('[data-type="All"]');
                 if (allButton) allButton.classList.remove('active');
             }
 
-            // Toggle type selection
             if (selectedTypes.includes(typeName)) {
                 selectedTypes = selectedTypes.filter(type => type !== typeName);
                 button.classList.remove('active');
@@ -117,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.classList.add('active');
             }
 
-            // If no types selected, default to 'All'
             if (selectedTypes.length === 0) {
                 selectedTypes = ['All'];
                 const allButton = typesList.querySelector('[data-type="All"]');
@@ -128,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
         filterCars();
     }
 
-    // Filter cars function
     function filterCars() {
         isShowingAll = false;
         vehicleGrid.innerHTML = '<div class="loading">Loading cars...</div>';
@@ -142,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
             formData.append('showroom_id', showroomId);
         }
 
-        // Send AJAX request to filter_cars.php
         fetch('../api/filter_cars_showroom.php', {
             method: 'POST',
             body: formData
@@ -162,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Display filtered cars
     function displayCars(cars) {
         allCars = cars;
 
@@ -181,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
         vehicleGrid.innerHTML = carsHTML + seeMoreCard;
     }
 
-    // Create individual car card HTML
     function createCarCard(car) {
         let specs = {};
         try {
@@ -219,7 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Create specification item HTML
     function createSpecItem(label, value, title) {
         if (value == null) return '';
         return `
@@ -230,20 +209,17 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Create engine specification item
     function createEngineSpecItem(engineCc) {
         if (engineCc == null) return '';
         const value = engineCc === 0 ? 'Listrik' : `${engineCc} cc`;
         return createSpecItem('CC Mesin', value, 'CC Mesin');
     }
 
-    // Create owner specification item
     function createOwnerSpecItem(previousOwners) {
         if (previousOwners == null) return '';
         return createSpecItem('Pemilik', `Tangan ke-${previousOwners}`, 'Pemilik Sebelumnya');
     }
 
-    // Create "See More" card HTML
     function createSeeMoreCard(remainingCount) {
         return `
             <div class="vehicle-card see-more-card" onclick="showAllCars()">
@@ -264,7 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Create car icon SVG
     function createCarIcon() {
         return `
             <svg class="car-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -273,18 +248,15 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Show all cars function (global scope for onclick)
     window.showAllCars = function() {
         isShowingAll = true;
         displayCars(allCars);
     };
 
-    // Initialize the application
     function init() {
         initializeEventListeners();
-        filterCars(); // Load initial cars
+        filterCars(); 
     }
 
-    // Start the application
     init();
 });

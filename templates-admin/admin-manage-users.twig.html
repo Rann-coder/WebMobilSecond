@@ -1,0 +1,62 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-manage-users.css', '../css/css-admin/footer.css'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Manajemen Pengguna</h1>
+    <div class="header-actions">
+        <a href="admin-add-user.php" class="btn-primary">
+            + Tambah Pengguna Baru
+        </a>
+    </div>
+</header>
+
+<main>
+    <section class="content-panel">
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nama Pengguna</th>
+                        <th>Email</th>
+                        <th>No. HP</th>
+                        <th>Role</th>
+                        <th>Tanggal Bergabung</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td data-label="Nama Pengguna">
+                                <div class="user-profile-cell">
+                                    <div class="user-avatar">{{ user.name|first|upper }}</div>
+                                    <div class="user-name-email">
+                                        <strong>{{ user.name }}</strong>
+                                        <small>{{ user.user_id }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Email">{{ user.email }}</td>
+                            <td data-label="No. HP">{{ user.no_hp ?: 'N/A' }}</td>
+                            <td data-label="Role">
+                                <span class="role-badge role--{{ user.role|lower }}">{{ user.role|capitalize }}</span>
+                            </td>
+                            <td data-label="Tanggal Bergabung">{{ user.created_at|date("d F Y") }}</td>
+                            <td data-label="Aksi" class="actions-cell">
+                                <a href="admin-view-user.php?id={{ user.user_id }}" class="btn-action btn-view" title="Lihat Detail Pengguna">
+                                    Tinjau
+                                </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6" class="no-data">Belum ada pengguna yang terdaftar.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+{% include '_footer-admin.twig.html' %}

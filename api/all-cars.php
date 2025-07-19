@@ -37,26 +37,23 @@ try {
                 car_types AS ct ON c.id = ct.car_id
             LEFT JOIN 
                 daftarTypes AS dt ON ct.type_id = dt.id
-            WHERE c.approval_status = 'Approved'"; 
+            WHERE c.approval_status = 'Approved' AND c.status = 'Available'"; 
 
     $params = [];
     $typesToMatch = 0;
 
     if (!empty($searchTerm)) {
-        // Mencari di nama mobil ATAU nama merek
         $sql .= " AND (c.name LIKE ? OR b.name LIKE ?)";
         $params[] = '%' . $searchTerm . '%';
         $params[] = '%' . $searchTerm . '%';
     }
 
-    // kondisi filter untuk Brands
     if (!empty($selectedBrands) && !in_array('All', $selectedBrands)) {
         $placeholders = implode(',', array_fill(0, count($selectedBrands), '?')); // toyota dan honda, jadi ['?', '?'] lalu implote jadi str "?,?"
         $sql .= " AND b.name IN ($placeholders)";
         $params = array_merge($params, $selectedBrands);
     }
 
-    // kondisi filter untuk Types
     if (!empty($selectedTypes) && !in_array('All', $selectedTypes)) {
         $placeholders = implode(',', array_fill(0, count($selectedTypes), '?'));
         $sql .= " AND dt.name IN ($placeholders)";
@@ -104,24 +101,14 @@ try {
         $sql .= " AND c.fuel_type IN ($placeholders)";
         $params = array_merge($params, $fuelTypes);
     }
-
-    // Grouping jika ada multiple type dipilih
-    if ($typesToMatch > 1) {
-        $sql .= " GROUP BY c.id HAVING COUNT(DISTINCT dt.id) = ?";
-        $params[] = $typesToMatch;
-    } else if ($typesToMatch == 1) {
-        $sql .= " GROUP BY c.id";
-    }
     
     $sql .= " ORDER BY c.name ASC";
 
-    //Eksekusi Query
     $db = DB::getDB();
     $q = $db->prepare($sql);
     $q->execute($params);
     $cars = $q->fetchAll(PDO::FETCH_ASSOC);
 
-    // Format harga
     foreach ($cars as &$car) {
         if ($car['price']) {
             $car['formatted_price'] = 'Rp ' . number_format($car['price'], 0, ',', '.');
@@ -136,7 +123,6 @@ try {
         }
     }
     
-    // kirim hasil kembali sebagai JSON
     echo json_encode([
         'success' => true,
         'data' => $cars,
@@ -144,7 +130,6 @@ try {
     ]);
 
 } catch (Exception $e) {
-    // Jika ada error, kirim pesan error yang jelas
     http_response_code(500);
     echo json_encode([
         'success' => false,

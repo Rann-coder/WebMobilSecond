@@ -1,0 +1,86 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-add-staff.css', '../css/css-admin/footer.css'] %}
+{% set page_scripts = ['../script/script-admin/admin-image-handler-staff.js'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Tambah Staff Baru</h1>
+    <div class="header-actions">
+        <a href="admin-staffs.php" class="btn-secondary">Batal</a>
+        <button type="submit" form="add-staff-form" class="btn-primary">Simpan Staff</button>
+    </div>
+</header>
+
+<main>
+    <section class="form-container">
+        <form id="add-staff-form" action="admin-add-staff-process.php" method="POST" enctype="multipart/form-data">
+            <div class="form-section">
+                <h2>Informasi Personal Staff</h2>
+                <div class="form-grid two-columns">
+                    
+                    <div class="form-group">
+                        <label for="staff-name">Nama Lengkap</label>
+                        <input type="text" id="staff-name" name="nama" placeholder="Contoh: Budi Santoso" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staff-jabatan">Jabatan</label>
+                        <input type="text" id="staff-jabatan" name="jabatan" placeholder="Contoh: Sales Executive" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staff-email">Email</label>
+                        <input type="email" id="staff-email" name="email" placeholder="contoh@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staff-telepon">Nomor Telepon</label>
+                        <input type="tel" id="staff-telepon" name="telepon" placeholder="Contoh: 08123456789" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Status Staff</label>
+                        <div class="radio-options">
+                            <label class="radio-label">
+                                <input type="radio" name="status" value="active" checked>
+                                <span>Active</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="status" value="inactive">
+                                <span>Inactive</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staff-showroom">Penempatan Showroom</label>
+                        <select id="staff-showroom" name="showroom_id" required>
+                            <option value="">-- Pilih Showroom --</option>
+                            {% for showroom in showrooms %}
+                                <option value="{{ showroom.id }}">{{ showroom.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Foto Profil</h2>
+                <div class="form-group">
+                    <label for="staff-photo" class="photo-upload-label">
+                        <div id="photo-preview-container">
+                            <img id="photo-preview" src="#" alt="Preview Foto" style="display: none;">
+                            <span id="photo-placeholder">
+                                <span class="upload-icon">📷</span>
+                                <span class="upload-text">Klik untuk memilih foto</span>
+                            </span>
+                        </div>
+                    </label>
+                    <input type="file" id="staff-photo" name="foto" accept="image/png, image/jpeg, image/webp" style="display: none;">
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+
+
+{% include '_footer-admin.twig.html' %}

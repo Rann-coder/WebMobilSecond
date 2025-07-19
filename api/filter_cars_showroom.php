@@ -3,22 +3,19 @@
 require_once '../vendor/autoload.php';
 use Uph\Mobilsecond\DB;
 
-header('Content-Type: application/json'); //utk kasi tau browser teks yang dikirim dlm bntk Json
+header('Content-Type: application/json'); 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// Handle preflight requests
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
 }
 
 try {
-    //Ambil data
     $selectedBrands = json_decode($_POST['brands'] ?? '["All"]'); //'["Toyota"] --> ['Toyota']
     $selectedTypes = json_decode($_POST['types'] ?? '["All"]');
     $showroomId = $_POST['showroom_id'] ?? null;
-    //Distinct --> pastikan ga ada data double
     $sql = "SELECT DISTINCT 
                 c.id, c.name, c.year, c.price, c.km, c.fuel_type, c.engine_cc, c.previous_owners, c.specifications, c.image_url, c.slug, b.name AS brand_name 
             FROM 

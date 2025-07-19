@@ -63,8 +63,26 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         });
     }
-    
-    //Elemen kalkulator
+
+    const shareBtn = document.getElementById('share-btn');
+
+    if (shareBtn && navigator.share) {
+        shareBtn.addEventListener('click', () => {
+        const shareData = {
+            title: document.title,
+            text: 'Lihat mobil ini di MobilSecond.id!',
+            url: window.location.href
+        };
+
+        navigator.share(shareData)
+            .then(() => console.log('Berhasil dibagikan'))
+            .catch((error) => console.log('Gagal membagikan', error));
+        });
+    } else if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+        alert("Fitur berbagi tidak didukung di browser ini.\nSalin link secara manual: " + window.location.href);
+        });
+    }
     const hargaMobilEl = document.getElementById('harga-mobil');
     const leasingSelectEl = document.getElementById('mitra-pembiayaan');
     const dpRpEl = document.getElementById('uang-muka-rp');
@@ -87,10 +105,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
     const formatAngka = (number) => new Intl.NumberFormat('id-ID').format(number);
     
-    // Fungsi untuk parsing nilai rupiah dari string
     const parseRupiah = (rupiahString) => {
         if (!rupiahString) return 0;
-        // Hapus semua karakter non-digit
         const cleanString = rupiahString.toString().replace(/[^0-9]/g, '');
         return parseFloat(cleanString) || 0;
     };
@@ -134,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
         console.log('Selected leasing data:', selectedLeasing); 
 
-        //Validasi DP minimum
         const minDpPercentage = parseFloat(selectedLeasing.min_dp_percentage);
         const maxDpPercentage = parseFloat(selectedLeasing.max_dp_percentage);
         const minDpRp = hargaMobil * (minDpPercentage/100);
@@ -147,9 +162,8 @@ document.addEventListener('DOMContentLoaded', function(){
            return; 
         }
 
-        //Hitung Jumlah yang dipinjam
         const pokokHutang = hargaMobil - dpRp;
-        if(pokokHutang <= 0){ //Jika DP lunas atau lebih
+        if(pokokHutang <= 0){ 
             hasilAngsuranEl.textContent = 'Rp 0';
             hasilTotalDpEl.textContent = formatRupiah(hargaMobil);
             rincianDpEl.textContent = formatRupiah(dpRp);
@@ -180,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function(){
             angsuranBulanan,
             biayaAdmin,
             totalDpBayar
-        }); // Debug log
+        }); 
 
         hasilTotalDpEl.textContent = formatRupiah(totalDpBayar);
         hasilAngsuranEl.textContent = formatRupiah(angsuranBulanan);
@@ -189,13 +203,10 @@ document.addEventListener('DOMContentLoaded', function(){
         rincianCicilan1El.textContent = formatRupiah(angsuranBulanan);
     }
 
-    //Event Listener Input
-    //uang-muka-rp
     dpRpEl.addEventListener('input', debounce(() =>{
         const hargaMobil = parseRupiah(hargaMobilEl.value);
         const dpRp = parseRupiah(dpRpEl.value);
 
-        // Format input dengan pemisah ribuan
         if (dpRp > 0) {
             dpRpEl.value = formatAngka(dpRp);
         }
@@ -228,7 +239,6 @@ document.addEventListener('DOMContentLoaded', function(){
         calculateCredit();
     });
 
-    // Fetch data leasing rules
     fetch('../api/get-leasing-rules.php') 
     .then(response => {
         if (!response.ok) {
