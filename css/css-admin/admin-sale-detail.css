@@ -1,14 +1,12 @@
-/* --- Layout Utama & Latar Belakang --- */
 main.detail-page-layout {
     background-color: #f4f6f9;
     padding: 30px;
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Kolom utama lebih lebar */
+    grid-template-columns: 2fr 1fr; 
     gap: 30px;
     align-items: flex-start;
 }
 
-/* --- Kartu Detail Umum --- */
 .detail-card {
     background: #ffffff;
     border-radius: 12px;
@@ -26,7 +24,6 @@ main.detail-page-layout {
     border-bottom: 1px solid #e9ecef;
 }
 
-/* --- Kartu Detail Mobil --- */
 .car-profile {
     display: flex;
     align-items: center;
@@ -42,35 +39,29 @@ main.detail-page-layout {
 .car-profile__info h4 { margin: 0 0 5px 0; font-size: 1.3rem; }
 .car-profile__info p { margin: 0; color: #6c757d; }
 
-/* --- Tabel Finansial --- */
 .financial-table { width: 100%; border-collapse: collapse; }
 .financial-table td { padding: 14px 0; border-bottom: 1px solid #f1f3f4; }
 .financial-table td:last-child { text-align: right; font-weight: 600; }
 .financial-table .discount { color: #e74c3c; }
 .financial-table tfoot td { font-size: 1.4rem; font-weight: 700; color: #007bff; border-top: 2px solid #333; }
 
-/* --- Kolom Samping (Sidebar) --- */
 .summary-list { margin: 0; padding: 0; }
 .summary-list dt { font-size: 0.85rem; color: #6c757d; margin-bottom: 4px; }
 .summary-list dd { font-size: 1rem; font-weight: 600; color: #333; margin: 0 0 16px 0; }
 .summary-list hr { border: 0; border-top: 1px solid #e9ecef; margin: 16px 0; }
 
-/* Kartu Jatuh Tempo */
 .due-date-card { border-left: 5px solid #ffc107; }
 .due-date-card h3 { color: #c77c00; }
 .due-date__next { font-size: 1.2rem !important; color: #c77c00 !important; }
 
-/* Status Badge */
 .status-badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; color: #fff; }
 .status-badge.status-lunas { background-color: #28a745; }
 .status-badge.status-dp { background-color: #ffc107; color: #333; }
 .status-badge.status-batal, .status-badge.status-hold { background-color: #dc3545; }
 
-
-/* --- Responsive --- */
 @media (max-width: 1024px) {
     main.detail-page-layout {
-        grid-template-columns: 1fr; /* Ubah jadi 1 kolom di layar kecil */
+        grid-template-columns: 1fr; 
     }
 }
 @media (max-width: 768px) {

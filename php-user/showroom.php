@@ -12,7 +12,7 @@ if(!$id_showroom){
 
 try{
     $db = DB::getDB();
-$sqlShowroom = "SELECT id, name, address, phone, opening_hours, status 
+$sqlShowroom = "SELECT id, name, address, phone, opening_hours, status, image_url
                     FROM showrooms 
                     WHERE id = ?";
     

@@ -1,7 +1,6 @@
-/* --- Layout Utama & Header --- */
 main {
     padding: 20px 40px;
-    font-family: 'Inter', sans-serif; /* Menggunakan font yang lebih modern */
+    font-family: 'Inter', sans-serif; 
 }
 
 .admin-header {
@@ -25,7 +24,6 @@ main {
     cursor: pointer;
 }
 
-/* --- Kartu Statistik (KPI) --- */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -61,8 +59,6 @@ main {
 .stat-card__label { font-size: 0.9rem; color: #6c757d; margin-bottom: 4px; }
 .stat-card__value { font-size: 1.8rem; font-weight: 700; color: #333; }
 
-
-/* --- Filter Bar (Desain Baru) --- */
 .filter-bar {
     padding: 20px;
     background: #ffffff;
@@ -161,8 +157,6 @@ main {
     border: 0;
 }
 
-
-/* --- Tabel & Konten Utama --- */
 .content-section {
     background: #ffffff;
     border-radius: 12px;
@@ -251,7 +245,6 @@ td.price { font-weight: 600; color: #17a2b8; }
 
 .no-data { text-align: center; padding: 40px; color: #6c757d; }
 
-/* --- Pagination --- */
 .pagination {
     display: flex;
     justify-content: flex-end;
@@ -271,7 +264,6 @@ td.price { font-weight: 600; color: #17a2b8; }
 .page-link:last-child { border-top-right-radius: .25rem; border-bottom-right-radius: .25rem; }
 .page-link.disabled { color: #6c757d; pointer-events: none; background-color: #fff; }
 
-/* --- Responsive --- */
 @media (max-width: 900px) {
     .filter-form {
         flex-direction: column;

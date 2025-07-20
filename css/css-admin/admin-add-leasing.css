@@ -119,7 +119,7 @@
 }
 
 input[readonly] {
-    background-color: #e9ecef; /* Warna abu-abu muda */
+    background-color: #e9ecef; 
     cursor: not-allowed;
     color: #6c757d;
 }
@@ -135,9 +135,9 @@ input[readonly] {
 }
 
 .status-badge.status--active {
-    background-color: #28a745; /* Hijau */
+    background-color: #28a745;
 }
 
 .status-badge.status--inactive {
-    background-color: #6c757d; /* Abu-abu */
+    background-color: #6c757d;
 }

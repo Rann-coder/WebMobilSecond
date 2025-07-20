@@ -50,13 +50,12 @@ body {
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    width: 100%; /* Pastikan tidak melebihi parent */
-    overflow: hidden; /* Cegah content overflow */
+    width: 100%; 
+    overflow: hidden; 
 }
 
 .main-image-container {
     width: 100%;
-    /* Hapus max-width: 1000px yang menyebabkan masalah */
     margin: 0 auto;
     aspect-ratio: 16 / 9;
     background-color: #f8f9fa;
@@ -65,7 +64,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Tambahkan max-height untuk kontrol yang lebih baik */
     max-height: 400px;
 }
 
@@ -74,26 +72,23 @@ body {
     height: 100%;
     object-fit: contain;
     transition: opacity 0.4s ease;
-    /* Pastikan gambar tidak overflow */
     max-width: 100%;
     max-height: 100%;
 }
 
-/* Perbaikan untuk detail-gallery */
 .detail-gallery {
     background: #ffffff;
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    width: 100%; /* Pastikan tidak melebihi parent */
-    overflow: hidden; /* Cegah content overflow */
-    position: relative; /* Pastikan z-index bekerja */
-    z-index: 1; /* Lebih rendah dari header */
+    width: 100%; 
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 .main-image-container {
     width: 100%;
-    /* Hapus max-width: 1000px yang menyebabkan masalah */
     margin: 0 auto;
     aspect-ratio: 16 / 9;
     background-color: #f8f9fa;
@@ -102,7 +97,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Tambahkan max-height untuk kontrol yang lebih baik */
     max-height: 400px;
 }
 
@@ -111,12 +105,10 @@ body {
     height: 100%;
     object-fit: contain;
     transition: opacity 0.4s ease;
-    /* Pastikan gambar tidak overflow */
     max-width: 100%;
     max-height: 100%;
 }
 
-/* Perbaikan untuk container utama - pastikan tidak tembus header */
 .detail-container {
     max-width: 1200px;
     margin: 40px auto;
@@ -125,22 +117,21 @@ body {
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     position: relative;
-    z-index: 1; /* Pastikan dibawah header */
+    z-index: 1;
 }
 
-/* Perbaikan gallery scroller - sejajarkan arrow dengan thumbnail */
 .gallery-scroller {
     display: flex;
-    align-items: center; /* Sejajarkan vertikal */
+    align-items: center;
     gap: 12px;
-    margin-top: 20px; /* Beri jarak dari gambar utama */
+    margin-top: 20px;
 }
 
 .scroll-btn {
     background-color: #ffffff;
     border: 1px solid #e0e6ed;
     border-radius: 50%;
-    width: 40px; /* Sedikit lebih besar */
+    width: 40px; 
     height: 40px;
     display: flex;
     align-items: center;
@@ -150,9 +141,8 @@ body {
     color: #5a6a85;
     transition: all 0.3s ease;
     flex-shrink: 0;
-    /* Posisi untuk sejajar dengan tengah thumbnail */
     align-self: center;
-    margin-top: -10px; /* Sesuaikan dengan tinggi thumbnail */
+    margin-top: -10px; 
 }
 
 .scroll-btn:hover {
@@ -162,28 +152,25 @@ body {
     transform: scale(1.1);
 }
 
-/* Perlebar area galeri - ubah proporsi grid */
 .main-content {
     display: grid;
-    grid-template-columns: 1.8fr 0.7fr; /* Lebih banyak ruang untuk galeri */
+    grid-template-columns: 1.8fr 0.7fr; 
     gap: 40px;
     margin-bottom: 50px;
     width: 100%;
     overflow: hidden;
 }
 
-/* Perbaikan untuk thumbnail container */
 .thumbnail-container {
     display: flex;
     gap: 16px;
     overflow-x: auto;
     scroll-behavior: smooth;
-    padding: 12px 8px; /* Sedikit lebih besar padding vertikal */
+    padding: 12px 8px; 
     flex-grow: 1;
     scrollbar-width: none;
     -ms-overflow-style: none;
     max-width: 100%;
-    /* Sejajarkan dengan button */
     align-items: center;
 }
 
@@ -191,16 +178,15 @@ body {
     display: none;
 }
 
-/* Perbaiki proporsi thumbnail - buat lebih persegi dan proposional */
 .thumbnail-item {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 140px; /* Sedikit lebih lebar */
+    width: 140px; 
     height: auto;
     border: 2px solid #eef2f7;
     border-radius: 12px;
-    padding: 10px; /* Sedikit lebih besar padding */
+    padding: 10px; 
     cursor: pointer;
     transition: all 0.3s ease;
     opacity: 0.8;
@@ -224,10 +210,10 @@ body {
 
 .thumbnail-item img {
     width: 100%;
-    height: 90px; /* Tinggi lebih proposional */
+    height: 90px; 
     object-fit: cover;
     border-radius: 8px;
-    aspect-ratio: 4/3; /* Ratio yang lebih baik */
+    aspect-ratio: 4/3; 
 }
 
 .thumbnail-caption {
@@ -236,12 +222,11 @@ body {
     color: #5a6a85;
     text-align: center;
     line-height: 1.2;
-    max-height: 2.4em; /* Batasi tinggi caption */
+    max-height: 2.4em; 
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* Responsive fixes */
 @media (max-width: 900px) {
     .main-content {
         grid-template-columns: 1fr;
@@ -291,20 +276,16 @@ body {
         max-height: 250px;
     }
 }
-
-/* Tambahan CSS untuk mengatasi masalah z-index header */
 .detail-container {
     position: relative;
     z-index: 1;
 }
 
-/* Jika ada header yang sticky, pastikan z-index lebih tinggi */
 header, .header, .navbar {
     position: relative;
     z-index: 999 !important;
 }
 
-/* Perbaikan untuk semua section agar tidak tembus header */
 .specifications-section, .financing-calculator-section {
     position: relative;
     z-index: 1;
@@ -317,11 +298,11 @@ header, .header, .navbar {
     }
 
     .thumbnail-item {
-        width: 110px; /* Sedikit lebih kecil di mobile */
+        width: 110px; 
     }
     
     .thumbnail-item img {
-        height: 75px; /* Sesuaikan tinggi di mobile */
+        height: 75px; 
     }
     
     .scroll-btn {
@@ -890,9 +871,6 @@ input[type="range"]::-moz-range-thumb {
     background-color: #e0e0e0; 
     color: #000;
 }
-/* --- Gaya Galeri Foto Inspeksi --- */
-
-/* Penampung utama section */
 .inspection-gallery-section {
     background: #ffffff;
     border-radius: 20px;
@@ -917,22 +895,19 @@ input[type="range"]::-moz-range-thumb {
     content: '';
     position: absolute;
     bottom: -2px;
-    left: 50%; /* Posisikan di tengah */
-    transform: translateX(-50%); /* Sentering yang presisi */
+    left: 50%; 
+    transform: translateX(-50%); 
     width: 100px;
     height: 2px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-/* Grid untuk semua kartu gambar */
 .inspection-grid {
     display: grid;
-    /* Membuat kolom responsif, minimal 300px, maksimal 1fr (seimbang) */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
 }
 
-/* Setiap kartu gambar individu */
 .inspection-item {
     background-color: #f8f9fa;
     border: 1px solid #eef2f7;
@@ -947,10 +922,9 @@ input[type="range"]::-moz-range-thumb {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Penampung gambar di dalam kartu */
 .inspection-image-container {
     width: 100%;
-    aspect-ratio: 4 / 3; /* Menjaga rasio gambar tetap konsisten */
+    aspect-ratio: 4 / 3; 
     background-color: #e9ecef;
 }
 
@@ -961,7 +935,6 @@ input[type="range"]::-moz-range-thumb {
     display: block;
 }
 
-/* Caption di bawah gambar */
 .inspection-caption {
     padding: 16px;
     font-size: 0.95rem;
@@ -969,4 +942,45 @@ input[type="range"]::-moz-range-thumb {
     color: #333;
     text-align: center;
     line-height: 1.4;
+}
+
+.description-section {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    border-top: 4px solid #667eea; /* Garis dekoratif di atas */
+    position: relative;
+}
+
+.description-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f2f5; 
+    text-align: center;
+    position: relative;
+}
+
+.description-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: #667eea;
+}
+
+.description-text {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8; 
+    max-width: 800px;
+    margin: 0 auto; 
+    text-align: center; 
 }

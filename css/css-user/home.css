@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* outline: 3px solid red; */
 }
 
 body {
@@ -298,7 +297,6 @@ p {
 
 .vehicle-grid {
     display: grid;
-    /* Menggunakan jumlah kolom tetap (5) untuk layar lebar agar tidak meregang */
     grid-template-columns: repeat(5, 1fr); 
     gap: 24px;
 }
@@ -380,8 +378,8 @@ p {
 
 .vehicle-specs {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Kunci utama: membuat 2 kolom */
-    gap: 16px 20px; /* Jarak antar baris dan antar kolom */
+    grid-template-columns: 1fr 1fr; 
+    gap: 16px 20px; 
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid #eef2f7;
@@ -389,11 +387,11 @@ p {
 
 .spec-item {
     display: flex;
-    flex-direction: column; /* Menyusun label di atas nilai */
+    flex-direction: column; 
 }
 
 .spec-label {
-    font-size: 0.75rem; /* 12px, teks kecil untuk label */
+    font-size: 0.75rem; 
     color: #8a94a6;
     margin-bottom: 2px;
     text-transform: uppercase;
@@ -401,7 +399,7 @@ p {
 }
 
 .spec-value {
-    font-size: 0.9rem; /* 14.4px, teks lebih besar untuk nilai */
+    font-size: 0.9rem; 
     color: #2c3e50;
     font-weight: 600;
 }
@@ -425,7 +423,6 @@ p {
     }
 }
 
-/* --- Responsive Media Queries --- */
 @media (max-width: 1200px) {
     .filters-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -930,7 +927,6 @@ p {
     }
 }
 
-/* Mobile screens */
 @media (max-width: 480px) {
     main {
         padding: 15px;
@@ -960,12 +956,10 @@ p {
     border-bottom: 1px solid #e9ecef;
 }
 
-/* Alternating layout - image left, details right */
 .showroom-feature.showroom-feature--reverse {
     flex-direction: row-reverse;
 }
 
-/* Layout proportions */
 .showroom-details {
     flex: 1 1 55%;
     max-width: 55%;
@@ -1052,7 +1046,6 @@ p {
     transform: scale(1.05);
 }
 
-/* Image overlay effect */
 .showroom-image::before {
     content: '';
     position: absolute;
@@ -1100,8 +1093,6 @@ p {
     box-shadow: 0 4px 15px rgba(44, 90, 160, 0.3);
 }
 
-
-/* Large tablets and small desktops */
 @media (max-width: 1024px) {
     .showroom-feature {
         gap: 32px;
@@ -1117,7 +1108,6 @@ p {
     }
 }
 
-/* Tablets */
 @media (max-width: 768px) {
     .showroom-feature,
     .showroom-feature.showroom-feature--reverse {
@@ -1151,7 +1141,6 @@ p {
     }
 }
 
-/* Mobile phones */
 @media (max-width: 480px) {
     .showroom-feature {
         padding: 24px 0;
@@ -1195,7 +1184,6 @@ p {
     }
 }
 
-/* Extra small screens */
 @media (max-width: 360px) {
     .showroom-name {
         font-size: 1.6rem;
@@ -1287,8 +1275,6 @@ p {
   margin: 0;
   text-align: center;
   background: none;
-  /* outline: 2px dashed blue; */
-  /* margin-top: -45px; */
   margin-bottom: 20px;
 }
 
@@ -1351,8 +1337,6 @@ p {
 }
 
 header{
-
-     /* outline: 2px dashed red; */
     margin-bottom: 0;
 }
 
@@ -1366,7 +1350,6 @@ header{
       overflow-x: hidden;
     }
     
-    /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
       color: rgb(171, 161, 161);
@@ -1375,7 +1358,6 @@ header{
       position: relative;
       overflow: hidden;
       margin: -100px;
-      /* padding-top: -45px; */
     }
     
     .hero::after {
@@ -1461,7 +1443,6 @@ header{
       }
     }
     
-    /* Mobile Responsive */
     @media (max-width: 768px) {
       .hero {
         padding: 6rem 1rem 4rem;
@@ -1525,10 +1506,8 @@ header{
     background: #bdc3c7;
 }}
 
-/* --- Vehicle Card & Grid --- */
 .vehicle-grid {
     display: grid;
-    /* Menggunakan jumlah kolom tetap (5) untuk layar lebar agar tidak meregang */
     grid-template-columns: repeat(5, 1fr); 
     gap: 24px;
 }
@@ -1630,8 +1609,8 @@ header{
 
 .vehicle-specs {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Kunci utama: membuat 2 kolom */
-    gap: 16px 20px; /* Jarak antar baris dan antar kolom */
+    grid-template-columns: 1fr 1fr; 
+    gap: 16px 20px; 
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid #eef2f7;
@@ -1639,11 +1618,11 @@ header{
 
 .spec-item {
     display: flex;
-    flex-direction: column; /* Menyusun label di atas nilai */
+    flex-direction: column; 
 }
 
 .spec-label {
-    font-size: 0.75rem; /* 12px, teks kecil untuk label */
+    font-size: 0.75rem; 
     color: #8a94a6;
     margin-bottom: 2px;
     text-transform: uppercase;
@@ -1651,7 +1630,7 @@ header{
 }
 
 .spec-value {
-    font-size: 0.9rem; /* 14.4px, teks lebih besar untuk nilai */
+    font-size: 0.9rem; 
     color: #2c3e50;
     font-weight: 600;
 }
@@ -1667,7 +1646,6 @@ header{
     margin-bottom: 10px;
 }
 
-/* --- Responsive Media Queries untuk Vehicle Grid --- */
 @media (max-width: 1600px) {
     .vehicle-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -1735,4 +1713,22 @@ header{
 
 #search-button:hover {
     background: linear-gradient(135deg, #3a6bb9, #2a4f8a);
+}
+
+status-badge.status-closed {
+    background-color: #6c757d; 
+    color: #ffffff;
+}
+
+.cta-button--disabled {
+    background: #bdc3c7; 
+    box-shadow: none;
+    cursor: not-allowed; 
+    pointer-events: none;
+}
+
+.cta-button--disabled:hover {
+    transform: none;
+    box-shadow: none;
+    background: #bdc3c7;
 }

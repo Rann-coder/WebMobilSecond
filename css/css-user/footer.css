@@ -236,20 +236,20 @@ footer::before {
     }
 
     .footer-content {
-        grid-template-columns: 1fr; /* Satu kolom untuk mobile */
+        grid-template-columns: 1fr; 
         gap: 2rem;
     }
 
     .footer-section {
-        text-align: left; /* Pertahankan rata kiri untuk mobile */
+        text-align: left; 
     }
 
     .footer-section h3::after {
-        left: 0; /* Pastikan garis tetap di kiri untuk mobile */
+        left: 0; 
     }
 
     .social-links {
-        justify-content: center; /* Pusatkan ikon sosial untuk mobile */
+        justify-content: center; 
     }
 
     .newsletter-form {

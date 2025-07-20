@@ -1,17 +1,13 @@
-/* --- Container Utama --- */
 main {
     padding: 20px 40px;
 }
 
-/* --- Tata Letak Grid Staff --- */
 .staff-grid {
     display: grid;
-    /* Membuat kolom responsif, akan menyesuaikan jumlah kartu per baris */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
 }
 
-/* --- Desain Kartu Staff (staff-card) --- */
 .staff-card {
     background: #ffffff;
     border-radius: 12px;
@@ -27,7 +23,6 @@ main {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Bagian Header Kartu (Foto) --- */
 .staff-card__header {
     background: linear-gradient(135deg, #f0f2f5, #e4e8ee);
     height: 120px;
@@ -44,14 +39,13 @@ main {
     object-fit: cover;
     border: 4px solid #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transform: translateY(50%); /* Trik agar setengah foto keluar dari header */
+    transform: translateY(50%); 
 }
 
-/* --- Bagian Body Kartu (Info Teks) --- */
 .staff-card__body {
-    padding: 70px 24px 24px 24px; /* Padding atas besar untuk memberi ruang bagi foto */
+    padding: 70px 24px 24px 24px; 
     text-align: center;
-    flex-grow: 1; /* Memastikan body mengisi ruang kosong */
+    flex-grow: 1; 
 }
 
 .staff-card__name {
@@ -64,7 +58,7 @@ main {
 .staff-card__title {
     font-size: 0.95rem;
     font-weight: 500;
-    color: #007bff; /* Warna biru untuk jabatan */
+    color: #007bff; 
     margin: 4px 0 24px 0;
 }
 
@@ -102,7 +96,6 @@ main {
     color: #003d7a;
 }
 
-/* --- Bagian Footer Kartu (Tombol Aksi) --- */
 .staff-card__footer {
     display: flex;
     background-color: #f8f9fa;
@@ -110,7 +103,7 @@ main {
 }
 
 .btn-action {
-    flex: 1; /* Membuat kedua tombol memiliki lebar yang sama */
+    flex: 1;
     padding: 14px;
     text-align: center;
     text-decoration: none;
@@ -119,7 +112,7 @@ main {
 }
 
 .btn-edit {
-    color: #17a2b8; /* Biru-cyan */
+    color: #17a2b8; 
     border-right: 1px solid #e9ecef;
 }
 .btn-edit:hover {
@@ -127,7 +120,7 @@ main {
 }
 
 .btn-delete {
-    color: #dc3545; /* Merah */
+    color: #dc3545;
 }
 .btn-delete:hover {
     background-color: #fbebed;

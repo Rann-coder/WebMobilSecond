@@ -9,7 +9,6 @@
     overflow-x: auto;
 }
 
-/* --- Gaya Tabel Data --- */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -36,7 +35,6 @@
     background-color: #f8f9fa;
 }
 
-/* --- Gaya Khusus Sel --- */
 .user-profile-cell {
     display: flex;
     align-items: center;
@@ -78,11 +76,11 @@
 }
 
 .role-badge.role--admin {
-    background-color: #dc3545; /* Merah untuk Admin */
+    background-color: #dc3545; 
 }
 
 .role-badge.role--customer {
-    background-color: #6c757d; /* Abu-abu untuk Customer */
+    background-color: #6c757d; 
 }
 
 .actions-cell {
