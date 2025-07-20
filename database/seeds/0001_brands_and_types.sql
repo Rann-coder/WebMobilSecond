@@ -1,0 +1,46 @@
+INSERT INTO daftarBrands (name) VALUES
+('Toyota'),
+('Honda'),
+('Mitsubishi Motors'),
+('Suzuki'),
+('Daihatsu'),
+('Hyundai'),
+('Wuling'),
+('Chery'),
+('BYD'),
+('Mercedes-Benz'),
+('BMW'),
+('Mazda'),
+('Nissan'),
+('Audi'),
+('Lexus'),
+('Kia'),
+('Subaru');
+
+INSERT INTO daftarTypes (name) VALUES
+('SUV'),
+('MPV'),
+('Sedan'),
+('Hatchback'),
+('Crossover'),
+('Electric'),
+('Hybrid'),
+('LCGC'),
+('City Car'),
+('Luxury'),
+('Coupe'),
+('Convertible'),
+('Diesel'),
+('Van'),
+('Pick-up');
+
+-- INSERT INTO daftarBahanBakar (name) VALUES
+-- ('Pertalite'),
+-- ('Pertamax'),
+-- ('Pertamax Turbo'),
+-- ('Solar'),
+-- ('Dexlite'),
+-- ('Pertamina Dex'),
+-- ('Bio Solar'),
+-- ('Premium'),
+-- ('Pertamax Green 95');

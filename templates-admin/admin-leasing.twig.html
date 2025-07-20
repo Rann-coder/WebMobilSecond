@@ -1,0 +1,59 @@
+{% set page_title = "Manajemen Mitra Leasing" %}
+{% set page_css = ['../css/css-admin/header.css',  '../css/css-admin/leasing.css', '../css/css-admin/footer.css'] %}
+{% set page_scripts = [] %}
+
+{% include '_header-admin.twig.html' %}
+
+<main>
+    <div class="page-header">
+        <h1 class="page-title">{{ page_title }}</h1>
+        <div class="header-actions">
+            <a href="admin-add-leasing.php" class="btn btn-primary">
+                <span class="icon">➕</span> Tambah Mitra Leasing Baru
+            </a>
+        </div>
+    </div>
+
+    <div class="content-panel">
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nama Mitra Leasing</th>
+                        <th>Min DP</th>
+                        <th>Max DP</th>
+                        <th>Total Penggunaan</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for leasing in leasings %}
+                        <tr>
+                            <td data-label="Nama Mitra">{{ leasing.leasing_name }}</td>
+                            <td data-label="Min DP">{{ leasing.min_dp_percentage|number_format(2, ',', '.') }}%</td>
+                            <td data-label="Max DP">{{ leasing.max_dp_percentage|number_format(2, ',', '.') }}%</td>
+                            <td data-label="Penggunaan">{{ leasing.usage_count ?? '0' }} kali</td>
+                            <td data-label="Status">
+                                {% if leasing.is_active %}
+                                    <span class="status-badge status--active">Aktif</span>
+                                {% else %}
+                                    <span class="status-badge status--inactive">Tidak Aktif</span>
+                                {% endif %}
+                            </td>
+                            <td data-label="Aksi" class="actions-cell">
+                                <a href="edit-leasing.php?id={{ leasing.id }}" class="btn-action btn-edit" title="Edit">&#9998;</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center">Belum ada data mitra leasing.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+{% include '_footer-admin.twig.html' %}

@@ -1,0 +1,288 @@
+/* --- Layout Utama & Header --- */
+main {
+    padding: 20px 40px;
+    font-family: 'Inter', sans-serif; /* Menggunakan font yang lebih modern */
+}
+
+.admin-header {
+    background: white;
+    padding: 20px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.admin-header h1 { font-size: 1.5rem; color: #333; }
+.header-actions .btn-primary { 
+    padding: 10px 20px; 
+    text-decoration: none; 
+    background-color: #007bff; 
+    color: white; 
+    border-radius: 8px; 
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+/* --- Kartu Statistik (KPI) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #007bff;
+}
+
+.stat-card__icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #e7f1ff;
+}
+.stat-card__icon.cars-sold { background-color: #e8f5e9; }
+.stat-card__icon.avg-price { background-color: #fff3e0; }
+
+.stat-card__info { display: flex; flex-direction: column; }
+.stat-card__label { font-size: 0.9rem; color: #6c757d; margin-bottom: 4px; }
+.stat-card__value { font-size: 1.8rem; font-weight: 700; color: #333; }
+
+
+/* --- Filter Bar (Desain Baru) --- */
+.filter-bar {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.search-container {
+    position: relative;
+    flex-grow: 1;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+}
+
+#search-input {
+    width: 100%;
+    min-width: 300px;
+    padding: 12px 16px 12px 45px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.date-filter-container .date-inputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-filter-container input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.filter-bar .btn-secondary {
+    padding: 12px 24px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 8px;
+}
+.filter-bar .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+/* --- Tabel & Konten Utama --- */
+.content-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.sales-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+.sales-history-table th, .sales-history-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+
+.sales-history-table thead th {
+    background-color: #f8f9fa;
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.sales-history-table thead th a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+.sales-history-table thead th a:hover {
+    color: #0056b3;
+}
+
+.sales-history-table thead th a span {
+    color: #007bff;
+    font-size: 1.1rem;
+    font-weight: normal;
+}
+
+.sales-history-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.car-info { display: flex; align-items: center; gap: 12px; }
+.car-info img { width: 60px; height: 40px; object-fit: cover; border-radius: 6px; }
+td.price { font-weight: 600; color: #17a2b8; }
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    white-space: nowrap;
+}
+.status-badge.status-lunas { background-color: #28a745; }
+.status-badge.status-dp { background-color: #ffc107; color: #333; }
+.status-badge.status-batal { background-color: #dc3545; }
+
+.btn-action.btn-view {
+    background: #6c757d;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.btn-action.btn-view:hover{ background: #5a6268; }
+
+.no-data { text-align: center; padding: 40px; color: #6c757d; }
+
+/* --- Pagination --- */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+.page-link {
+    color: #007bff;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #dee2e6;
+    margin-left: -1px;
+}
+.page-link.active { background-color: #007bff; color: white; border-color: #007bff; }
+.page-link:hover:not(.active) { background-color: #e9ecef; }
+.page-link:first-child { border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; }
+.page-link:last-child { border-top-right-radius: .25rem; border-bottom-right-radius: .25rem; }
+.page-link.disabled { color: #6c757d; pointer-events: none; background-color: #fff; }
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .filter-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    #search-input { min-width: 100%; }
+    .date-filter-container { flex-direction: column; align-items: stretch; }
+}
+
+@media (max-width: 768px) {
+    main { padding: 20px 15px; }
+    .stats-grid { grid-template-columns: 1fr; }
+}

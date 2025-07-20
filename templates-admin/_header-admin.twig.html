@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ page_title|default('Admin Dasbor') }} - Showroom Mobil</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    {% if page_css is defined %}
+        {% for css_path in page_css %}
+            <link rel="stylesheet" href="{{ css_path }}">
+        {% endfor %}
+    {% endif %}
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.css" rel="stylesheet">
+   
+</head>
+<body>
+
+<div class="admin-container">
+   <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <h3>Admin Panel</h3>
+            <button id="sidebar-toggle" class="sidebar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+            <nav class="sidebar-nav">
+        <ul>
+            <span class="menu-text">
+            <li class="{{ active_menu == 'dashboard' ? 'active' : '' }}">
+                <a href="admin-home.php"><span class="menu-text">Dasbor</span></a>
+            </li>
+            <li class="{{ active_menu == 'cars' ? 'active' : '' }}">
+                <a href="admin-manage-cars.php"><span class="menu-text">Manajemen Mobil</span></a>
+            </li>
+            <li class="{{ active_menu == 'leasing' ? 'active' : '' }}">
+                <a href="admin-management.php"><span class="menu-text">Aturan Leasing</span></a>
+            </li>
+            <li class="{{ active_menu == 'showrooms' ? 'active' : '' }}">
+                <a href="admin-showroom.php"><span class="menu-text">Manajemen Showroom</span></a>
+            </li>
+            <li class="{{ active_menu == 'users' ? 'active' : '' }}">
+                <a href="admin-manage-users.php"><span class="menu-text">Manajemen Pengguna</span></a>
+            </li>
+            <li class="{{ active_menu == 'users' ? 'active' : '' }}">
+                <a href="admin-staffs.php"><span class="menu-text">Staffs</span></a>
+            </li>
+            <li class="{{ active_menu == 'reports' ? 'active' : '' }}">
+                <a href="admin-sales-history.php"><span class="menu-text">Riwayat Penjualan</span></a>
+            </li>
+            </ul>
+        </nav>
+        
+    </aside>
+
+    <main class="admin-main">

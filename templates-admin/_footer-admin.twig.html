@@ -1,0 +1,10 @@
+</main>
+
+
+    {% if page_scripts is defined %}
+        {% for js_file in page_scripts %}
+            <script src="{{ js_file }}"></script>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

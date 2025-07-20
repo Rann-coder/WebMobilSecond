@@ -1,0 +1,67 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-add-user.css', '../css/css-admin/footer.css'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Edit Pengguna</h1>
+    <div class="header-actions">
+        <a href="admin-manage-users.php" class="btn-secondary">Batal</a>
+        <button type="submit" form="edit-user-form" class="btn-primary">Simpan Perubahan</button>
+    </div>
+</header>
+
+<main>
+    <section class="form-container">
+        <form id="edit-user-form" action="admin-edit-user-process.php" method="POST">
+            <input type="hidden" name="user_id" value="{{ user.user_id }}">
+            
+            <div class="form-section">
+                <h2>Informasi Login</h2>
+                <div class="form-grid two-columns">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" value="{{ user.email }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password Baru (Opsional)</label>
+                        <input type="password" id="password" name="password" placeholder="Kosongkan jika tidak ingin diubah">
+                        <small style="font-size: 0.8rem; color: #888; margin-top: 5px;">Minimal 8 karakter jika diisi.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Detail Pengguna</h2>
+                <div class="form-grid two-columns">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" value="{{ user.name }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_hp">Nomor HP</label>
+                        <input type="tel" id="no_hp" name="no_hp" value="{{ user.no_hp }}">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="alamat">Alamat</label>
+                        <textarea id="alamat" name="alamat" rows="3">{{ user.alamat }}</textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Role Pengguna</label>
+                        <div class="radio-options">
+                            <label class="radio-label">
+                                <input type="radio" name="role" value="customer" {{ user.role == 'customer' ? 'checked' : '' }}>
+                                <span>Customer</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="role" value="admin" {{ user.role == 'admin' ? 'checked' : '' }}>
+                                <span>Admin</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </section>
+</main>
+
+{% include '_footer-admin.twig.html' %}

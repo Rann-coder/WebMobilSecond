@@ -1,0 +1,47 @@
+<?php
+session_start();
+if (!isset($_SESSION['admin_user'])) {
+    $_SESSION['notification'] = [
+        'type' => 'error',
+        'message' => 'Anda harus login sebagai admin untuk mengakses halaman ini.'
+    ];
+    header('Location: admin-login.php');
+    exit(); 
+}
+require_once '../vendor/autoload.php';
+
+use Uph\Mobilsecond\DB;
+use Uph\Mobilsecond\Twig;
+
+$db = DB::getDB();
+$twig = Twig::make('../templates-admin');
+
+$userId = $_GET['id'] ?? null;
+
+if (!$userId) {
+    header('Location: admin-manage-users.php');
+    exit();
+}
+
+try {
+    $stmt = $db->prepare("SELECT * FROM users WHERE user_id = :user_id");
+    $stmt->execute([':user_id' => $userId]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        $_SESSION['notification'] = ['type' => 'error', 'message' => 'Pengguna tidak ditemukan.'];
+        header('Location: admin-manage-users.php');
+        exit();
+    }
+
+    $old_data = $_SESSION['old_form_data'] ?? [];
+    unset($_SESSION['old_form_data']);
+    $user = array_merge($user, $old_data);
+
+    echo $twig->render('admin-edit-user.twig.html', [
+        'user' => $user
+    ]);
+
+} catch (PDOException $e) {
+    die("Database Error: " . $e->getMessage());
+}

@@ -1,0 +1,48 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-view-user.css', '../css/css-admin/footer.css'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Detail Pengguna</h1>
+    <div class="header-actions">
+        <a href="admin-manage-users.php" class="btn-secondary">‹ Kembali ke Daftar</a>
+        {# Anda bisa menambahkan tombol Edit di sini nanti #}
+        <a href="admin-edit-user.php?id={{ user.user_id }}" class="btn-primary">✏️ Edit Pengguna</a>
+    </div>
+</header>
+
+<main>
+    {% if user %}
+    <div class="user-profile-container">
+        <div class="profile-header-card">
+            <div class="user-avatar-large">{{ user.name|first|upper }}</div>
+            <h2 class="user-name-large">{{ user.name }}</h2>
+            <p class="user-email-large">{{ user.email }}</p>
+            <span class="role-badge role--{{ user.role|lower }}">{{ user.role|capitalize }}</span>
+        </div>
+
+        <div class="detail-card">
+            <h3>Informasi Kontak & Alamat</h3>
+            <dl class="details-list">
+                <dt>Nomor HP</dt>
+                <dd>{{ user.no_hp ?: 'Tidak diisi' }}</dd>
+                <dt>Alamat</dt>
+                <dd>{{ user.alamat ?: 'Tidak diisi' }}</dd>
+            </dl>
+        </div>
+
+        <div class="detail-card">
+            <h3>Aktivitas Pengguna</h3>
+            <dl class="details-list">
+                <dt>Tanggal Bergabung</dt>
+                <dd>{{ user.created_at|date("d F Y, H:i") }}</dd>
+                <dt>Terakhir Diperbarui</dt>
+                <dd>{{ user.updated_at|date("d F Y, H:i") }}</dd>
+            </dl>
+        </div>
+    </div>
+    {% else %}
+        <p class="no-data-message">Pengguna tidak ditemukan.</p>
+    {% endif %}
+</main>
+
+{% include '_footer-admin.twig.html' %}

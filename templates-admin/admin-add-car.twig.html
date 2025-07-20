@@ -1,0 +1,204 @@
+{% set page_css = ['../css/css-admin/header.css',  '../css/css-admin/admin-add-car.css', '../css/css-admin/footer.css'] %}
+{% set page_scripts = ['../script/script-admin/admin-image-handler.js'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Tambah Mobil Baru</h1>
+    <div class="header-actions">
+        <a href="#" class="btn-secondary">Batal</a>
+        <button type="submit" form="add-car-form" class="btn-primary">Simpan Mobil</button>
+    </div>
+</header>
+
+<section class="admin-content">
+    <form id="add-car-form" action="admin-add-car-process.php" method="POST" enctype="multipart/form-data">
+
+        <div class="form-section">
+            <h2>Informasi Utama</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="car-name">Nama Mobil</label>
+                    <input type="text" id="car-name" name="name" placeholder="Contoh: Avanza 1.5 G CVT" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-brand">Merek</label>
+                    <select id="car-brand" name="id_brand" required>
+                        <option value="">Pilih Merek</option>
+                        {% for brand in brands %}
+                            <option value="{{ brand.id }}">{{ brand.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="car-price">Harga Cash (Rp)</label>
+                    <input type="number" id="car-price" name="price" placeholder="Contoh: 272500000" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-year">Tahun Pembuatan</label>
+                    <input type="number" id="car-year" name="year" placeholder="Contoh: 2024" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-color">Warna</label>
+                    <input type="text" id="car-color" name="color" placeholder="Contoh: Putih Mutiara" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-status">Status Penjualan</label>
+                    <select id="car-status" name="status" required>
+                        <option value="Available">Available</option>
+                        <option value="Hold">Hold</option>
+                        <option value="Sold Out">Sold Out</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="car-showroom">Lokasi Showroom</label>
+                    <select id="car-showroom" name="showroom_id" required>
+                        <option value="">Pilih Showroom</option>
+                        {% for showroom in showrooms %}
+                            <option value="{{ showroom.id }}">{{ showroom.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group form-group-full-width">
+                    <label>Tipe Mobil (Pilih Minimal satu)</label>
+                    <div class="checkbox-group">
+                        {% for type in car_types_list %}
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="car_types[]" value="{{ type.id }}"> 
+                                {{ type.name }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Spesifikasi Teknis</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="car-km">Kilometer</label>
+                    <input type="number" id="car-km" name="km" placeholder="Contoh: 15000" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-fuel">Tipe Bahan Bakar</label>
+                    <select id="car-fuel" name="fuel_type" required>
+                        <option value="">Pilih Bahan Bakar</option>
+                        {% for fuel in fuels %}
+                            <option value="{{ fuel.name }}">{{ fuel.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="car-engine-cc">CC Mesin</label>
+                    <input type="number" id="car-engine-cc" name="engine_cc" placeholder="Contoh: 1500" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-horsepower">Tenaga (HP)</label>
+                    <input type="number" id="car-horsepower" name="horsepower" placeholder="Contoh: 106" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-transmission">Transmisi</label>
+                    <input type="text" id="car-transmission" name="transmission" placeholder="Contoh: CVT" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-engine">Detail Mesin</label>
+                    <input type="text" id="car-engine" name="engine" placeholder="Contoh: 1.5L 4-silinder" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-seat-count">Jumlah Kursi</label>
+                    <input type="number" id="car-seat-count" name="seat_count" placeholder="Contoh: 7" min="1" required> 
+                </div>
+                <div class="form-group">
+                    <label for="car-airbag-count">Jumlah Airbag</label>
+                    <input type="number" id="car-airbag-count" name="airbag_count" placeholder="Contoh: 2" min="0" required> 
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Kondisi & Legalitas</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="car-owners">Pemilik Sebelumnya (Tangan ke-)</label>
+                    <input type="number" id="car-owners" name="previous_owners" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-plate">Plat Nomor</label>
+                    <input type="text" id="car-plate" name="license_plate" placeholder="Contoh: BK 1234 AA" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-tax">Pajak Berlaku Hingga</label>
+                    <input type="date" id="car-tax" name="tax_valid_until" required>
+                </div>
+                <div class="form-group radio-group">
+                    <label>Bebas Banjir?</label>
+                    <div class="radio-options">
+                        <label><input type="radio" name="is_flood_free" value="Yes" checked required> Ya</label>
+                        <label><input type="radio" name="is_flood_free" value="No"> Tidak</label>
+                        <label><input type="radio" name="is_flood_free" value="N/A"> N/A</label>
+                    </div>
+                </div>
+                <div class="form-group radio-group">
+                    <label>Bebas Tabrakan?</label>
+                    <div class="radio-options">
+                        <label><input type="radio" name="is_accident_free" value="Yes" checked> Ya</label>
+                        <label><input type="radio" name="is_accident_free" value="No"> Tidak</label>
+                        <label><input type="radio" name="is_accident_free" value="N/A"> N/A</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="form-section">
+                <h2>Deskripsi & Media</h2>
+                <div class="form-group">
+                    <label for="car-description">Deskripsi Iklan</label>
+                    <textarea id="car-description" name="description" rows="4" placeholder="Jelaskan kondisi dan keunggulan mobil..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Gambar Galeri</label>
+                    <div id="image-upload-container" class="image-upload-grid">
+                        
+                        <div class="image-upload-slot main-slot">
+                            <label for="file-1" class="image-placeholder">
+                                <img id="preview-1" src="" alt="Preview 1" class="image-preview">
+                                <span class="placeholder-text">+ Tambah Gambar Utama</span>
+                            </label>
+                            <input type="file" id="file-1" name="gallery_images[]" accept="image/*" class="file-input" required>
+                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption gambar utama..." required>
+                        </div>
+
+                    </div>
+                    <button type="button" id="add-image-slot-btn" class="btn-add-more">+ Tambah Foto Lain</button>
+                </div>
+            </div>
+
+            <div class="form-section">
+    <h2>Gambar Hasil Inspeksi</h2>
+    <div class="form-group">
+        <label>Upload Foto & Caption Hasil Inspeksi</label>
+        
+        <div id="inspection-upload-container" class="image-upload-grid">
+            
+            <div class="image-upload-slot">
+                <label for="inspection-file-1" class="image-placeholder">
+                    <img id="inspection-preview-1" src="" alt="Preview Inspeksi 1" class="image-preview">
+                    <span class="placeholder-text">+ Tambah Foto Inspeksi</span>
+                </label>
+                <input type="file" id="inspection-file-1" name="inspection_images[]" accept="image/*" class="file-input">
+                <input type="text" name="inspection_captions[]" class="caption-input" placeholder="Caption hasil inspeksi...">
+            </div>
+
+        </div>
+        
+        <button type="button" id="add-inspection-slot-btn" class="btn-add-more">
+            + Tambah Foto Inspeksi Lain
+        </button>
+    </div>
+</div>
+    </form>
+</section>
+
+
+{% include '_footer-admin.twig.html' %}

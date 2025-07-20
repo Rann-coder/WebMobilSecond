@@ -1,0 +1,24 @@
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/compare-select.css', '../css/css-user/footer.css'] %}
+{% set page_scripts = [] %}
+{% include '_header.twig.html' %}
+
+<main class="compare-select-container">
+  <h1 class="compare-select-title">Pilih Mobil Untuk Dibandingkan</h1>
+
+  <div class="compare-cards">
+    {% for car in cars %}
+      <div class="compare-card">
+        <img src="../{{ car.image_url }}" alt="{{ car.name }}">
+        <h3>{{ car.name }}</h3>
+        <p>{{ car.brand }} - {{ car.year }}</p>
+        <p>Rp {{ car.price|number_format(0, ',', '.') }}</p>
+
+        <div class="compare-select-actions">
+          <a href="compare-set.php?slot=1&id={{ car.id }}">Pilih Slot 1</a>
+          <a href="compare-set.php?slot=2&id={{ car.id }}">Pilih Slot 2</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</main>
+

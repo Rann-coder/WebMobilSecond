@@ -1,0 +1,86 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-add-car.css', '../css/css-admin/footer.css'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Edit Data Staff Pemasaran</h1>
+    <div class="header-actions">
+        <a href="admin-staffs.php" class="btn-secondary">← Kembali</a>
+        <button type="submit" form="staffForm" class="btn-primary" style="margin-left: 10px;">✔ Simpan Perubahan</button>
+    </div>
+</header>
+
+<section class="admin-content">
+    <form id="staffForm" action="admin-edit-staff-process.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ staff.id }}">
+        
+        <div class="form-section">
+            <h2>Informasi Pribadi</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" value="{{ staff.nama }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="jabatan">Jabatan</label>
+                    <input type="text" id="jabatan" name="jabatan" value="{{ staff.jabatan }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="{{ staff.email }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="telepon">Nomor Telepon</label>
+                    <input type="tel" id="telepon" name="telepon" value="{{ staff.telepon }}" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Lokasi Penugasan</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="showroom_id">Showroom</label>
+                    <select id="showroom_id" name="showroom_id" required>
+                        {% for showroom in showrooms %}
+                            <option value="{{ showroom.id }}" {% if showroom.id == staff.showroom_id %}selected{% endif %}>
+                                {{ showroom.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Status Staff</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="status" value="active" {% if staff.status == 'active' %}checked{% endif %}>
+                            <span>Active</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="status" value="inactive" {% if staff.status == 'inactive' %}checked{% endif %}>
+                            <span>Inactive</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Foto Profil</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="foto">Upload Foto Baru</label>
+                    <input type="file" id="foto" name="foto" accept="image/*">
+                    {% if staff.foto_url %}
+                        <div class="current-photo" style="margin-top: 15px;">
+                            <p>Foto Saat Ini:</p>
+                            <img src="../{{ staff.foto_url }}" alt="Foto {{ staff.nama }}" style="max-width: 200px; margin-top: 10px; border-radius: 4px;">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+{% include '_footer-admin.twig.html' %}

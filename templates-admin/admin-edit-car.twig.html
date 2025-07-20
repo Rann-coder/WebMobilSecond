@@ -1,0 +1,202 @@
+{% set page_css = ['../css/css-admin/header.css', '../css/css-admin/admin-add-car.css', '../css/css-admin/footer.css'] %}
+{% set page_scripts = ['../script/script-admin/admin-edit-handler.js'] %}
+{% include '_header-admin.twig.html' %}
+
+<header class="admin-header">
+    <h1>Edit Mobil: {{ car.name }}</h1>
+    <div class="header-actions">
+        <a href="admin-home.php" class="btn-secondary">Batal</a>
+        <button type="submit" form="edit-car-form" class="btn-primary">Simpan Perubahan</button>
+    </div>
+</header>
+
+<section class="admin-content">
+    <form id="edit-car-form" action="update-car.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="car_id" value="{{ car.id }}">
+
+        <div class="form-section">
+            <h2>Informasi Utama</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="car-name">Nama Mobil</label>
+                    <input type="text" id="car-name" name="name" value="{{ car.name }}" placeholder="Contoh: Avanza 1.5 G CVT" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-brand">Merek</label>
+                    <select id="car-brand" name="id_brand" required>
+                        <option value="">Pilih Merek</option>
+                        {% for brand in brands %}
+                            <option value="{{ brand.id }}" {{ brand.id == car.id_brand ? 'selected' : '' }}>
+                                {{ brand.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="car-price">Harga Cash (Rp)</label>
+                    <input type="number" id="car-price" name="price" value="{{ car.price }}" placeholder="Contoh: 272500000" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-year">Tahun Pembuatan</label>
+                    <input type="number" id="car-year" name="year" value="{{ car.year }}" placeholder="Contoh: 2024" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-color">Warna</label>
+                    <input type="text" id="car-color" name="color" value="{{ car.color }}" placeholder="Contoh: Putih Mutiara">
+                </div>
+                <div class="form-group">
+                    <label for="car-status">Status Penjualan</label>
+                    <select id="car-status" name="status">
+                        <option value="Available" {{ car.status == 'Available' ? 'selected' : '' }}>Available</option>
+                        <option value="Hold" {{ car.status == 'Hold' ? 'selected' : '' }}>Hold</option>
+                        <option value="Sold Out" {{ car.status == 'Sold Out' ? 'selected' : '' }}>Sold Out</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Spesifikasi Teknis</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="car-km">Kilometer</label>
+                    <input type="number" id="car-km" name="km" value="{{ car.km }}" placeholder="Contoh: 15000">
+                </div>
+                <div class="form-group">
+                    <label for="car-fuel">Tipe Bahan Bakar</label>
+                    <select id="car-fuel" name="fuel_type" required>
+                        <option value="">Pilih Bahan Bakar</option>
+                        {% for fuel in fuels %}
+                            <option value="{{ fuel.name }}" {{ fuel.name == car.fuel_type ? 'selected' : '' }}>
+                                {{ fuel.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="car-engine-cc">CC Mesin</label>
+                    <input type="number" id="car-engine-cc" name="engine_cc" value="{{ car.engine_cc }}" placeholder="Contoh: 1500">
+                </div>
+                <div class="form-group">
+                    <label for="car-horsepower">Tenaga (HP)</label>
+                    <input type="number" id="car-horsepower" name="horsepower" value="{{ car.horsepower }}" placeholder="Contoh: 106">
+                </div>
+                <div class="form-group">
+                    <label for="car-transmission">Transmisi</label>
+                    <input type="text" id="car-transmission" name="transmission" value="{{ car.transmission }}" placeholder="Contoh: CVT">
+                </div>
+                <div class="form-group">
+                    <label for="car-engine">Detail Mesin</label>
+                    <input type="text" id="car-engine" name="engine" value="{{ car.engine }}" placeholder="Contoh: 1.5L 4-silinder">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Kondisi & Legalitas</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="car-owners">Pemilik Sebelumnya (Tangan ke-)</label>
+                    <input type="number" id="car-owners" name="previous_owners" value="{{ car.previous_owners }}" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="car-plate">Plat Nomor</label>
+                    <input type="text" id="car-plate" name="license_plate" value="{{ car.license_plate }}" placeholder="Contoh: BK 1234 AA">
+                </div>
+                <div class="form-group">
+                    <label for="car-tax">Pajak Berlaku Hingga</label>
+                    <input type="date" id="car-tax" name="tax_valid_until" value="{{ car.tax_valid_until|date('Y-m-d') }}">
+                </div>
+                <div class="form-group radio-group">
+                    <label>Bebas Banjir?</label>
+                    <div class="radio-options">
+                        <label><input type="radio" name="is_flood_free" value="Yes" {{ car.is_flood_free == 'Yes' ? 'checked' : '' }}> Ya</label>
+                        <label><input type="radio" name="is_flood_free" value="No" {{ car.is_flood_free == 'No' ? 'checked' : '' }}> Tidak</label>
+                        <label><input type="radio" name="is_flood_free" value="N/A" {{ car.is_flood_free == 'N/A' ? 'checked' : '' }}> N/A</label>
+                    </div>
+                </div>
+                <div class="form-group radio-group">
+                    <label>Bebas Tabrakan?</label>
+                    <div class="radio-options">
+                        <label><input type="radio" name="is_accident_free" value="Yes" {{ car.is_accident_free == 'Yes' ? 'checked' : '' }}> Ya</label>
+                        <label><input type="radio" name="is_accident_free" value="No" {{ car.is_accident_free == 'No' ? 'checked' : '' }}> Tidak</label>
+                        <label><input type="radio" name="is_accident_free" value="N/A" {{ car.is_accident_free == 'N/A' ? 'checked' : '' }}> N/A</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Deskripsi & Media</h2>
+            <div class="form-group">
+                <label for="car-description">Deskripsi Iklan</label>
+                <textarea id="car-description" name="description" rows="4" placeholder="Jelaskan kondisi dan keunggulan mobil...">{{ car.description }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Gambar Galeri</label>
+                <div id="image-upload-container" class="image-upload-grid">
+                    {% for image in gallery %}
+                        <div class="image-upload-slot {{ loop.first ? 'main-slot' : '' }}" data-image-id="{{ image.id }}">
+                            <label for="file-{{ loop.index }}" class="image-placeholder has-image">
+                                <img id="preview-{{ loop.index }}" src="../{{ image.image_path }}" alt="Preview" class="image-preview">
+                                <span class="placeholder-text" style="display:none">+ Tambah Gambar {{ loop.index }}</span>
+                                <button type="button" class="remove-existing-image-btn" title="Hapus gambar ini">×</button>
+                            </label>
+                            <input type="file" id="file-{{ loop.index }}" name="gallery_images[]" accept="image/*" class="file-input">
+                            <input type="text" name="captions[]" class="caption-input" value="{{ image.caption }}" placeholder="Caption untuk gambar {{ loop.index }}...">
+                            <input type="hidden" name="existing_images[]" value="{{ image.id }}">
+                        </div>
+                    {% else %}
+                        <div class="image-upload-slot main-slot">
+                            <label for="file-1" class="image-placeholder">
+                                <img id="preview-1" src="" alt="Preview 1" class="image-preview">
+                                <span class="placeholder-text">+ Tambah Gambar Utama</span>
+                            </label>
+                            <input type="file" id="file-1" name="gallery_images[]" accept="image/*" class="file-input" required>
+                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption gambar utama..." required>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="button" id="add-image-slot-btn" class="btn-add-more">+ Tambah Foto Lain</button>
+                <input type="hidden" id="deleted-images" name="deleted_images">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Gambar Hasil Inspeksi</h2>
+            <div class="form-group">
+                <label>Upload Foto & Caption Hasil Inspeksi</label>
+                <div id="inspection-upload-container" class="image-upload-grid">
+                    {% for image in inspectionImages %}
+                        <div class="image-upload-slot" data-inspection-id="{{ image.id }}">
+                            <label for="inspection-file-{{ loop.index }}" class="image-placeholder has-image">
+                                <img id="inspection-preview-{{ loop.index }}" src="../{{ image.image_path }}" alt="Preview Inspeksi" class="image-preview">
+                                <span class="placeholder-text" style="display:none">+ Tambah Foto Inspeksi</span>
+                                <button type="button" class="remove-existing-image-btn" title="Hapus gambar ini">×</button>
+                            </label>
+                            <input type="file" id="inspection-file-{{ loop.index }}" name="inspection_images[]" accept="image/*" class="file-input">
+                            <input type="text" name="inspection_captions[]" class="caption-input" value="{{ image.caption }}" placeholder="Caption hasil inspeksi...">
+                            <input type="hidden" name="existing_inspections[]" value="{{ image.id }}">
+                        </div>
+                    {% else %}
+                        <div class="image-upload-slot">
+                            <label for="inspection-file-1" class="image-placeholder">
+                                <img id="inspection-preview-1" src="" alt="Preview Inspeksi 1" class="image-preview">
+                                <span class="placeholder-text">+ Tambah Foto Inspeksi</span>
+                            </label>
+                            <input type="file" id="inspection-file-1" name="inspection_images[]" accept="image/*" class="file-input">
+                            <input type="text" name="inspection_captions[]" class="caption-input" placeholder="Caption hasil inspeksi...">
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="button" id="add-inspection-slot-btn" class="btn-add-more">
+                    + Tambah Foto Inspeksi Lain
+                </button>
+                <input type="hidden" id="deleted-inspections" name="deleted_inspections">
+            </div>
+        </div>
+    </form>
+</section>
+
+{% include '_footer-admin.twig.html' %}

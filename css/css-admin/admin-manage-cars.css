@@ -1,0 +1,159 @@
+/* --- Filter Bar --- */
+.filter-bar {
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.filter-group label {
+    font-weight: 500;
+    margin-right: 10px;
+}
+.filter-group select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    min-width: 250px;
+}
+
+/* --- Content Section & Grid --- */
+.content-section { padding: 0; }
+.vehicle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+.no-results { grid-column: 1 / -1; text-align: center; padding: 40px; color: #6c757d;}
+
+/* --- Vehicle Card Styling --- */
+.vehicle-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.vehicle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.vehicle-image-container {
+    width: 100%;
+    height: 180px;
+    position: relative;
+    background-color: #f0f2f5;
+}
+.vehicle-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.vehicle-showroom {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin: 4px 0 12px 0; 
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+}
+
+
+.vehicle-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 4px 0; 
+    color: #333;
+}
+
+.vehicle-info {
+    padding: 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.vehicle-brand { font-size: 0.8rem; color: #888; text-transform: uppercase; margin-bottom: 4px; }
+.vehicle-title { font-size: 1.1rem; font-weight: 700; margin: 0 0 8px 0; color: #333; }
+.vehicle-price { font-size: 1.3rem; font-weight: 700; color: #007bff; margin: 0 0 16px 0; }
+.vehicle-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e9ecef;
+}
+.spec-item { display: flex; flex-direction: column; }
+.spec-label { font-size: 0.75rem; color: #888; }
+.spec-value { font-size: 0.9rem; font-weight: 600; color: #333; }
+
+
+/* --- Tombol Aksi Admin di Kartu --- */
+.admin-card-actions {
+    display: flex;
+    border-top: 1px solid #e9ecef;
+}
+.admin-card-actions .btn-action {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+.btn-edit { color: #17a2b8; border-right: 1px solid #e9ecef; }
+.btn-edit:hover { background-color: #e2f8fb; }
+.btn-delete { color: #dc3545; }
+.btn-delete:hover { background-color: #fbebed; }
+
+/* Ganti gaya .admin-card-actions yang lama dengan ini */
+.admin-card-actions {
+    display: flex;
+    justify-content: space-between; /* Mendorong status ke kiri & tombol ke kanan */
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+}
+
+/* TAMBAHKAN INI: untuk mengelompokkan tombol Edit/Hapus */
+.action-buttons-group {
+    display: flex;
+    gap: 8px;
+}
+
+/* Ganti gaya .car-status-badge yang lama dengan ini */
+.car-status-badge {
+    /* Hapus 'position: absolute' dan properti top/right */
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Biarkan warna-warna ini tetap ada */
+.car-status-badge.status--available {
+    background-color: #28a745; /* Hijau */
+}
+.car-status-badge.status--hold {
+    background-color: #ffc107; /* Kuning */
+    color: #333;
+}
+
+/* Pastikan container gambar tidak lagi punya position relative */
+.vehicle-image-container {
+    position: static; /* atau hapus properti position jika ada */
+    /* ... sisa properti lain tetap sama ... */
+}

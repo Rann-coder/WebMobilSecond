@@ -1,0 +1,180 @@
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/home.css', '../css/css-user/footer.css'] %}
+{% set page_scripts = ['../script/script-user/home.js'] %}
+
+{% include '_header.twig.html' %}
+
+<main>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Mobil Bekas Berkualitas, Harga Terjangkau</h1>
+      <p>Temukan mobil impian Anda dengan kondisi terbaik dan harga yang bersahabat. Ribuan pilihan mobil bekas berkualitas menanti Anda!</p>
+    </div>
+  </section>
+
+
+<div class="why-us-section">
+  <div class="why-us-background">
+    <h2 class="section-title">Kenapa Memilih MobilSecond.id?</h2>
+    <div class="why-us-grid">
+      <div class="why-us-card">
+        <img src="../images/inspeksi.png" alt="Inspeksi Lengkap" />
+        <h3>Inspeksi Ketat</h3>
+        <p>Setiap mobil telah melewati proses inspeksi menyeluruh oleh tenaga ahli kami untuk memastikan kualitas dan keamanan.</p>
+      </div>
+      <div class="why-us-card">
+        <img src="../images/transaksi.png" alt="Transaksi Aman" />
+        <h3>Transaksi Aman</h3>
+        <p>Sistem pembayaran yang terpercaya dan transparan. Tidak ada biaya tersembunyi.</p>
+      </div>
+      <div class="why-us-card">
+        <img src="../images/purna-jual.png" alt="Layanan Purna Jual" />
+        <h3>Dukungan Purna Jual</h3>
+        <p>Kami menyediakan garansi mesin dan layanan bantuan setelah pembelian.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    
+    <h2 id="showroom">Our Showrooms</h2>
+    <div class="content-section">
+    {% for showroom in showrooms %}
+<div class="showroom-feature {% if loop.index is even %}showroom-feature--reverse{% endif %}">
+    <div class="showroom-details">
+        <h3 class="showroom-name">{{ showroom.name }}</h3>
+        
+        <div class="showroom-info">
+            <div class="info-item">
+                <span class="info-icon">📍</span>
+                <div class="info-content">
+                    <strong class="info-label">Alamat</strong>
+                    <span class="info-value">{{ showroom.address }}</span>
+                </div>
+            </div>
+
+        
+            {% if showroom.status == 'active' %}
+                <div class="info-item">
+                    <span class="info-icon">🕒</span>
+                    <div class="info-content">
+                        <strong class="info-label">Jam Buka</strong>
+                        <span class="info-value">{{ showroom.opening_hours }}</span>
+                    </div>
+                </div>
+            {% else %}
+                <div class="info-item showroom-status">
+                    {% if showroom.status == 'renovation' %}
+                        <span class="info-icon">🚧</span>
+                        <div class="info-content">
+                            <strong class="info-label">Status</strong>
+                            <span class="info-value status-badge status-renovation">Sedang Renovasi</span>
+                        </div>
+                    {% elseif showroom.status == 'opening_soon' %}
+                        <span class="info-icon">✨</span>
+                        <div class="info-content">
+                            <strong class="info-label">Status</strong>
+                            <span class="info-value status-badge status-opening-soon">Segera Buka</span>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+   
+
+            <div class="info-item">
+                <span class="info-icon">📞</span>
+                <div class="info-content">
+                    <strong class="info-label">Telepon</strong>
+                    <span class="info-value">{{ showroom.phone }}</span>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <a href="showroom.php?id={{ showroom.id }}" class="cta-button">
+            Kunjungi Halaman Showroom
+        </a>
+
+        
+
+    </div>
+
+    <div class="showroom-image">
+        <img src="../images/showroomA.jpg" alt="{{ showroom.name }} Showroom">
+    </div>
+</div>
+{% endfor %}
+</div>
+
+    <div id="cars" class="page-hero">
+        <h1>Ready to Find Your Next Car?</h1>
+        <p class="subtitile">Temukan partner berkendara yang tepat dari ratusan mobil second berkualitas yang telah kami inspeksi.</p>
+    </div>
+
+    <div class="content-section">
+
+   
+
+        <h2 class="title-divider">Filter by Brand</h2>
+        <div class="popular-categories">
+            <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>
+
+            <div id="brands-list" class="brands-container">
+                <button class="filter-btn active" data-brand="All">All</button>
+                {% for brand in brands %}
+                <button class="filter-btn" data-brand="{{ brand.name }}">{{ brand.name }}</button>
+                {% endfor %}
+            </div>
+
+            <button id="scroll-right-btn-brands" class="scroll-btn">&rarr;</button>
+        </div>
+
+        <h2 class="title-divider">Find by Your Needs</h2>
+        <div class="popular-categories">
+            
+            <button id="scroll-left-btn-types" class="scroll-btn">&larr;</button>
+
+            <div id="types-list" class="brands-container">
+                <button class="filter-btn active" data-type="All">All</button>
+                {% for type in types %}
+                <button class="filter-btn" data-type="{{ type.name }}">{{ type.name }}</button>
+                {% endfor %}
+            </div>
+
+            <button id="scroll-right-btn-types" class="scroll-btn">&rarr;</button>
+        </div>
+
+        <h2 class="title-divider">Mathcing Your Criteria</h2>
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" id="car-search-input" placeholder="Ketik nama mobil, contoh: Avanza, Civic, Pajero...">
+                <button id="search-button">Cari</button>
+            </div>
+        </div>
+
+        <div class="vehicle-grid" id="vehicle-grid">
+        </div>
+        <div class="button-container">
+            <a href="../../php-user/all-cars.php" class="search-more-btn">Search More by Filters</a>
+        </div>
+       
+
+    </div>
+    
+    <h2>Compare Vehicles</h2>
+    <div class="compare-grid">
+        <div class="compare-card">
+            <a href="../php-user/compare.php" class="card-link-wrapper">
+                <div class="compare-image-container">
+                   <img src="../images/compare-custom.png" alt="Custom compare">
+                </div>
+                <h3 class="compare-title">Choose your own choices</h3>
+            </a>
+        </div>
+    </div>
+</main>
+
+{% include '_footer.twig.html' %}

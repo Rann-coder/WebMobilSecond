@@ -1,0 +1,124 @@
+/* --- Gaya Formulir Umum --- */
+.form-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-section {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    margin-bottom: 30px;
+}
+
+.form-section h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* --- Layout Grid untuk Form --- */
+.form-grid {
+    display: grid;
+    gap: 20px 25px;
+}
+
+.form-grid.two-columns {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* --- Elemen Form Individual --- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* --- Gaya Khusus untuk Upload Foto --- */
+.photo-upload-label {
+    cursor: pointer;
+    border: 2px dashed #ced4da;
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s;
+}
+
+.photo-upload-label:hover {
+    border-color: #007bff;
+}
+
+#photo-preview-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%; /* Membuat area preview menjadi lingkaran */
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+#photo-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+}
+
+#photo-placeholder .upload-icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+#photo-placeholder .upload-text {
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .form-grid.two-columns {
+        grid-template-columns: 1fr;
+    }
+}
