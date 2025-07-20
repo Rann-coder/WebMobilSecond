@@ -1,11 +1,9 @@
-/* Form Container */
 .form-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Form Sections */
 .form-section {
     background: #fff;
     border-radius: 8px;
@@ -21,14 +19,12 @@
     font-size: 1.3rem;
 }
 
-/* Form Grid */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 
-/* Form Groups */
 .form-group {
     margin-bottom: 15px;
 }
@@ -56,7 +52,6 @@
     resize: vertical;
 }
 
-/* Radio Group */
 .radio-group {
     display: flex;
     flex-wrap: wrap;
@@ -71,7 +66,6 @@
     cursor: pointer;
 }
 
-/* Current Image */
 .current-image {
     margin-top: 15px;
 }

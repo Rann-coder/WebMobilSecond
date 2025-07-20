@@ -10,7 +10,6 @@ main {
     gap: 30px;
 }
 
-/* --- Kartu Profil Utama --- */
 .profile-header-card {
     background: #ffffff;
     border-radius: 12px;
@@ -67,7 +66,6 @@ main {
     background-color: #6c757d;
 }
 
-/* --- Kartu Detail Umum --- */
 .detail-card {
     background: #ffffff;
     border-radius: 12px;

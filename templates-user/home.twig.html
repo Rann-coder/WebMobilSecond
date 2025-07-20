@@ -78,6 +78,12 @@
                             <strong class="info-label">Status</strong>
                             <span class="info-value status-badge status-opening-soon">Segera Buka</span>
                         </div>
+                    {% elseif showroom.status == 'permanent_closed' %}
+                        <span class="info-icon">🚫</span>
+                        <div class="info-content">
+                            <strong class="info-label">Status</strong>
+                            <span class="info-value status-badge status-closed">Tutup Permanen</span>
+                        </div>
                     {% endif %}
                 </div>
             {% endif %}
@@ -92,18 +98,14 @@
             </div>
         </div>
 
-
-        
         <a href="showroom.php?id={{ showroom.id }}" class="cta-button">
             Kunjungi Halaman Showroom
         </a>
 
-        
-
     </div>
 
     <div class="showroom-image">
-        <img src="../images/showroomA.jpg" alt="{{ showroom.name }} Showroom">
+        <img src="../{{showroom.image_url}}" alt="{{ showroom.name }} Showroom">
     </div>
 </div>
 {% endfor %}
@@ -115,9 +117,6 @@
     </div>
 
     <div class="content-section">
-
-   
-
         <h2 class="title-divider">Filter by Brand</h2>
         <div class="popular-categories">
             <button id="scroll-left-btn-brands" class="scroll-btn">&larr;</button>

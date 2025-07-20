@@ -8,7 +8,7 @@
     <div class="content-section">
         <div class="showroom-feature">
             <div class="showroom-image">
-                <img src="../images/showroomA.jpg" alt="{{ showroom.name }} Showroom">
+                <img src="../{{showroom.image_url}}" alt="{{ showroom.name }} Showroom">
             </div>
             
             <div class="showroom-details">
@@ -130,19 +130,33 @@
             </div>
         </div>
     {% else %}
-        <div class="status-notice-container">
-            <div class="status-notice-icon">
-                {% if showroom.status == 'renovation' %}🚧{% else %}✨{% endif %}
-            </div>
-            <h3 class="status-notice-title">
-                {% if showroom.status == 'renovation' %}
-                    Showroom Sedang Dalam Perbaikan
-                {% else %}
-                    Showroom Akan Segera Dibuka
-                {% endif %}
-            </h3>
-            <p class="status-notice-text">Koleksi mobil untuk showroom ini akan tersedia setelah beroperasi kembali.</p>
+       <div class="status-notice-container">
+        <div class="status-notice-icon">
+            {% if showroom.status == 'renovation' %}
+                🚧
+            {% elseif showroom.status == 'opening_soon' %}
+                ✨
+            {% elseif showroom.status == 'permanent_closed' %}
+                🚫
+            {% endif %}
         </div>
+        <h3 class="status-notice-title">
+            {% if showroom.status == 'renovation' %}
+                Showroom Sedang Dalam Perbaikan
+            {% elseif showroom.status == 'opening_soon' %}
+                Showroom Akan Segera Dibuka
+            {% elseif showroom.status == 'permanent_closed' %}
+                Showroom Telah Tutup Permanen
+            {% endif %}
+        </h3>
+        <p class="status-notice-text">
+            {% if showroom.status == 'permanent_closed' %}
+                Mohon maaf, showroom ini sudah tidak beroperasi lagi.
+            {% else %}
+                Koleksi mobil untuk showroom ini akan tersedia setelah beroperasi kembali.
+            {% endif %}
+        </p>
+    </div>
     {% endif %}
 
     

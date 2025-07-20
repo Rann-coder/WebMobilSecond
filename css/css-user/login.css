@@ -4,7 +4,6 @@
       box-sizing: border-box;
     }
     
-    /* Gaya Body dan Background */
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -16,7 +15,6 @@
       overflow: hidden;
     }
     
-    /* Animasi Background */
     body::before {
       content: '';
       position: absolute;
@@ -34,9 +32,6 @@
       50% { transform: translateY(-20px) rotate(5deg); }
     }
 
-    /* ************************************************** */
-    /* START: Gaya Header yang Dipindahkan dari header.css */
-    /* ************************************************** */
     header {
       position: fixed; 
       top: 0;

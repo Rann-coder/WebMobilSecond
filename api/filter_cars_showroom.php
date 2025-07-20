@@ -49,13 +49,7 @@ try {
         $params = array_merge($params, $selectedTypes);
         $typesToMatch = count($selectedTypes);
     }
-    
-    if ($typesToMatch > 1) {
-        $sql .= " GROUP BY c.id HAVING COUNT(DISTINCT dt.id) = ?";
-        $params[] = $typesToMatch;
-    } else if ($typesToMatch == 1) {
-        $sql .= " GROUP BY c.id";
-    }
+
     
     $sql .= " ORDER BY c.name ASC";
     
