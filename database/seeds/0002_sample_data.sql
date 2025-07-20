@@ -13,8 +13,8 @@ INSERT INTO cars (
     image_url, description, slug
 ) VALUES
 (
-    1, 1, 'Avanza 1.5 G CVT', 2023, 272500000.00, 15000,
-    13252, 'Gasoline', 1, 'BK 1234 AA', '2025-08-20', 'White', 7, 2, 'Yes', 'Yes', 
+    1, 1, 'Avanza 1.5 G CVT', 2023, 272500000.00, 13252,
+    1329, 'Gasoline', 1, 'BK 1234 AA', '2025-08-20', 'White', 7, 2, 'Yes', 'Yes', 
     '1.5L 4-silinder', 'CVT', 106, 'Available', 'Approved', 
     '../../images/cars/fisik/avanza-tampak-serong.png', 'Generasi terbaru dari MPV terlaris di Indonesia.',  'toyota-avanza-1-5-g-cvt-2023-1'
 ),

@@ -134,9 +134,11 @@ try {
     exit;
 
 } catch (Exception $e) {
-    $db->rollBack();
+   /* $db->rollBack();
     $_SESSION['notification'] = ['type' => 'error', 'message' => 'Gagal menyimpan data mobil: ' . $e->getMessage()];
     session_write_close();
     header('Location: admin-add-car.php');
-    exit();
+    exit();*/
+
+    die("<h1>Terjadi Error!</h1><p>Gagal menyimpan data mobil. Berikut adalah pesan error dari database:</p><pre>" . $e->getMessage() . "</pre>");
 }
