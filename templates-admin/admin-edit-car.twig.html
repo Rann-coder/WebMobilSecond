@@ -89,6 +89,25 @@
                     <label for="car-engine">Detail Mesin</label>
                     <input type="text" id="car-engine" name="engine" value="{{ car.engine }}" placeholder="Contoh: 1.5L 4-silinder">
                 </div>
+                <div class="form-group">
+                    <label for="car-seat-count">Jumlah Kursi</label>
+                    <input type="number" id="car-seat-count" name="seat_count" value="{{ car.seat_count }}" placeholder="Contoh: 7" min="1" required> 
+                </div>
+                <div class="form-group">
+                    <label for="car-airbag-count">Jumlah Airbag</label>
+                    <input type="number" id="car-airbag-count" name="airbag_count" value="{{ car.airbag_count }}" placeholder="Contoh: 2" min="0" required> 
+                </div>
+                <div class="form-group">
+                    <label for="car-showroom">Lokasi Showroom</label>
+                    <select id="car-showroom" name="showroom_id" required>
+                        <option value="">Pilih Showroom</option>
+                        {% for showroom in showrooms %}
+                            <option value="{{ showroom.id }}" {{ showroom.id == car.showroom_id ? 'selected' : '' }}>
+                                {{ showroom.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -133,34 +152,21 @@
                 <textarea id="car-description" name="description" rows="4" placeholder="Jelaskan kondisi dan keunggulan mobil...">{{ car.description }}</textarea>
             </div>
 
-            <div class="form-group">
-                <label>Gambar Galeri</label>
-                <div id="image-upload-container" class="image-upload-grid">
-                    {% for image in gallery %}
-                        <div class="image-upload-slot {{ loop.first ? 'main-slot' : '' }}" data-image-id="{{ image.id }}">
-                            <label for="file-{{ loop.index }}" class="image-placeholder has-image">
-                                <img id="preview-{{ loop.index }}" src="../{{ image.image_path }}" alt="Preview" class="image-preview">
-                                <span class="placeholder-text" style="display:none">+ Tambah Gambar {{ loop.index }}</span>
-                                <button type="button" class="remove-existing-image-btn" title="Hapus gambar ini">×</button>
-                            </label>
-                            <input type="file" id="file-{{ loop.index }}" name="gallery_images[]" accept="image/*" class="file-input">
-                            <input type="text" name="captions[]" class="caption-input" value="{{ image.caption }}" placeholder="Caption untuk gambar {{ loop.index }}...">
-                            <input type="hidden" name="existing_images[]" value="{{ image.id }}">
-                        </div>
-                    {% else %}
-                        <div class="image-upload-slot main-slot">
-                            <label for="file-1" class="image-placeholder">
-                                <img id="preview-1" src="" alt="Preview 1" class="image-preview">
-                                <span class="placeholder-text">+ Tambah Gambar Utama</span>
-                            </label>
-                            <input type="file" id="file-1" name="gallery_images[]" accept="image/*" class="file-input" required>
-                            <input type="text" name="captions[]" class="caption-input" placeholder="Caption gambar utama..." required>
-                        </div>
-                    {% endfor %}
-                </div>
-                <button type="button" id="add-image-slot-btn" class="btn-add-more">+ Tambah Foto Lain</button>
-                <input type="hidden" id="deleted-images" name="deleted_images">
+           <div class="form-section">
+            <h2>Gambar Galeri</h2>
+            <div id="image-upload-container" class="image-upload-grid">
+                {% for image in gallery %}
+                    <div class="image-upload-slot" data-image-id="{{ image.id }}">
+                        <label class="image-placeholder has-image">
+                            <img src="../{{ image.image_path }}" alt="Preview" class="image-preview" style="display: block;">
+                            <button type="button" class="remove-existing-image-btn" title="Hapus gambar ini">×</button>
+                        </label>
+                        <input type="text" name="captions[{{ image.id }}]" class="caption-input" value="{{ image.caption }}">
+                    </div>
+                {% endfor %}
             </div>
+            <button type="button" id="add-image-slot-btn" class="btn-add-more">+ Tambah Foto Galeri</button>
+            <input type="hidden" id="deleted-images" name="deleted_images">
         </div>
 
         <div class="form-section">

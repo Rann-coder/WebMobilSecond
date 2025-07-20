@@ -18,6 +18,7 @@ $galleryImages = [];
 $inspectionImages = [];
 $brands = [];
 $fuels = [];
+$showrooms = []; 
 
 if ($id) {
     try {
@@ -62,11 +63,15 @@ $brands = $brandStmt->fetchAll(PDO::FETCH_ASSOC);
 $fuelStmt = $db->query("SELECT name FROM daftarBahanBakar ORDER BY name");
 $fuels = $fuelStmt->fetchAll(PDO::FETCH_ASSOC);
 
+$showroomStmt = $db->query("SELECT id, name FROM showrooms WHERE status = 'active' ORDER BY name ASC");
+$showrooms = $showroomStmt->fetchAll(PDO::FETCH_ASSOC);
+
 $twig = Twig::make('../templates-admin');
 echo $twig->render('admin-edit-car.twig.html', [
     'car' => $car,
     'gallery' => $galleryImages,
     'inspectionImages' => $inspectionImages,
     'brands' => $brands,
-    'fuels' => $fuels
+    'fuels' => $fuels,
+    'showrooms' => $showrooms
 ]);
