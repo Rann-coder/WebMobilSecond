@@ -1,0 +1,59 @@
+{% set page_css = ['../css/css-user/header.css', '../css/css-user/profile.css', '../css/css-user/footer.css'] %}
+{% include '_header.twig.html' %}
+
+
+<section class="profile-wrapper">
+  <div class="profile-sidebar">
+    <div class="avatar-circle">
+      {{ session.user.name[:1]|upper }}
+    </div>
+    <h2>{{ session.user.name }}</h2>
+    <p>{{ session.user.email }}</p>
+    <hr>
+    <a href="liked-cars.php" class="stats-single link-favorit">
+  <div>
+    <strong>{{ likeCount }}</strong>
+    <span>Favorit</span>
+  </div>
+</a>
+  </div>
+
+  <div class="profile-main">
+    <div class="profile-header">
+      <h2>Informasi Profil</h2>
+      <p>Kelola informasi personal Anda</p>
+    </div>
+    <div class="profile-details">
+      <div class="form-row">
+        <div>
+          <label>Nama Lengkap</label>
+          <input type="text" value="{{ userData.name }}" readonly>
+        </div>
+        <div>
+          <label>Email</label>
+          <input type="text" value="{{ userData.email }}" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Nomor HP</label>
+          <input type="text" value="{{ userData.no_hp }}" readonly>
+        </div>
+        <div>
+          <label>Kota</label>
+          <input type="text" id="user-city" value="Memuat lokasi..." readonly>
+        </div>
+      </div>
+      <div class="form-row full-width">
+        <div>
+          <label>Alamat</label>
+          <textarea readonly>{{ userData.alamat }}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../script/script-user/profile.js"></script>
+
+{% include '_footer.twig.html' %}
