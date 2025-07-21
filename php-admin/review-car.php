@@ -20,9 +20,10 @@ if ($id) {
     try {
         $db = DB::getDB();
         $stmt = $db->prepare("
-            SELECT c.*, b.name AS brand_name 
+            SELECT c.*, b.name AS brand_name, sr.name as showroom_name
             FROM cars c
             JOIN daftarBrands b ON c.id_brand = b.id
+            LEFT JOIN showrooms sr ON c.showroom_id = sr.id
             WHERE c.id = ?
         ");
         $stmt->execute([$id]);
