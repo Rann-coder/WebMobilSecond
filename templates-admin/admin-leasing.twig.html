@@ -22,7 +22,6 @@
                         <th>Nama Mitra Leasing</th>
                         <th>Min DP</th>
                         <th>Max DP</th>
-                        <th>Total Penggunaan</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -33,7 +32,6 @@
                             <td data-label="Nama Mitra">{{ leasing.leasing_name }}</td>
                             <td data-label="Min DP">{{ leasing.min_dp_percentage|number_format(2, ',', '.') }}%</td>
                             <td data-label="Max DP">{{ leasing.max_dp_percentage|number_format(2, ',', '.') }}%</td>
-                            <td data-label="Penggunaan">{{ leasing.usage_count ?? '0' }} kali</td>
                             <td data-label="Status">
                                 {% if leasing.is_active %}
                                     <span class="status-badge status--active">Aktif</span>
